@@ -21,8 +21,8 @@ Esses pontos são utilizados para gerar um ranking entre os usuários, incentiva
 
 ##  Integrantes
 - Vinicius Liberato dos Anjos - RM 571480 
-- Jonatan Vieira Feitosa - RM
-- Fernando Oliveira Francelino Sardinha – RM
-- Marcelo Candido da Mata Junior
+- Jonatan Vieira Feitosa - RM 570452
+- Fernando Oliveira Francelino Sardinha – RM 570196
+- Marcelo Candido da Mata Junior - RM 569584
 
 ---
