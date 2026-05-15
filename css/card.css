@@ -1,0 +1,35 @@
+.cards {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+
+    padding: 80px 40px;
+
+    background-color: #f1f5f9;
+}
+
+.card {
+    background-color: white;
+
+    padding: 30px;
+
+    border-radius: 10px;
+
+    text-align: center;
+
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card__title {
+    margin-bottom: 15px;
+
+    color: #2563eb;
+}
