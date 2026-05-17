@@ -1,72 +1,151 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tetramerge Consulting - SoulUp Hub</title>
+  <link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <header class="header">
+    <div class="header__brand">
+      <span class="logo-tetramerge">Tetramerge</span>
+      <span class="logo-divider">|</span>
+      <span class="logo-soulup">SoulUp</span>
+    </div>
+    <nav class="navbar" aria-label="Navegação principal">
+      <a class="navbar__link" href="./paginas/sobre.html">Sobre</a>
+      <a class="navbar__link" href="./paginas/faq.html">FAQ</a>
+      <a class="navbar__link" href="./paginas/contato.html">Contato</a>
+    </nav>
+  </header>
 
-    <title>TM Consulting</title>
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <h2 id="hero-title" class="hero__title">Gamificação Sustentável e Social</h2>
+      <p class="hero__text">
+        Uma solução escalável desenvolvida pela Tetramerge Consulting para o ecossistema SoulUp.
+      </p>
+    </section>
 
-    <link rel="stylesheet" href="./css/main.css" />
-  </head>
+    <section id="auth-portal" class="game-engine" aria-label="Portal de Acesso">
+      <div class="game-container auth-layout">
+        
+        <div class="game-panel">
+          <h2 class="game-panel__title">Crie sua Conta Verde</h2>
+          <p class="game-panel__text">Inscreva-se para obter sua Identidade Ecológica e pontuar na plataforma.</p>
+          
+          <form id="form-cadastro" class="game-form" onsubmit="return false;" novalidate>
+            <div class="field-box">
+              <label class="game-form__label" for="reg-nome">Primeiro Nome:</label>
+              <input type="text" id="reg-nome" class="game-form__input" placeholder="Ex: Fernando" required>
+            </div>
 
-  <body>
-    <header class="header">
-      <h1 class="header__logo">TM Consulting</h1>
+            <div class="field-box">
+              <label class="game-form__label" for="reg-sobrenome">Sobrenome:</label>
+              <input type="text" id="reg-sobrenome" class="game-form__input" placeholder="Ex: Oliveira" required>
+            </div>
 
-      <nav class="navbar">
-        <a class="navbar__link" href="./paginas/sobre.html">Sobre</a>
+            <div class="field-box">
+              <label class="game-form__label" for="reg-email">E-mail Corporativo/Estudantil:</label>
+              <input type="email" id="reg-email" class="game-form__input" placeholder="fernando@exemplo.com" required>
+            </div>
 
-        <a class="navbar__link" href="./paginas/faq.html">FAQ</a>
+            <div class="field-box">
+              <label class="game-form__label" for="reg-cpf">CPF (Apenas números):</label>
+              <input type="text" id="reg-cpf" class="game-form__input" placeholder="000.000.000-00" maxlength="14" required>
+            </div>
 
-        <a class="navbar__link" href="./paginas/contato.html">Contato</a>
-      </nav>
-    </header>
-
-    <main>
-      <section class="hero">
-        <h2 class="hero__title">Gamificação sustentável para a SoulUp</h2>
-
-        <p class="hero__text">
-          Incentivando ações sustentáveis através de pontuação e engajamento.
-        </p>
-
-        <button class="btn">Saiba Mais</button>
-      </section>
-
-      <section class="sobre">
-        <h2 class="sobre__title">Sobre o Projeto</h2>
-
-        <p class="sobre__text">
-          O projeto desenvolvido pela TM Consulting tem como objetivo incentivar
-          práticas sustentáveis utilizando elementos de gamificação.
-          <a class="btn__mais" href="./paginas/sobre.html">mais... </a>
-        </p>
-      </section>
-
-      <section class="cards">
-        <div class="card">
-          <h3 class="card__title">Sustentabilidade</h3>
-
-          <p class="card__text">Incentivo a práticas sustentáveis.</p>
+            <button type="submit" id="btn-submit-cadastro" class="btn">Finalizar Cadastro</button>
+            <div id="feedback-cadastro" class="feedback" aria-live="polite"></div>
+          </form>
         </div>
 
-        <div class="card">
-          <h3 class="card__title">Pontuação</h3>
+        <div class="game-panel">
+          <h2 class="game-panel__title">Área do Competidor</h2>
+          <p class="game-panel__text">Já possui registro? Digite o e-mail cadastrado para acessar seu painel.</p>
+          
+          <form id="form-login" class="game-form" onsubmit="return false;" novalidate>
+            <div class="field-box">
+              <label class="game-form__label" for="login-email">E-mail Cadastrado:</label>
+              <input type="email" id="login-email" class="game-form__input" placeholder="Ex: fernando@exemplo.com" required>
+            </div>
 
-          <p class="card__text">Sistema baseado em ações positivas.</p>
+            <button type="submit" id="btn-submit-login" class="btn">Acessar Painel</button>
+            <div id="feedback-login" class="feedback" aria-live="polite"></div>
+          </form>
         </div>
 
-        <div class="card">
-          <h3 class="card__title">Engajamento</h3>
+      </div>
+    </section>
 
-          <p class="card__text">Maior interação entre os usuários.</p>
+    <section id="dashboard-portal" class="game-engine" aria-label="Painel Restrito" hidden>
+      <div class="game-container">
+        
+        <div class="game-panel">
+          <h2 class="game-panel__title">Bem-vindo(a), <span id="user-logged-name" style="color: #00b894;">Usuário</span>!</h2>
+          <p class="game-panel__text">Conta Ativa: <strong id="user-logged-email" style="color: #6c5ce7;">email@exemplo.com</strong></p>
+          
+          <div class="game-form" role="form" aria-label="Atribuição de pontos">
+            <h3 class="game-form__subtitle">Registrar Nova Ação Realizada</h3>
+            
+            <div class="field-box">
+              <label class="game-form__label" for="app-select-acao">Selecione a Atividade Sustentável:</label>
+              <div class="select-tooltip-container">
+                <select id="app-select-acao" class="game-form__select" aria-describedby="tooltip-info">
+                  <option value="Transporte Público" data-pontos="40" data-tooltip="Reduz o CO₂ urbano usando transporte coletivo. Métrica: +40 pts.">Usar o transporte público (40 pts)</option>
+                  <option value="ECO Ponto" data-pontos="30" data-tooltip="Descarte correto de recicláveis em hubs homologados. Métrica: +30 pts.">ECO Ponto (30 pts)</option>
+                  <option value="Energia Solar" data-pontos="100" data-tooltip="Uso ativo de microgeração fotovoltaica limpa. Métrica: +100 pts.">Usar lâmpadas LED / Solar (100 pts)</option>
+                  <option value="Doação de Sangue" data-pontos="1000" data-tooltip="Ação de altíssimo impacto social e humano para salvar vidas. Métrica: +1000 pts.">Doar Sangue (1000 pts)</option>
+                  <option value="Participação em Projetos Sociais" data-pontos="400" data-tooltip="Apoiar e engajar práticos em comunidades parceiras. Métrica: +400 pts.">Participar de limpezas / Projetos (400 pts)</option>
+                </select>
+                <div id="tooltip-info" class="tooltip-box" role="tooltip">Aguardando seleção...</div>
+              </div>
+            </div>
+
+            <button type="button" id="btn-pontuar" class="btn btn--block">Computar Pontos Automáticos</button>
+            <div id="feedback-pontos" class="feedback" aria-live="polite"></div>
+          </div>
         </div>
-      </section>
-    </main>
 
-    <footer class="footer">
-      <p class="footer__text">TM Consulting © 2026</p>
-    </footer>
-  </body>
+        <div class="game-panel">
+          <h2 class="game-panel__title">Métricas da Comunidade</h2>
+          <p class="game-panel__text">Ranking geral com as conversões financeiras calculadas.</p>
+          
+          <div class="ranking-header" aria-hidden="true">
+            <span>Competidor (ID)</span>
+            <span>Score / Retorno</span>
+          </div>
+          
+          <ol id="ranking-list" class="ranking-list" aria-label="Lista de classificação"></ol>
+
+          <button type="button" id="btn-logout" class="btn btn--sair">Sair do Painel</button>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="cards">
+      <div class="card">
+        <h3 class="card__title">Sustentabilidade</h3>
+        <p class="card__text">Incentivo prático a ações ESG.</p>
+      </div>
+      <div class="card">
+        <h3 class="card__title">Pontuação</h3>
+        <p class="card__text">Regras justas e automatizadas.</p>
+      </div>
+      <div class="card">
+        <h3 class="card__title">Engajamento</h3>
+        <p class="card__text">Rankings eficientes em larga escala.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__text">TM Consulting © 2026 | Ecossistema SoulUp</p>
+  </footer>
+
+  <script src="./js/game.js" defer></script>
+</body>
 </html>
