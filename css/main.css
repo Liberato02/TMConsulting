@@ -1,3 +1,6 @@
+/* ==========================================================================
+   ARQUITETURA DE IMPORTAÇÃO MODULAR - TETRAMERGE DESIGN SYSTEM
+   ========================================================================== */
 @import url('./reset.css');
 @import url('./header.css');
 @import url('./navbar.css');
@@ -6,5 +9,219 @@
 @import url('./card.css');
 @import url('./footer.css');
 @import url('./sobre.css');
-@import url('./contato.css');
-@import url('./roadmap.css');
+
+/* ==========================================================================
+   MÓDULO DE GAMIFICAÇÃO COESIVO - PALETA TETRAMERGE
+   ========================================================================== */
+
+/* Camada estrutural de containers */
+.game-engine {
+  padding: 4rem 2rem;
+  background-color: #3a54d5; /* Grafite escuro fosco de alta fidelidade */
+  color: #ffffff;
+}
+
+.game-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 3rem;
+}
+
+.auth-layout {
+  grid-template-columns: 1.1fr 0.9fr;
+}
+
+/* Identidade Visual de Logos no Header */
+.header__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: bold;
+}
+
+.logo-tetramerge {
+  color: #2a2756; /* Burgundy/Vinho Oficial da Tetramerge */
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.logo-divider {
+  color: #5bc9d3;
+}
+
+.logo-soulup {
+  color: #00b894; /* Verde Operacional Sustentável */
+  font-size: 1.4rem;
+}
+
+/* Componentes de Cards (Panels) */
+.game-panel {
+  background-color: #1f2b2e;
+  padding: 2.5rem;
+  border-radius: 12px;
+  border: 1px solid #1021da;
+  display: flex;
+  flex-direction: column;
+}
+
+.game-panel__title {
+  font-size: 1.6rem;
+  margin-bottom: 1.2rem;
+  border-bottom: 2px solid #800020; /* Assinatura Burgundy da Tetramerge */
+  padding-bottom: 0.5rem;
+}
+
+.game-panel__text {
+  color: #a0a5b5;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+/* Estruturação de Formulários */
+.game-form {
+  margin-bottom: 1rem;
+}
+
+.game-form__subtitle {
+  font-size: 1.1rem;
+  color: #00b894;
+  margin-bottom: 1.25rem;
+}
+
+.field-box {
+  margin-bottom: 1.2rem;
+}
+
+.game-form__label {
+  display: block;
+  font-size: 0.85rem;
+  color: #a0a5b5;
+  margin-bottom: 0.4rem;
+}
+
+.game-form__input,
+.game-form__select {
+  background-color: #252632;
+  border: 1px solid #3a3b4c;
+  color: #ffffff;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.game-form__input:focus,
+.game-form__select:focus {
+  outline: none;
+  border-color: #800020;
+  box-shadow: 0 0 0 2px rgba(128, 0, 32, 0.3);
+}
+
+/* Tooltips de Orientação Acessível */
+.select-tooltip-container {
+  position: relative;
+  width: 100%;
+}
+
+.tooltip-box {
+  background-color: #6c5ce7; /* Roxo Tecnológico da SoulUp */
+  color: #ffffff;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  margin-top: 0.6rem;
+  border: 1px solid #5b4cc4;
+  line-height: 1.4;
+}
+
+/* Gatilhos e Modificadores de Botões */
+.btn {
+  background-color: #800020; /* Botão Premium Burgundy */
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn:hover {
+  background-color: #600018;
+}
+
+.btn--block {
+  width: 100%;
+  margin-top: 0.75rem;
+  background-color: #00b894; /* Botão de Ação Verde SoulUp */
+}
+
+.btn--block:hover {
+  background-color: #009475;
+}
+
+.btn--sair {
+  background-color: transparent;
+  border: 1px solid #3a3b4c;
+  color: #a0a5b5;
+  margin-top: auto;
+  width: 100%;
+}
+
+.btn--sair:hover {
+  background-color: #37bbcc;
+  color: #ffffff;
+  border-color: #2a6dba;
+}
+
+/* Renderização de Rankings */
+.ranking-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #a0a5b5;
+  text-transform: uppercase;
+  border-bottom: 1px solid #2a2b36;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.ranking-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ranking-list li {
+  background-color: #252632;
+  padding: 0.85rem 1.2rem;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  border-left: 4px solid #00b894;
+}
+
+.feedback {
+  font-size: 0.9rem;
+  margin-top: 0.8rem;
+  min-height: 1.5rem;
+  font-weight: 600;
+  display: block;
+  transition: color 0.2s ease-in-out;
+}
+
+.feedback.success {
+  color: #00b894 !important; /* Verde SoulUp nítido para sucesso */
+}
+
+.feedback.error {
+  color: #ff7675 !important; /* Vermelho/Coral para erro de validação */
+}
+}
