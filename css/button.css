@@ -21,25 +21,19 @@
 }
 
 .btn__mais {
-    display: inline-block;
-
-    background-color: #2563eb;
-
-    color: white;
+    color: #2563eb;
 
     text-decoration: none;
 
-    padding: 12px 24px;
+    font-size: 16px;
 
-    border-radius: 8px;
-
-    margin-top: 30px;
+    font-weight: bold;
 
     transition: 0.3s;
 }
 
 .btn__mais:hover {
-    background-color: #1d4ed8;
+    color: #1d4ed8;
 
-    transform: scale(1.05);
+    text-decoration: underline;
 }

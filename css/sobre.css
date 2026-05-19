@@ -1,5 +1,3 @@
-/* HOME ABOUT */
-
 .sobre {
     padding: 80px 40px;
 
@@ -62,4 +60,16 @@
     max-width: 800px;
 
     margin: auto;
+}
+
+.tech {
+    padding: 80px 40px;
+
+    text-align: center;
+}
+
+.tech__title {
+    font-size: 36px;
+
+    margin-bottom: 40px;
 }
