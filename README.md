@@ -20,9 +20,9 @@ Esses pontos são utilizados para gerar um ranking entre os usuários, incentiva
 ---
 
 ##  Integrantes
-- Vinicius Liberato dos Anjos - RM 571480 
-- Jonatan Vieira Feitosa - RM 570452
-- Fernando Oliveira Francelino Sardinha – RM 570196
-- Marcelo Candido da Mata Junior - RM 569584
+- Vinicius Liberato dos Anjos - RM 571480 Github: https://github.com/Liberato02
+- Jonatan Vieira Feitosa - RM 570452 Github: https://github.com/Jonatanfeitosa
+- Fernando Oliveira Francelino Sardinha – RM 570196 Github: https://github.com/tecnando-rpa
+- Marcelo Candido da Mata Junior - RM 569584 Github: https://github.com/mdamata
 
 ---
