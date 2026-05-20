@@ -9,7 +9,9 @@
 }
 
 .header__logo {
-    color: white;
+    width: 180px;
 
-    font-size: 28px;
+    height: auto;
+
+    display: block;
 }
