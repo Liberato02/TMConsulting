@@ -27,7 +27,7 @@ Esses pontos são utilizados para gerar um ranking entre os usuários, incentiva
 
 ##  Linkedin
 
-Vinicius Liberato dos Anjos - br.linkedin.com/in/vinicius-liberato-b826a4312?trk=people-guest_people_search-card
+Vinicius Liberato dos Anjos - https://br.linkedin.com/in/vinicius-liberato-b826a4312?trk=people-guest_people_search-card
 
 Jonatan Vieira Feitosa - https://br.linkedin.com/in/jonatanvieirafeitosa
 
