@@ -9,6 +9,11 @@
 @import url('./card.css');
 @import url('./footer.css');
 @import url('./sobre.css');
+<<<<<<< HEAD
+@import url('./contato.css');
+@import url('./roadmap.css');
+@import url('./integrantes.css');
+=======
 
 /* ==========================================================================
    MÓDULO DE GAMIFICAÇÃO COESIVO - PALETA TETRAMERGE
@@ -225,3 +230,4 @@
   color: #ff7675 !important; /* Vermelho/Coral para erro de validação */
 }
 }
+>>>>>>> 0df4bb80ffdf52b8c5490b931db0ac1a966f1d79
