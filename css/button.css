@@ -23,23 +23,25 @@
 .btn__mais {
     display: inline-block;
 
-    background-color: #2563eb;
+    margin-top: 15px;
+
+    padding: 8px 18px;
+
+    background-color: rgb(37, 99, 235);
 
     color: white;
 
     text-decoration: none;
 
-    padding: 12px 24px;
-
     border-radius: 8px;
 
-    margin-top: 30px;
+    font-size: 14px;
+
+    font-weight: 600;
 
     transition: 0.3s;
 }
 
 .btn__mais:hover {
-    background-color: #1d4ed8;
-
-    transform: scale(1.05);
+    background-color: rgb(59, 130, 246);
 }

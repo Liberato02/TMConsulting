@@ -1,13 +1,29 @@
+/* NAVBAR */
+
+.navbar {
+    display: flex;
+
+    gap: 35px;
+}
+
+
+/* LINKS */
+
 .navbar__link {
-    color: rgb(46, 16, 219);
+    color: rgb(37, 99, 235);
+
+    font-size: 22px;
+
+    font-weight: 600;
 
     text-decoration: none;
-
-    margin-left: 20px;
 
     transition: 0.3s;
 }
 
+
+/* HOVER */
+
 .navbar__link:hover {
-    color: #2563eb;
+    color: rgb(59, 130, 246);
 }

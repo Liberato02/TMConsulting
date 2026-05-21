@@ -1,17 +1,30 @@
 .header {
-    background-color: rgb(254, 254, 254);
-
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
 
-    padding: 20px 40px;
+    padding: 15px 40px;
 }
 
 .header__logo {
-    width: 180px;
+    width: 170px;
 
     height: auto;
 
     display: block;
+}
+
+.header__name {
+  color: #00b894; /* Verde Operacional Sustentável */
+  font-size: 1.4rem;
+}
+
+.header__brand {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
 }
