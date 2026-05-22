@@ -96,7 +96,7 @@ Página principal do projeto contendo:
 ---
 
 ##  Sobre
-- [Ir para Sobre](./pages/about.html)
+- [Ir para Sobre](./paginas/about.html)
 
 Página responsável por explicar:
 - objetivo do projeto;
@@ -107,7 +107,7 @@ Página responsável por explicar:
 ---
 
 ##  FAQ
-- [Ir para FAQ](./pages/faq.html)
+- [Ir para FAQ](./paginas/faq.html)
 
 Página contendo:
 - perguntas frequentes;
@@ -117,7 +117,7 @@ Página contendo:
 ---
 
 ##  Integrantes
-- [Ir para Integrantes](./pages/integrantes.html)
+- [Ir para Integrantes](./paginas/integrantes.html)
 
 Página contendo:
 - foto dos integrantes;
@@ -130,7 +130,29 @@ Página contendo:
 ---
 
 ##  Contato
-- [Ir para Contato](./pages/contato.html)
+- [Ir para Contato](./paginas/contato.html)
+
+Página contendo:
+- formulário de contato;
+- email;
+- telefone;
+- informações para comunicação.
+
+---
+
+##  Login
+- [Ir para Contato](./paginas/login.html)
+
+Página contendo:
+- formulário de contato;
+- email;
+- telefone;
+- informações para comunicação.
+
+---
+
+##  Dashboard
+- [Ir para Contato](./paginas/dashboard.html)
 
 Página contendo:
 - formulário de contato;
@@ -220,13 +242,13 @@ Página contendo:
 
 ##  Página Login
 
-print da pagina Login
+<img width="1884" height="1033" alt="image" src="https://github.com/user-attachments/assets/f4ef4c53-56e0-4d20-93c7-fceed62db388" />
 
 ---
 
 ##  Página Dashboard
 
-print da pagina dashboard
+<img width="1882" height="1032" alt="image" src="https://github.com/user-attachments/assets/a4becf38-3e23-409b-9fc8-a8e583c02673" />
 
 ---
 
