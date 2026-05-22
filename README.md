@@ -294,8 +294,4 @@ Agradecemos o interesse em nosso projeto desenvolvido para o Challenge FIAP em p
 
 - [Acessar Repositório](https://github.com/Liberato02/TMConsulting)
 
----
-
-# 🚧 Status do Projeto
-
-✅ Projeto em desenvolvimento
+--
