@@ -8,25 +8,26 @@ A proposta do projeto é utilizar elementos de gamificação para incentivar o e
 
 # 📑 Navegação
 
-- [ Objetivo do Projeto](#-objetivo-do-projeto)
-- [ Tecnologias Utilizadas](#-tecnologias-utilizadas)
-- [ Estrutura de Pastas](#-estrutura-de-pastas)
-- [ Estrutura de Páginas](#-estrutura-de-páginas)
-- [ Integrantes](#-integrantes)
-- [ Imagens do Projeto](#️-imagens-do-projeto)
-- [ Roadmap do Projeto](#️-roadmap-do-projeto)
-- [ Repositório do Projeto](#-repositório-do-projeto)
-- [ Contato](#-Contato)
+- [Objetivo do Projeto](#objetivo-do-projeto)
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [Estrutura de Pastas](#estrutura-de-pastas)
+- [Estrutura de Páginas](#estrutura-de-páginas)
+- [Integrantes](#integrantes)
+- [Imagens do Projeto](#imagens-do-projeto)
+- [Roadmap do Projeto](#roadmap-do-projeto)
+- [Contato](#contato)
+- [Repositório do Projeto](#repositório-do-projeto)
+- [Status do Projeto](#status-do-projeto)
 
 ---
 
-#  Objetivo do Projeto
+# Objetivo do Projeto
 
 O objetivo da solução é incentivar práticas sustentáveis e aumentar a interação dos usuários utilizando mecânicas de gamificação de forma simples, moderna e intuitiva.
 
 ---
 
-#  Tecnologias Utilizadas
+# Tecnologias Utilizadas
 
 - HTML5
 - CSS3
@@ -75,7 +76,7 @@ O objetivo da solução é incentivar práticas sustentáveis e aumentar a inter
 ┃ ┣ 📄 faq.html
 ┃ ┣ 📄 integrantes.html
 ┃ ┣ 📄 login.html
-┃ ┗ 📄 sobre.css
+┃ ┗ 📄 sobre.html
 │
 ┣ 📄 README.md
 ┗ 📄 index.html
@@ -83,12 +84,14 @@ O objetivo da solução é incentivar práticas sustentáveis e aumentar a inter
 
 ---
 
-#  Estrutura de Páginas
+# Estrutura de Páginas
 
 ##  Home
+
 - [Ir para Home](./index.html)
 
 Página principal do projeto contendo:
+
 - apresentação da solução;
 - roadmap;
 - introdução do projeto;
@@ -97,9 +100,11 @@ Página principal do projeto contendo:
 ---
 
 ##  Sobre
-- [Ir para Sobre](./paginas/about.html)
+
+- [Ir para Sobre](./paginas/sobre.html)
 
 Página responsável por explicar:
+
 - objetivo do projeto;
 - funcionamento da solução;
 - tecnologias utilizadas;
@@ -108,9 +113,11 @@ Página responsável por explicar:
 ---
 
 ##  FAQ
+
 - [Ir para FAQ](./paginas/faq.html)
 
 Página contendo:
+
 - perguntas frequentes;
 - respostas sobre a solução;
 - dúvidas dos usuários.
@@ -118,9 +125,11 @@ Página contendo:
 ---
 
 ##  Integrantes
+
 - [Ir para Integrantes](./paginas/integrantes.html)
 
 Página contendo:
+
 - foto dos integrantes;
 - nome completo;
 - RM;
@@ -131,9 +140,11 @@ Página contendo:
 ---
 
 ##  Contato
+
 - [Ir para Contato](./paginas/contato.html)
 
 Página contendo:
+
 - formulário de contato;
 - email;
 - telefone;
@@ -142,16 +153,18 @@ Página contendo:
 ---
 
 ##  Login
+
 - [Ir para Login](./paginas/login.html)
-  
+
 ---
 
 ##  Dashboard
+
 - [Ir para Dashboard](./paginas/dashboard.html)
-  
+
 ---
 
-#  Integrantes
+# Integrantes
 
 ## Integrante 1
 
@@ -179,7 +192,7 @@ Página contendo:
 - RM: 570196
 - Turma: 1TDSPY
 - GitHub: https://github.com/tecnando-rpa
-- LinkedIn: www.linkedin.com/in/fernando-oliveira-1bb875164
+- LinkedIn: https://www.linkedin.com/in/fernando-oliveira-1bb875164
 
 ---
 
@@ -189,7 +202,7 @@ Página contendo:
 - RM: 569584
 - Turma: 1TDSPY
 - GitHub: https://github.com/mdamata
-- LinkedIn: https://br.linkedin.com/in/marcelo-da-mata?trk=people-guest_people_search-card
+- LinkedIn: https://br.linkedin.com/in/marcelo-da-mata
 
 ---
 
@@ -198,6 +211,7 @@ Página contendo:
 ##  Página Inicial
 
 <img width="1886" height="967" alt="image" src="https://github.com/user-attachments/assets/4f9ba5f7-9369-43ad-903f-c75db14555b4" />
+
 <img width="1892" height="781" alt="image" src="https://github.com/user-attachments/assets/5986b035-3b54-4d17-8086-dacb56ea1ecb" />
 
 ---
@@ -205,7 +219,9 @@ Página contendo:
 ##  Página Sobre
 
 <img width="1883" height="983" alt="image" src="https://github.com/user-attachments/assets/05207c0d-cb9e-4680-95d7-56b413d03477" />
+
 <img width="1894" height="927" alt="image" src="https://github.com/user-attachments/assets/8b7816e1-852f-4d45-b9ba-16ea8e39eb65" />
+
 <img width="1883" height="1025" alt="image" src="https://github.com/user-attachments/assets/d71ace6a-ebb9-405d-8664-50e8a26b856d" />
 
 ---
@@ -219,6 +235,7 @@ Página contendo:
 ##  Página Integrantes
 
 <img width="1882" height="944" alt="image" src="https://github.com/user-attachments/assets/732a6dca-b0be-4327-8885-54cae546d76a" />
+
 <img width="1879" height="661" alt="image" src="https://github.com/user-attachments/assets/de14aa5a-1b90-4006-990d-4f444703024f" />
 
 ---
@@ -256,6 +273,7 @@ Página contendo:
 Caso tenha dúvidas, sugestões ou queira saber mais sobre o projeto, entre em contato com nossa equipe.
 
 ##  Email
+
 - tmconsulting.challenge@gmail.com
 
 ##  Redes e Links
@@ -265,7 +283,7 @@ Caso tenha dúvidas, sugestões ou queira saber mais sobre o projeto, entre em c
   - Jonatan Feitosa: https://br.linkedin.com/in/jonatanvieirafeitosa
   - Fernando Oliveira: https://www.linkedin.com/in/fernando-oliveira-1bb875164
   - Marcelo da Mata: https://br.linkedin.com/in/marcelo-da-mata
-    
+
 ##  Agradecimento
 
 Agradecemos o interesse em nosso projeto desenvolvido para o Challenge FIAP em parceria com a SoulUp.
@@ -278,6 +296,6 @@ Agradecemos o interesse em nosso projeto desenvolvido para o Challenge FIAP em p
 
 ---
 
-#  Status do Projeto
+# 🚧 Status do Projeto
 
- Projeto em desenvolvimento 
+✅ Projeto em desenvolvimento
