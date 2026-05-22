@@ -1,33 +1,37 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard | Soul Game</title>
-    
+
     <link rel="stylesheet" href="../css/main.css" />
   </head>
 
   <body>
     <header class="header">
       <div class="header__brand">
-        <img class="header__logo" src="../img/TMconsulting.png" alt="Logo">
+        <img class="header__logo" src="../img/TMconsulting.png" alt="Logo" />
         <span class="header__name">| Soul Game</span>
       </div>
-      
+
       <nav class="navbar" aria-label="Menu de navegação do usuário">
-        <a class="navbar__link" href="../paginas/login.html" aria-label="Sair da conta">Logout</a>
+        <a
+          class="navbar__link"
+          href="../paginas/login.html"
+          aria-label="Sair da conta"
+          >Logout</a
+        >
       </nav>
     </header>
 
     <main class="dashboard__container">
-      
       <section class="cards__section">
         <div class="card card__pontos">
           <h3>Pontuação Total</h3>
           <p id="totalPontos">0 pts</p>
         </div>
-        
+
         <div class="card card__moeda">
           <h3>Saldo Convertido</h3>
           <p id="saldoReais">R$ 0,00</p>
@@ -36,41 +40,44 @@
 
       <section class="form__section">
         <h2>Registrar Nova Atividade</h2>
-        
+
         <div class="login__form">
-          
           <div class="input__group">
-            <label for="selectAtividade">Selecione a Atividade Realizada:</label>
+            <label for="selectAtividade"
+              >Selecione a Atividade Realizada:</label
+            >
             <select id="selectAtividade">
               <option value="" disabled selected>Escolha uma opção...</option>
               <option value="Transporte Público">Vou de Bus(40 pts)</option>
               <option value="ECO Ponto">Papo de ECO (30 pts)</option>
               <option value="Doação de Sangue">Soul Blood (10000 pts)</option>
-              <option value="Participação em Projetos Sociais">Soul Social (400 pts)</option>
+              <option value="Participação em Projetos Sociais">
+                Soul Social (400 pts)
+              </option>
             </select>
           </div>
 
           <div class="input__group">
-            <label for="codigoToken">Código Único do Usuário (Token Físico):</label>
-            <input 
-              id="codigoToken" 
-              type="text" 
-              placeholder="Digite o código de validação" 
+            <label for="codigoToken"
+              >Código Único do Usuário (Token Físico):</label
+            >
+            <input
+              id="codigoToken"
+              type="text"
+              placeholder="Digite o código de validação"
             />
           </div>
 
-          <button 
-            id="btnRegistrar" 
-            type="button" 
+          <button
+            id="btnRegistrar"
+            type="button"
             class="dashboard__button"
             onclick="computarPontuacao()"
           >
             Registrar Atividade
           </button>
-
         </div>
       </section>
-
     </main>
 
     <script src="../js/dashbord.js"></script>

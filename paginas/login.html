@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
@@ -13,10 +13,10 @@
   <body>
     <header class="header">
       <div class="header__brand">
-        <img class="header__logo" src="../img/TMconsulting.png" alt="Logo">
+        <img class="header__logo" src="../img/TMconsulting.png" alt="Logo" />
         <span class="header__name">| Soul Game</span>
       </div>
-      
+
       <nav class="navbar" aria-label="Menu de navegação institucional">
         <a class="navbar__link" href="../index.html">Home</a>
         <a class="navbar__link" href="./sobre.html">Sobre</a>
@@ -42,7 +42,7 @@
             placeholder="Digite seu email"
             aria-label="Endereço de e-mail"
             required
-          >
+          />
 
           <input
             id="senha"
@@ -51,15 +51,19 @@
             placeholder="Digite sua senha"
             aria-label="Senha de acesso"
             required
-          >
+          />
 
-          <p id="mensagem" style="color: #ff4d4d; font-size: 14px; margin-top: 10px; font-weight: bold;"></p>
+          <p
+            id="mensagem"
+            style="
+              color: #ff4d4d;
+              font-size: 14px;
+              margin-top: 10px;
+              font-weight: bold;
+            "
+          ></p>
 
-          <button
-            id="btnEntrar"
-            class="login__button"
-            type="button"
-          >
+          <button id="btnEntrar" class="login__button" type="button">
             Entrar
           </button>
         </form>
