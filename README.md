@@ -40,19 +40,21 @@ O objetivo da solução é incentivar práticas sustentáveis e aumentar a inter
 📁 TMConsulting
 │
 ┣ 📁 css
-┃ ┣ 📁 button.css
-┃ ┣ 📁 card.css
-┃ ┣ 📁 contato.css
-┃ ┣ 📁 faq.css
-┃ ┣ 📁 footer.css
-┃ ┣ 📁 header.css
-┃ ┣ 📁 hero.css
-┃ ┣ 📁 integrantes.css
-┃ ┣ 📁 main.css
-┃ ┣ 📁 navbar.css
-┃ ┣ 📁 reset.css
-┃ ┣ 📁 roadmap.css
-┃ ┗ 📁 sobre.css
+┃ ┣ 📄 button.css
+┃ ┣ 📄 card.css
+┃ ┣ 📄 contato.css
+┃ ┣ 📄 dashboard.css
+┃ ┣ 📄 faq.css
+┃ ┣ 📄 footer.css
+┃ ┣ 📄 header.css
+┃ ┣ 📄 hero.css
+┃ ┣ 📄 integrantes.css
+┃ ┣ 📄 login.css
+┃ ┣ 📄 main.css
+┃ ┣ 📄 navbar.css
+┃ ┣ 📄 reset.css
+┃ ┣ 📄 roadmap.css
+┃ ┗ 📄 sobre.css
 │
 ┣ 📁 img
 ┃ ┣ 📄 TMConsulting.png
@@ -62,10 +64,16 @@ O objetivo da solução é incentivar práticas sustentáveis e aumentar a inter
 ┃ ┣ 📄 Marcelo.png
 ┃ ┗ 📄 Vinicius.png
 │
+┣ 📁 Js
+┃ ┣ 📄 dashboard.js
+┃ ┗ 📄 game.js
+│
 ┣ 📁 paginas
 ┃ ┣ 📄 contato.html
+┃ ┣ 📄 dashboard.html
 ┃ ┣ 📄 faq.html
 ┃ ┣ 📄 integrantes.html
+┃ ┣ 📄 login.html
 ┃ ┗ 📄 sobre.css
 │
 ┣ 📄 README.md
@@ -207,6 +215,18 @@ Página contendo:
 ##  Página Contato
 
 <img width="1884" height="1013" alt="image" src="https://github.com/user-attachments/assets/ac78c9cc-6930-40a7-ae22-fc88dc12a034" />
+
+---
+
+##  Página Login
+
+print da pagina Login
+
+---
+
+##  Página Dashboard
+
+print da pagina dashboard
 
 ---
 
