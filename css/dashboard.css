@@ -1,0 +1,188 @@
+/* ==========================================================================
+   CONFIGURAÇÕES GERAIS E CORES DO PROJETO (TETRAMERGE / SOUL GAME)
+   ========================================================================== */
+:root {
+    --cor-fundo: #f0f4f8;          /* Cinza claro azulado do fundo da tela */
+    --cor-card: #ffffff;           /* Branco dos containers */
+    --cor-texto-principal: #333333;
+    --cor-azul-marca: #2563eb;     /* Azul royal dos botões e títulos */
+    --cor-azul-hover: #1d4ed8;     /* Azul mais escuro para o efeito hover */
+    --cor-verde-marca: #00bfa5;    /* Verde-água do "| Soul Game" */
+    --cor-borda: #e2e8f0;
+    --sombra-suve: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+}
+
+body {
+    background-color: var(--cor-fundo);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--cor-texto-principal);
+}
+
+/* ==========================================================================
+   HEADER (Mantendo o padrão da imagem de Login)
+   ========================================================================== */
+.header {
+    background-color: #ffffff;
+    padding: 15px 40px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--cor-borda);
+}
+
+.header__brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header__logo {
+    height: 45px; /* Tamanho ajustado para o logo da TetraMerge */
+    object-fit: contain;
+}
+
+.header__name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--cor-verde-marca); /* Cor verde-água do Soul Game */
+}
+
+/* ==========================================================================
+   CONTAINER DO DASHBOARD
+   ========================================================================== */
+.dashboard-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* ==========================================================================
+   CARDS DE PONTUAÇÃO E SALDO
+   ========================================================================== */
+.cards-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background-color: var(--cor-card);
+    padding: 25px;
+    border-radius: 16px; /* Bordas arredondadas idênticas ao card de login */
+    box-shadow: var(--sombra-suve);
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+}
+
+.card h3 {
+    margin: 0 0 10px 0;
+    font-size: 1rem;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.card p {
+    margin: 0;
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+
+/* Cores específicas para destacar os resultados */
+.card--pontos p {
+    color: var(--cor-azul-marca);
+}
+
+.card--moeda p {
+    color: var(--cor-verde-marca);
+}
+
+/* ==========================================================================
+   FORMULÁRIO DE REGISTRO
+   ========================================================================== */
+.form-section {
+    background-color: var(--cor-card);
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: var(--sombra-suve);
+}
+
+.form-section h2 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: var(--cor-azul-marca);
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #475569;
+}
+
+/* Inputs e Selects seguindo o estilo arredondado do Login */
+.input-group input, 
+.input-group select {
+    padding: 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    font-size: 1rem;
+    background-color: #ffffff;
+    color: var(--cor-texto-principal);
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-group input:focus, 
+.input-group select:focus {
+    border-color: var(--cor-azul-marca);
+    box-shadow: 0 0 0 3px rgba(37, 99, 213, 0.15);
+}
+
+/* Mensagens de Feedback */
+.feedback-msg {
+    margin: 10px 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-align: center;
+    min-height: 20px;
+}
+
+/* Botão de Envio (Estilo idêntico ao botão "Entrar") */
+.dashboard__button {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--cor-azul-marca);
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.dashboard__button:hover {
+    background-color: var(--cor-azul-hover);
+}
+
+.dashboard__button:active {
+    transform: scale(0.98);
+}
