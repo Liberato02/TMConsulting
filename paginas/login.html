@@ -1,55 +1,59 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>Login | Soul Game</title>
 
     <link rel="stylesheet" href="../css/main.css" />
+
+    <script src="../Js/game.js" defer></script>
   </head>
 
   <body>
-    <!-- HEADER -->
-
     <header class="header">
       <div class="header__brand">
-
-    <img class="header__logo" src="../img/TMconsulting.png" alt="Logo">
-
-    <span class="header__name">
-        | Soul Game
-    </span>
-    </div>
+        <img class="header__logo" src="../img/TMconsulting.png" alt="Logo">
+        <span class="header__name">| Soul Game</span>
+      </div>
     </header>
 
-    <!-- LOGIN -->
-
     <main class="login">
-      <div class="login__box">
-        <h1 class="login__title">Bem-vindo</h1>
+      <section class="login__container">
+        <h1 class="login__title">Login</h1>
 
-        <p class="login__text">Faça login para continuar</p>
+        <p class="login__description">
+          Digite seu email e senha para acessar sua conta.
+        </p>
 
         <form class="login__form">
           <input
+            id="email"
             class="login__input"
             type="email"
             placeholder="Digite seu email"
-          />
+            required
+          >
 
           <input
+            id="senha"
             class="login__input"
             type="password"
             placeholder="Digite sua senha"
-          />
+            required
+          >
 
-          <button class="login__button" type="submit">Entrar</button>
+          <p id="mensagem" style="color: #ff4d4d; font-size: 14px; margin-top: 10px; font-weight: bold;"></p>
+
+          <button
+            id="btnEntrar"
+            class="login__button"
+            type="button"
+          >
+            Entrar
+          </button>
         </form>
-      </div>
+      </section>
     </main>
-
-    <script src="../js/login.js"></script>
   </body>
 </html>
