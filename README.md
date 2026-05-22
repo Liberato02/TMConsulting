@@ -16,7 +16,6 @@ A proposta do projeto é utilizar elementos de gamificação para incentivar o e
 - [🖼️ Imagens do Projeto](#️-imagens-do-projeto)
 - [🛣️ Roadmap do Projeto](#️-roadmap-do-projeto)
 - [🔗 Repositório do Projeto](#-repositório-do-projeto)
-- [📞 Contato](#-contato)
 
 ---
 
