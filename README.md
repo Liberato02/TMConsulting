@@ -141,25 +141,13 @@ Página contendo:
 ---
 
 ##  Login
-- [Ir para Contato](./paginas/login.html)
-
-Página contendo:
-- formulário de contato;
-- email;
-- telefone;
-- informações para comunicação.
-
+- [Ir para Login](./paginas/login.html)
+  
 ---
 
 ##  Dashboard
-- [Ir para Contato](./paginas/dashboard.html)
-
-Página contendo:
-- formulário de contato;
-- email;
-- telefone;
-- informações para comunicação.
-
+- [Ir para Dashboard](./paginas/dashboard.html)
+  
 ---
 
 #  Integrantes
