@@ -38,8 +38,11 @@ body {
 }
 
 .header__logo {
-    height: 45px; /* Tamanho ajustado para o logo da TetraMerge */
-    object-fit: contain;
+    width: 170px;
+
+    height: auto;
+
+    display: block;
 }
 
 .header__name {
