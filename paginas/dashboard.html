@@ -14,28 +14,32 @@
         <img class="header__logo" src="../img/TMconsulting.png" alt="Logo">
         <span class="header__name">| Soul Game</span>
       </div>
+      <nav class="navbar">
+        <a class="navbar__link" href="../paginas/login.html">Logout</a>
+
+
     </header>
 
-    <main class="dashboard-container">
+    <main class="dashboard__container">
       
-      <section class="cards-section">
-        <div class="card card--pontos">
+      <section class="cards__section">
+        <div class="card card__pontos">
           <h3>Pontuação Total</h3>
           <p id="totalPontos">0 pts</p>
         </div>
         
-        <div class="card card--moeda">
+        <div class="card card__moeda">
           <h3>Saldo Convertido</h3>
           <p id="saldoReais">R$ 0,00</p>
         </div>
       </section>
 
-      <section class="form-section">
+      <section class="form__section">
         <h2>Registrar Nova Atividade</h2>
         
         <div class="login__form">
           
-          <div class="input-group">
+          <div class="input__group">
             <label for="selectAtividade">Selecione a Atividade Realizada:</label>
             <select id="selectAtividade">
               <option value="" disabled selected>Escolha uma opção...</option>
@@ -46,7 +50,7 @@
             </select>
           </div>
 
-          <div class="input-group">
+          <div class="input__group">
             <label for="codigoToken">Código Único do Usuário (Token Físico):</label>
             <input 
               id="codigoToken" 

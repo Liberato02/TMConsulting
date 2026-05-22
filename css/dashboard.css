@@ -54,7 +54,7 @@ body {
 /* ==========================================================================
    CONTAINER DO DASHBOARD
    ========================================================================== */
-.dashboard-container {
+.dashboard__container {
     max-width: 900px;
     margin: 40px auto;
     padding: 0 20px;
@@ -66,7 +66,7 @@ body {
 /* ==========================================================================
    CARDS DE PONTUAÇÃO E SALDO
    ========================================================================== */
-.cards-section {
+.cards__section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
@@ -101,25 +101,25 @@ body {
 }
 
 /* Cores específicas para destacar os resultados */
-.card--pontos p {
+.card__pontos p {
     color: var(--cor-azul-marca);
 }
 
-.card--moeda p {
+.card__moeda p {
     color: var(--cor-verde-marca);
 }
 
 /* ==========================================================================
    FORMULÁRIO DE REGISTRO
    ========================================================================== */
-.form-section {
+.form__section {
     background-color: var(--cor-card);
     padding: 35px;
     border-radius: 16px;
     box-shadow: var(--sombra-suve);
 }
 
-.form-section h2 {
+.form__section h2 {
     margin-top: 0;
     margin-bottom: 25px;
     color: var(--cor-azul-marca);
@@ -127,22 +127,22 @@ body {
     text-align: center;
 }
 
-.input-group {
+.input__group {
     display: flex;
     flex-direction: column;
     gap: 8px;
     margin-bottom: 20px;
 }
 
-.input-group label {
+.input__group label {
     font-size: 0.9rem;
     font-weight: 600;
     color: #475569;
 }
 
 /* Inputs e Selects seguindo o estilo arredondado do Login */
-.input-group input, 
-.input-group select {
+.input__group input, 
+.input__group select {
     padding: 14px;
     border: 1px solid #cbd5e1;
     border-radius: 12px;
@@ -153,14 +153,14 @@ body {
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.input-group input:focus, 
-.input-group select:focus {
+.input__group input:focus, 
+.input__group select:focus {
     border-color: var(--cor-azul-marca);
     box-shadow: 0 0 0 3px rgba(37, 99, 213, 0.15);
 }
 
 /* Mensagens de Feedback */
-.feedback-msg {
+.feedback__msg {
     margin: 10px 0;
     font-size: 0.95rem;
     font-weight: 600;
