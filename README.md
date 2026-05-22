@@ -220,12 +220,33 @@ Página contendo:
 
 ---
 
-# 🔗 Repositório do Projeto
+#  Contato
+
+Caso tenha dúvidas, sugestões ou queira saber mais sobre o projeto, entre em contato com nossa equipe.
+
+##  Email
+- tmconsulting.challenge@gmail.com
+
+##  Redes e Links
+
+- LinkedIn da Equipe:
+  - Vinicius Liberato: https://br.linkedin.com/in/vinicius-liberato-b826a4312
+  - Jonatan Feitosa: https://br.linkedin.com/in/jonatanvieirafeitosa
+  - Fernando Oliveira: https://www.linkedin.com/in/fernando-oliveira-1bb875164
+  - Marcelo da Mata: https://br.linkedin.com/in/marcelo-da-mata
+    
+##  Agradecimento
+
+Agradecemos o interesse em nosso projeto desenvolvido para o Challenge FIAP em parceria com a SoulUp.
+
+---
+
+#  Repositório do Projeto
 
 - [Acessar Repositório](https://github.com/Liberato02/TMConsulting)
 
 ---
 
-# 🎯 Status do Projeto
+#  Status do Projeto
 
-🚧 Projeto em desenvolvimento 🚧
+ Projeto em desenvolvimento 
