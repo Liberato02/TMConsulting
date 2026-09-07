@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import { ToastProvider } from "./context/ToastContext";
-import { RotaProtegida } from "./routes/RotaProtegida.tsx";
+import { RotaProtegida } from "./routes/RotaProtegida";
 import { MainLayout } from "./layouts/MainLayout";
 
 // Cada rota mora em sua própria pasta (src/routes/nome/index.tsx),
