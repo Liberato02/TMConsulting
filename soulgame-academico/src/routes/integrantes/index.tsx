@@ -205,3 +205,4 @@ export function Integrantes() {
     </main>
   );
 }
+
