@@ -47,3 +47,5 @@ export const schemaCadastro = z
     });
 
 export type FormCadastro = z.infer<typeof schemaCadastro>;
+
+
