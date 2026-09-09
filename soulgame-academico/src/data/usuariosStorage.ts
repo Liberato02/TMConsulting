@@ -48,3 +48,4 @@ export function lerSessao(): string | null {
 export function limparSessao(): void {
     localStorage.removeItem(CHAVE_SESSAO);
 }
+
