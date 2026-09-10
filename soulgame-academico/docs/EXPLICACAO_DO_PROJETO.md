@@ -1,120 +1,60 @@
-# SoulGame — Como o projeto funciona, pasta por pasta
+## Fluxo de autenticação — cadastro, login e sessão
 
-## A ideia geral primeiro
+A autenticação atual é uma simulação para fins acadêmicos. Os usuários e a sessão são armazenados no `localStorage` do navegador, sem comunicação com um backend.
 
-O React funciona assim: existe **UM** arquivo HTML (`index.html`), e tudo que você vê na tela é gerado por JavaScript/TypeScript "montando" pedaços (componentes) dentro dele. Quando você navega entre páginas, o navegador **não recarrega** — só troca o pedaço de componente que aparece, por isso o app parece rápido.
+### Cadastro
 
-O ponto de entrada é `src/main.tsx`: ele pega o `<App />` e "planta" ele dentro da `<div id="root">` do `index.html`. Do `App.tsx` pra baixo, tudo é uma árvore de componentes.
+1. O usuário preenche o formulário em `routes/cadastro/index.tsx`.
+2. O React Hook Form coleta os valores.
+3. O Zod aplica as regras definidas em `schemas/auth.ts`.
+4. O formulário chama `cadastrar()` por meio do `useAuth()`.
+5. O `AuthContext` verifica se o e-mail já está cadastrado.
+6. Um novo usuário é criado com identificador gerado por `crypto.randomUUID()`.
+7. O usuário é salvo no `localStorage` pela função `inserirUsuario()`.
+8. O e-mail é salvo como sessão ativa.
+9. O estado global `usuario` é atualizado.
+10. O usuário é encaminhado para `/desafios` ou `/admin/cadastros`, conforme o tipo de conta.
 
----
+### Login
 
-## `App.tsx` — o mapa de tudo
+1. O usuário informa e-mail e senha em `routes/login/index.tsx`.
+2. O Zod valida o formato dos dados.
+3. O formulário chama `login()` pelo `useAuth()`.
+4. O `AuthContext` busca o usuário pelo e-mail.
+5. O sistema verifica se a senha informada corresponde à senha cadastrada.
+6. Em caso de sucesso, o e-mail é salvo como sessão ativa.
+7. O usuário, sem o campo de senha, é colocado no estado global.
+8. Uma notificação de sucesso é exibida.
+9. O usuário é encaminhado para `/desafios`.
 
-É aqui que ficam declaradas todas as rotas (URLs) da aplicação e qual componente cada uma carrega. Também é aqui que os "Providers" (contextos globais — autenticação e notificações) envolvem toda a aplicação, pra que qualquer componente, em qualquer lugar da árvore, consiga acessar "quem está logado" ou "mostrar uma notificação" sem precisar passar isso manualmente de componente em componente.
+### Persistência da sessão
 
-```
-ToastProvider          → disponibiliza notificações pra tudo
-  AuthProvider          → disponibiliza "quem está logado" pra tudo
-    BrowserRouter        → habilita navegação por URL
-      Routes              → a lista de rotas
-```
+O arquivo `data/usuariosStorage.ts` utiliza duas chaves:
 
----
+- `soulgame:usuarios`: armazena a lista de usuários cadastrados;
+- `soulgame:sessao`: armazena o e-mail do usuário conectado.
 
-## `src/routes/` — cada pasta é uma página
+Quando a aplicação inicia, o `AuthProvider` lê a sessão salva, procura o usuário correspondente e restaura o estado global. Por isso, atualizar a página com `F5` não encerra a sessão.
 
-Esse é o padrão que o professor ensinou: **uma pasta por rota**, com um `index.tsx` dentro. O nome da pasta = o que aquela rota representa.
+### Proteção das rotas
 
-| Pasta | Rota | O que faz |
-|---|---|---|
-| `home/` | `/` | Página inicial: banner, vídeo de apresentação, roadmap |
-| `sobre/` | `/sobre` | Texto sobre o projeto e tecnologias usadas |
-| `faq/` | `/faq` | Perguntas frequentes, em formato "sanfona" (abre/fecha ao clicar) |
-| `integrantes/` | `/integrantes` | Fotos da equipe, com o efeito de rede/ecossistema |
-| `contato/` | `/contato` | Formulário que envia dados via Fetch API de verdade |
-| `login/` | `/login` | Formulário de login |
-| `cadastro/` | `/cadastro` | Formulário de cadastro completo (8 campos + validação de idade) |
-| `desafios/` | `/desafios` | Painel de gamificação (nível, streak, pontos, saldo em R$) |
-| `admin-cadastros/` | `/admin/cadastros` | Painel do time interno pra cadastrar novas atividades |
-| `error/` | qualquer URL inválida | Página 404 |
-| `RotaProtegida.tsx` | (não é uma página) | O "segurança": decide se deixa entrar numa rota ou manda pro login |
+O componente `RotaProtegida.tsx` consulta o usuário atual pelo `useAuth()`:
 
-**Por que `RotaProtegida.tsx` não é uma pasta?** Porque ele não é uma página — é um componente que **envolve** outras rotas (`/desafios` e `/admin/cadastros`), verificando login antes de deixar passar. Fica solto direto em `routes/` porque é utilitário de rota, não uma rota em si.
+- sem usuário autenticado, redireciona para `/login`;
+- com usuário autenticado, permite o acesso;
+- quando a rota exige um tipo específico, também verifica se o usuário é `admin` ou `usuario`.
 
----
+### Logout
 
-## `src/components/` — pedaços reutilizáveis, não páginas inteiras
+Ao executar `logout()`:
 
-Diferente de `routes/`, aqui ficam pedaços que aparecem **dentro** de várias páginas ao mesmo tempo:
+1. a chave `soulgame:sessao` é removida do `localStorage`;
+2. o estado global `usuario` recebe `null`;
+3. as rotas protegidas deixam de permitir o acesso.
 
-- **`Navbar.tsx`** — o menu do topo. Reage a quem está logado (muda de "Entrar/Cadastre-se" pra "Meus Desafios/Sair") e tem o menu hambúrguer no celular.
-- **`Footer.tsx`** — o rodapé, com links de navegação de verdade (`<Link>`).
+### Observação de segurança
 
----
-
-## `src/context/` + `src/hooks/` — o "cérebro" compartilhado
-
-Isso é a parte mais conceitual do projeto. Funciona em duas peças:
-
-1. **O Contexto** (`context/`) — guarda o dado (ex: "quem está logado") e o disponibiliza pra árvore inteira de componentes.
-2. **O Hook** (`hooks/`) — a função que qualquer componente chama pra *ler* esse dado (`useAuth()`, `useToast()`).
-
-```
-context/authContextInstance.ts   → só o "objeto contêiner" do contexto (sem lógica)
-context/AuthContext.tsx          → o Provider: tem toda a lógica (login, cadastro, logout...)
-hooks/useAuth.ts                 → a função que os componentes chamam pra usar tudo isso
-```
-
-**Por que separar em 3 arquivos assim, em vez de 1 só?** Ferramenta de qualidade de código (`oxlint`) aponta isso como boa prática: quando um arquivo mistura *componente* com *hook* ou *objeto de contexto*, o "hot reload" do Vite (atualização automática ao salvar) para de funcionar direito pra aquele arquivo — ele recarrega a página inteira em vez de só atualizar a peça que mudou. Fizemos essa separação recentemente pra corrigir isso.
-
-O mesmo padrão se repete pro **Toast** (sistema de notificações que aparecem e somem sozinhas).
-
----
-
-## `src/data/` — os "dados" do sistema (não é banco de dados de verdade — ainda)
-
-- **`atividades.ts`** — a lista fixa das 6 atividades oficiais (Doação de Sangue, Reciclagem, etc.), com pontos de cada uma. Isso é o que se chama "config tipada": em vez de `if/else` espalhado pelo código, é uma lista de dados que qualquer função pode consultar.
-- **`conversao.ts`** — a fórmula de pontos → R$ (R$ 0,009 por ponto), num lugar só, reaproveitável.
-- **`integrantes.ts`** — os dados da equipe (nome, RM, foto, links).
-- **`usuariosStorage.ts`** — o "banco de dados" simulado, usando `localStorage` do navegador. Tem funções pra inserir, buscar por e-mail, atualizar. Quando o backend Java estiver pronto, só essas funções mudam (viram chamadas `fetch()`), o resto do app nem percebe.
-
----
-
-## `src/schemas/` — as regras de validação
-
-`auth.ts` define, usando a biblioteca **Zod**, o formato esperado de cada formulário (Login e Cadastro): e-mail precisa ser válido, senha mínimo 6 caracteres, senhas precisam bater, idade mínima de 16 anos, etc. O **React Hook Form** usa esse "contrato" pra saber quando mostrar erro em cada campo, sem você escrever `if` manual pra cada validação.
-
----
-
-## `src/types/` — os "contratos" de dados do TypeScript
-
-`index.ts` declara a forma exata de cada coisa que circula no sistema: o que é um `Usuario`, uma `Atividade`, um resultado de autenticação. Isso é o que faz o TypeScript te avisar de erro **antes** de rodar o código — se você tentar usar um campo que não existe, ele acusa na hora de escrever.
-
----
-
-## `src/layouts/` — o "molde" compartilhado
-
-`MainLayout.tsx` é o que garante que **toda** página tenha Navbar em cima e Footer embaixo, sem precisar repetir isso em cada arquivo de `routes/`. Ele usa o `<Outlet />` do React Router — um "buraco" onde a página da rota atual é encaixada.
-
----
-
-## `src/theme/` — referência de paleta
-
-`paleta.ts` documenta qual tom de azul/verde usar em cada contexto (não é código executado, é uma "folha de consulta" pra manter consistência visual conforme o projeto cresce).
-
----
-
-## `src/assets/` — imagens
-
-Fotos da equipe, logo, ícones. Cada imagem importada vira parte do "bundle" final — o Vite otimiza e renomeia os arquivos automaticamente no build de produção.
-
----
-
-## Os "efeitos" (animações) — onde vivem
-
-Ficam declarados no `index.css`, dentro de um bloco `@theme` + `@keyframes` (sintaxe do Tailwind v4): o efeito de toast aparecendo suavemente, por exemplo. São reaproveitados via classe (`animate-toast-in`) em qualquer componente que precise.
-
----
+Esse modelo é adequado apenas para o protótipo acadêmico. A senha ainda é armazenada em texto simples no navegador. Em produção, cadastro, login e sessão devem ser processados por um backend, com hash de senha, autenticação segura e controle de autorização no servidor.
 
 ## Resumo do fluxo, de ponta a ponta
 
