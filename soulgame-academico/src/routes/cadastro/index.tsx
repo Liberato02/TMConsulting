@@ -222,7 +222,3 @@ function Campo({
         </div>
     );
 }
-
-
-
-
