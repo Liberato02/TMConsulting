@@ -1,8 +1,7 @@
-import fotoVinicius from "../assets/integrantes/vinicius.jpg";
-import fotoJonatan from "../assets/integrantes/jonatan.jpg";
-import fotoFernando from "../assets/integrantes/fernando.jpg";
-import fotoMarcelo from "../assets/integrantes/marcelo.jpg";
-import fotoDavi from "../assets/integrantes/davi.jpg";
+import fotoVinicius from "../assets/integrantes/vinicius.png";
+import fotoJonatan from "../assets/integrantes/jonatan.png";
+import fotoFernando from "../assets/integrantes/fernando.png";
+import fotoMarcelo from "../assets/integrantes/marcelo.png";
 
 export interface Integrante {
   nome: string;
@@ -52,6 +51,6 @@ export const INTEGRANTES: Integrante[] = [
     turma: "1TDSPY",
     github: "https://github.com/IsDevZ",
     linkedin: "https://www.linkedin.com/in/davi-felix-99b7a63a9",
-    foto: fotoDavi,
+    foto: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='50' fill='%230ea5e9'/%3E%3Ctext x='50' y='67' text-anchor='middle' font-family='Arial' font-size='52' font-weight='700' fill='white'%3ED%3C/text%3E%3C/svg%3E",
   },
 ];
