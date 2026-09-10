@@ -90,11 +90,10 @@ export function Desafios() {
             return (
               <div
                 key={atividade.id}
-                className={`rounded-2xl shadow-sm p-5 border-2 transition-colors ${
-                  concluida
-                    ? "bg-emerald-50 border-emerald-300"
-                    : "bg-white border-transparent"
-                }`}
+                className={`rounded-2xl shadow-sm p-5 border-2 transition-colors ${concluida
+                  ? "bg-emerald-50 border-emerald-300"
+                  : "bg-white border-transparent"
+                  }`}
               >
                 <span
                   className={`inline-block text-xs font-semibold px-2 py-1 rounded-full mb-2 ${CORES_CATEGORIA[atividade.categoria]}`}
@@ -115,11 +114,10 @@ export function Desafios() {
                   <button
                     onClick={() => handleConcluir(atividade.id, atividade.nome, atividade.pontos)}
                     disabled={concluida}
-                    className={`text-sm font-semibold px-4 py-2 rounded-lg transition-colors ${
-                      concluida
-                        ? "bg-emerald-200 text-emerald-800 cursor-default"
-                        : "bg-blue-600 hover:bg-blue-700 text-white"
-                    }`}
+                    className={`text-sm font-semibold px-4 py-2 rounded-lg transition-colors ${concluida
+                      ? "bg-emerald-200 text-emerald-800 cursor-default"
+                      : "bg-blue-600 hover:bg-blue-700 text-white"
+                      }`}
                   >
                     {concluida ? "Concluído ✓" : "Concluir"}
                   </button>
