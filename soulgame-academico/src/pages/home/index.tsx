@@ -48,10 +48,9 @@ export function Home() {
           Assista à apresentação em vídeo do projeto SoulGame.
         </p>
         <div className="aspect-video rounded-2xl overflow-hidden shadow-lg">
-          {/* Substituir o VIDEO_ID pelo vídeo real de apresentação no YouTube */}
           <iframe
             className="w-full h-full"
-            src="https://www.youtube.com/embed/VIDEO_ID"
+            src="https://www.youtube.com/embed/wiN9it-i21E"
             title="Apresentação SoulGame"
             allowFullScreen
           />
