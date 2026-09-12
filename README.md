@@ -8,11 +8,11 @@ A proposta do projeto é utilizar elementos de gamificação para incentivar o
 engajamento dos usuários através de desafios, recompensas e participação
 ativa dentro da plataforma.
 
-> 📌 **Nota de versão**: este README documenta a versão migrada para
+> **Nota de versão**: este README documenta a versão migrada para
 > **React + TypeScript** (Sprints 3 e 4). A versão original em HTML/CSS/JS
 > puro (Sprint 2) está preservada no histórico do Git.
 
-## 📑 Navegação
+## Navegação
 
 - [Objetivo do Projeto](#objetivo-do-projeto)
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
@@ -52,8 +52,6 @@ em valor monetário, sobre ações reais de impacto social e ambiental.
 | Qualidade de código | oxlint |
 | Versionamento | GitHub |
 | Editor | Visual Studio Code |
-
-## 📂 Estrutura de Pastas
 
 ## Estrutura de Pastas
 
@@ -324,5 +322,5 @@ FIAP em parceria com a SoulUp.
 
 ## Status do Projeto
 
-🟡 **Em desenvolvimento** — versão acadêmica funcional (front-end completo,
+**Em desenvolvimento** — versão acadêmica funcional (front-end completo,
 com testes automatizados; integração com back-end Java em andamento).
