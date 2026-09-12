@@ -49,8 +49,8 @@ export function Login() {
                             {...register("email")}
                             placeholder="voce@email.com"
                             aria-invalid={!!errors.email}
-                            aria-describedby={errors.email ? "email-erro" : undefined}
-                            className="w-full rounded-lg border border-slate-300 aria-invalid:border-red-400 px-3 py-2 text-sm
+                            aria-describedby={errors.email ? "email-erro" : undefined} //Correção: Adicionei o atributo aria-describedby para associar a mensagem de erro ao campo de e-mail, melhorando a acessibilidade.
+                            className="w-full rounded-lg border border-slate-300 aria-invalid:border-red-400 px-3 py-2 text-sm 
                          focus:outline-none focus:ring-2 focus:ring-blue-500 aria-invalid:focus:ring-red-400"
                         />
                         {errors.email && (
