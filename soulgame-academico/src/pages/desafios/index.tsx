@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { useToast } from "../../hooks/useToast";
 import { ATIVIDADES } from "../../data/atividades";
 import { converterPontosParaReais, formatarReais } from "../../data/conversao";
+import { useTituloDocumento } from "../../hooks/useTituloDocumento";
 
 const PONTOS_POR_NIVEL = 500;
 
@@ -14,6 +16,7 @@ const CORES_CATEGORIA: Record<string, string> = {
 export function Desafios() {
   const { usuario, concluirAtividade } = useAuth();
   const { mostrarToast } = useToast();
+  useTituloDocumento("Meus Desafios | SoulGame");
 
   if (!usuario) return null; // RotaProtegida já garante login, isso é só segurança extra
 
@@ -101,7 +104,9 @@ export function Desafios() {
                 >
                   {atividade.categoria}
                 </span>
-                <h3 className="font-bold text-slate-800">{atividade.nome}</h3>
+                <Link to={`/desafios/${atividade.id}`} className="font-bold text-slate-800 hover:underline block">
+                  {atividade.nome}
+                </Link>
                 <p className="text-sm text-slate-500 mt-1">{atividade.descricao}</p>
 
                 <div className="flex items-center justify-between mt-4">
