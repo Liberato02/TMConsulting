@@ -204,5 +204,4 @@ export function Integrantes() {
       </div>
     </main>
   );
-
 }
