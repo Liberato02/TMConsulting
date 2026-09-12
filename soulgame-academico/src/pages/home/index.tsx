@@ -42,7 +42,7 @@ export function Home() {
       {/* Vídeo explicativo */}
       <section aria-label="Vídeo explicativo" className="max-w-3xl mx-auto px-4 py-16 text-center">
         <h2 className="text-2xl font-bold text-blue-800 mb-2">
-          Entenda a solução em 2 minutos
+          Entenda a solução em 30 segundos
         </h2>
         <p className="text-slate-500 mb-6">
           Assista à apresentação em vídeo do projeto SoulGame.
