@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useTituloDocumento } from "../../hooks/useTituloDocumento";
 
 const ETAPAS_ROADMAP = [
   "Pesquisa do desafio",
@@ -9,6 +10,8 @@ const ETAPAS_ROADMAP = [
 ];
 
 export function Home() {
+  useTituloDocumento("SoulGame | TM Consulting");
+
   return (
     <main aria-label="Página inicial do SoulGame" className="flex-1">
       {/* Hero */}
