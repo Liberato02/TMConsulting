@@ -13,7 +13,8 @@ const IDADE_MINIMA = 16;
 // considerando corretamente se o aniversário deste ano já passou.
 function calcularIdade(dataNascimentoISO: string): number {
     const hoje = new Date();
-    const nascimento = new Date(dataNascimentoISO);
+    const [ano, mes, dia] = dataNascimentoISO.split("-").map(Number);
+    const nascimento = new Date(ano, mes - 1, dia);
     let idade = hoje.getFullYear() - nascimento.getFullYear();
     const aindaNaoFezAniversarioEsseAno =
         hoje.getMonth() < nascimento.getMonth() ||
