@@ -125,7 +125,7 @@ export function Contato() {
         </form>
 
         <p className="text-xs text-slate-400 mt-4">
-          tmconsultingc@gmail.com
+          tmconsulting.challenge@gmail.com
         </p>
       </Card>
     </main>
