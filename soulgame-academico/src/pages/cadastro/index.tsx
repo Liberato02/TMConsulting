@@ -1,4 +1,6 @@
 import { useForm, useWatch } from "react-hook-form";
+import { Card } from "../../components/Card";
+import { Botao } from "../../components/Botao";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
@@ -40,7 +42,7 @@ export function Cadastro() {
 
   return (
     <main aria-label="Formulário de cadastro" className="flex-1 flex items-center justify-center px-4 py-12 bg-blue-50">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
+      <Card className="w-full max-w-md shadow-lg">
         <h1 className="text-2xl font-bold text-blue-800 mb-1">Cadastre-se</h1>
         <p className="text-sm text-slate-500 mb-6">
           Crie sua conta para começar seus desafios.
@@ -53,8 +55,8 @@ export function Cadastro() {
               {...register("nome")}
               aria-invalid={!!errors.nome}
               aria-describedby={errors.nome ? "nome-erro" : undefined}
-              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm
-                         focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-lg border border-slate-300 aria-invalid:border-red-400 px-3 py-2 text-sm
+                         focus:outline-none focus:ring-2 focus:ring-blue-500 aria-invalid:focus:ring-red-400"
             />
           </Campo>
 
@@ -65,8 +67,8 @@ export function Cadastro() {
               {...register("email")}
               aria-invalid={!!errors.email}
               aria-describedby={errors.email ? "email-erro" : undefined}
-              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm
-                         focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-lg border border-slate-300 aria-invalid:border-red-400 px-3 py-2 text-sm
+                         focus:outline-none focus:ring-2 focus:ring-blue-500 aria-invalid:focus:ring-red-400"
             />
           </Campo>
 
@@ -78,8 +80,8 @@ export function Cadastro() {
                 {...register("senha")}
                 aria-invalid={!!errors.senha}
                 aria-describedby={errors.senha ? "senha-erro" : undefined}
-                className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm
-                           focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full rounded-lg border border-slate-300 aria-invalid:border-red-400 px-3 py-2 text-sm
+                           focus:outline-none focus:ring-2 focus:ring-blue-500 aria-invalid:focus:ring-red-400"
               />
             </Campo>
             <Campo id="confirmarSenha" label="Confirmar senha" erro={errors.confirmarSenha?.message}>
@@ -89,8 +91,8 @@ export function Cadastro() {
                 {...register("confirmarSenha")}
                 aria-invalid={!!errors.confirmarSenha}
                 aria-describedby={errors.confirmarSenha ? "confirmarSenha-erro" : undefined}
-                className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm
-                           focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full rounded-lg border border-slate-300 aria-invalid:border-red-400 px-3 py-2 text-sm
+                           focus:outline-none focus:ring-2 focus:ring-blue-500 aria-invalid:focus:ring-red-400"
               />
             </Campo>
           </div>
@@ -102,8 +104,8 @@ export function Cadastro() {
               {...register("telefone")}
               aria-invalid={!!errors.telefone}
               aria-describedby={errors.telefone ? "telefone-erro" : undefined}
-              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm
-                         focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-lg border border-slate-300 aria-invalid:border-red-400 px-3 py-2 text-sm
+                         focus:outline-none focus:ring-2 focus:ring-blue-500 aria-invalid:focus:ring-red-400"
             />
           </Campo>
 
@@ -115,8 +117,8 @@ export function Cadastro() {
                 {...register("dataNascimento")}
                 aria-invalid={!!errors.dataNascimento}
                 aria-describedby={errors.dataNascimento ? "dataNascimento-erro" : undefined}
-                className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm
-                           focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full rounded-lg border border-slate-300 aria-invalid:border-red-400 px-3 py-2 text-sm
+                           focus:outline-none focus:ring-2 focus:ring-blue-500 aria-invalid:focus:ring-red-400"
               />
             </Campo>
             <Campo id="estado" label="Estado" erro={errors.estado?.message}>
@@ -127,8 +129,8 @@ export function Cadastro() {
                 {...register("estado")}
                 aria-invalid={!!errors.estado}
                 aria-describedby={errors.estado ? "estado-erro" : undefined}
-                className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm
-                           uppercase focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full rounded-lg border border-slate-300 aria-invalid:border-red-400 px-3 py-2 text-sm
+                           uppercase focus:outline-none focus:ring-2 focus:ring-blue-500 aria-invalid:focus:ring-red-400"
               />
             </Campo>
           </div>
@@ -139,8 +141,8 @@ export function Cadastro() {
               {...register("cidade")}
               aria-invalid={!!errors.cidade}
               aria-describedby={errors.cidade ? "cidade-erro" : undefined}
-              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm
-                         focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-lg border border-slate-300 aria-invalid:border-red-400 px-3 py-2 text-sm
+                         focus:outline-none focus:ring-2 focus:ring-blue-500 aria-invalid:focus:ring-red-400"
             />
           </Campo>
 
@@ -175,14 +177,9 @@ export function Cadastro() {
             </div>
           </fieldset>
 
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="mt-2 bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white
-                       font-semibold rounded-lg px-4 py-2 text-sm transition-colors"
-          >
+          <Botao type="submit" disabled={isSubmitting} className="mt-2">
             {isSubmitting ? "Criando conta..." : "Criar conta"}
-          </button>
+          </Botao>
         </form>
 
         <p className="text-sm text-slate-600 mt-6 text-center">
@@ -191,7 +188,7 @@ export function Cadastro() {
             Entrar
           </Link>
         </p>
-      </div>
+      </Card>
     </main>
   );
 }

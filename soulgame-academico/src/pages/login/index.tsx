@@ -4,6 +4,8 @@ import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { useToast } from "../../hooks/useToast";
 import { schemaLogin, type FormLogin } from "../../schemas/auth";
+import { Card } from "../../components/Card";
+import { Botao } from "../../components/Botao";
 
 export function Login() {
     const { login } = useAuth();
@@ -30,7 +32,7 @@ export function Login() {
 
     return (
         <main aria-label="Formulário de login" className="flex-1 flex items-center justify-center px-4 py-12 bg-blue-50">
-            <div className="w-full max-w-sm bg-white rounded-2xl shadow-lg p-8">
+            <Card className="w-full max-w-sm shadow-lg">
                 <h1 className="text-2xl font-bold text-blue-800 mb-1">Entrar</h1>
                 <p className="text-sm text-slate-500 mb-6">
                     Acesse sua conta para continuar seus desafios.
@@ -48,8 +50,8 @@ export function Login() {
                             placeholder="voce@email.com"
                             aria-invalid={!!errors.email}
                             aria-describedby={errors.email ? "email-erro" : undefined}
-                            className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm
-                         focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full rounded-lg border border-slate-300 aria-invalid:border-red-400 px-3 py-2 text-sm
+                         focus:outline-none focus:ring-2 focus:ring-blue-500 aria-invalid:focus:ring-red-400"
                         />
                         {errors.email && (
                             <p id="email-erro" role="alert" className="text-xs text-red-600 mt-1">
@@ -69,8 +71,8 @@ export function Login() {
                             placeholder="••••••••"
                             aria-invalid={!!errors.senha}
                             aria-describedby={errors.senha ? "senha-erro" : undefined}
-                            className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm
-                         focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full rounded-lg border border-slate-300 aria-invalid:border-red-400 px-3 py-2 text-sm
+                         focus:outline-none focus:ring-2 focus:ring-blue-500 aria-invalid:focus:ring-red-400"
                         />
                         {errors.senha && (
                             <p id="senha-erro" role="alert" className="text-xs text-red-600 mt-1">
@@ -79,14 +81,9 @@ export function Login() {
                         )}
                     </div>
 
-                    <button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="mt-2 bg-blue-600 hover:bg-blue-700 disabled:opacity-60
-                       text-white font-semibold rounded-lg px-4 py-2 text-sm transition-colors"
-                    >
+                    <Botao type="submit" disabled={isSubmitting} className="mt-2">
                         {isSubmitting ? "Entrando..." : "Entrar"}
-                    </button>
+                    </Botao>
                 </form>
 
                 <p className="text-sm text-slate-600 mt-6 text-center">
@@ -95,7 +92,7 @@ export function Login() {
                         Cadastre-se
                     </Link>
                 </p>
-            </div>
+            </Card>
         </main>
     );
 }

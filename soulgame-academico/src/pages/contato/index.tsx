@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { schemaContato, type FormContato } from "../../schemas/contato";
 import { useTituloDocumento } from "../../hooks/useTituloDocumento";
+import { Card } from "../../components/Card";
+import { Botao } from "../../components/Botao";
 
 export function Contato() {
   useTituloDocumento("Contato | SoulGame");
@@ -40,7 +42,7 @@ export function Contato() {
 
   return (
     <main aria-label="Formulário de contato" className="flex-1 px-4 py-16 bg-blue-50">
-      <div className="max-w-lg mx-auto bg-white rounded-2xl shadow-lg p-8">
+      <Card className="max-w-lg mx-auto shadow-lg">
         <h1 className="text-2xl font-bold text-blue-800 mb-1">Fale conosco</h1>
         <p className="text-sm text-slate-500 mb-6">
           Dúvidas, sugestões ou parcerias — envie sua mensagem.
@@ -56,8 +58,8 @@ export function Contato() {
               {...register("nome")}
               aria-invalid={!!errors.nome}
               aria-describedby={errors.nome ? "nome-erro" : undefined}
-              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm
-                         focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-lg border border-slate-300 aria-invalid:border-red-400 px-3 py-2 text-sm
+                         focus:outline-none focus:ring-2 focus:ring-blue-500 aria-invalid:focus:ring-red-400"
             />
             {errors.nome && (
               <p id="nome-erro" role="alert" className="text-xs text-red-600 mt-1">
@@ -76,8 +78,8 @@ export function Contato() {
               {...register("email")}
               aria-invalid={!!errors.email}
               aria-describedby={errors.email ? "email-erro" : undefined}
-              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm
-                         focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-lg border border-slate-300 aria-invalid:border-red-400 px-3 py-2 text-sm
+                         focus:outline-none focus:ring-2 focus:ring-blue-500 aria-invalid:focus:ring-red-400"
             />
             {errors.email && (
               <p id="email-erro" role="alert" className="text-xs text-red-600 mt-1">
@@ -96,8 +98,8 @@ export function Contato() {
               aria-invalid={!!errors.mensagem}
               aria-describedby={errors.mensagem ? "mensagem-erro" : undefined}
               rows={4}
-              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm
-                         focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-lg border border-slate-300 aria-invalid:border-red-400 px-3 py-2 text-sm
+                         focus:outline-none focus:ring-2 focus:ring-blue-500 aria-invalid:focus:ring-red-400"
             />
             {errors.mensagem && (
               <p id="mensagem-erro" role="alert" className="text-xs text-red-600 mt-1">
@@ -106,14 +108,9 @@ export function Contato() {
             )}
           </div>
 
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white
-                       font-semibold rounded-lg px-4 py-2 text-sm transition-colors"
-          >
+          <Botao type="submit" disabled={isSubmitting}>
             {isSubmitting ? "Enviando..." : "Enviar mensagem"}
-          </button>
+          </Botao>
 
           {status === "enviado" && (
             <p role="status" className="text-sm text-blue-700 bg-blue-50 rounded-lg px-3 py-2">
@@ -130,7 +127,7 @@ export function Contato() {
         <p className="text-xs text-slate-400 mt-4">
           tmconsulting.challenge@gmail.com
         </p>
-      </div>
+      </Card>
     </main>
   );
-};
+}
