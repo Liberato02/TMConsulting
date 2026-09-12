@@ -6,10 +6,26 @@ import type { UsuarioArmazenado } from "../types";
 const CHAVE_USUARIOS = "soulgame:usuarios";
 const CHAVE_SESSAO = "soulgame:sessao";
 
+// Defesa contra dado corrompido: se por qualquer motivo
+// atividadesConcluidas não vier como array (ex: editado manualmente no
+// DevTools, ou vindo de uma versão antiga do app), isso travava TODOS
+// os botões de atividade daquele usuário — .includes() num valor que
+// não é array pode se comportar de forma inesperada. Aqui garantimos
+// que sempre volta um array de verdade.
+function normalizarUsuario(usuario: UsuarioArmazenado): UsuarioArmazenado {
+    return {
+        ...usuario,
+        atividadesConcluidas: Array.isArray(usuario.atividadesConcluidas)
+            ? usuario.atividadesConcluidas
+            : [],
+    };
+}
+
 function lerUsuarios(): UsuarioArmazenado[] {
     try {
         const bruto = localStorage.getItem(CHAVE_USUARIOS);
-        return bruto ? (JSON.parse(bruto) as UsuarioArmazenado[]) : [];
+        const usuarios = bruto ? (JSON.parse(bruto) as UsuarioArmazenado[]) : [];
+        return usuarios.map(normalizarUsuario);
     } catch {
         // localStorage indisponível (ex: modo privado) ou JSON corrompido
         return [];
