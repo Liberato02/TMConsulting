@@ -42,16 +42,15 @@ export function Home() {
       {/* Vídeo explicativo */}
       <section aria-label="Vídeo explicativo" className="max-w-3xl mx-auto px-4 py-16 text-center">
         <h2 className="text-2xl font-bold text-blue-800 mb-2">
-          Entenda a solução em 2 minutos
+          Entenda a solução em 30 segundos
         </h2>
         <p className="text-slate-500 mb-6">
           Assista à apresentação em vídeo do projeto SoulGame.
         </p>
         <div className="aspect-video rounded-2xl overflow-hidden shadow-lg">
-          {/* Substituir o VIDEO_ID pelo vídeo real de apresentação no YouTube */}
           <iframe
             className="w-full h-full"
-            src="https://www.youtube.com/embed/VIDEO_ID"
+            src="https://www.youtube.com/embed/wiN9it-i21E"
             title="Apresentação SoulGame"
             allowFullScreen
           />
