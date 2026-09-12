@@ -315,7 +315,7 @@ FIAP em parceria com a SoulUp.
 
 ## Repositório do Projeto
 
-[Acessar Repositório](https://github.com/Liberato02/TMConsulting)
+[Acessar Repositório](https://github.com/Liberato02/TMConsulting.git)
 
 ## Status do Projeto
 
