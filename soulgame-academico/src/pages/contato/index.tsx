@@ -1,31 +1,38 @@
-import { useState, type FormEvent } from "react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { schemaContato, type FormContato } from "../../schemas/contato";
+import { useTituloDocumento } from "../../hooks/useTituloDocumento";
 
 export function Contato() {
-  const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
-  const [mensagem, setMensagem] = useState("");
-  const [status, setStatus] = useState<"idle" | "enviando" | "enviado" | "erro">("idle");
+  useTituloDocumento("Contato | SoulGame");
+  const [status, setStatus] = useState<"idle" | "enviado" | "erro">("idle");
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<FormContato>({
+    resolver: zodResolver(schemaContato),
+  });
 
   // Usa Fetch API nativa (exigência do projeto). Aponta para um endpoint
   // mock (httpbin) só para demonstrar o ciclo de requisição real;
   // trocar pela URL da API do time quando disponível.
-  async function handleSubmit(evento: FormEvent) {
-    evento.preventDefault();
-    setStatus("enviando");
-
+  async function onSubmit(dados: FormContato) {
+    setStatus("idle");
     try {
       const resposta = await fetch("https://httpbin.org/post", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nome, email, mensagem }),
+        body: JSON.stringify(dados),
       });
 
       if (!resposta.ok) throw new Error("Falha no envio");
 
       setStatus("enviado");
-      setNome("");
-      setEmail("");
-      setMensagem("");
+      reset();
     } catch {
       setStatus("erro");
     }
@@ -39,19 +46,24 @@ export function Contato() {
           Dúvidas, sugestões ou parcerias — envie sua mensagem.
         </p>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4" noValidate>
           <div>
             <label htmlFor="nome" className="block text-sm font-medium text-slate-700 mb-1">
               Nome
             </label>
             <input
               id="nome"
-              value={nome}
-              onChange={(e) => setNome(e.target.value)}
-              required
+              {...register("nome")}
+              aria-invalid={!!errors.nome}
+              aria-describedby={errors.nome ? "nome-erro" : undefined}
               className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm
                          focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
+            {errors.nome && (
+              <p id="nome-erro" role="alert" className="text-xs text-red-600 mt-1">
+                {errors.nome.message}
+              </p>
+            )}
           </div>
 
           <div>
@@ -61,12 +73,17 @@ export function Contato() {
             <input
               id="email"
               type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
+              {...register("email")}
+              aria-invalid={!!errors.email}
+              aria-describedby={errors.email ? "email-erro" : undefined}
               className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm
                          focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
+            {errors.email && (
+              <p id="email-erro" role="alert" className="text-xs text-red-600 mt-1">
+                {errors.email.message}
+              </p>
+            )}
           </div>
 
           <div>
@@ -75,22 +92,27 @@ export function Contato() {
             </label>
             <textarea
               id="mensagem"
-              value={mensagem}
-              onChange={(e) => setMensagem(e.target.value)}
-              required
+              {...register("mensagem")}
+              aria-invalid={!!errors.mensagem}
+              aria-describedby={errors.mensagem ? "mensagem-erro" : undefined}
               rows={4}
               className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm
                          focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
+            {errors.mensagem && (
+              <p id="mensagem-erro" role="alert" className="text-xs text-red-600 mt-1">
+                {errors.mensagem.message}
+              </p>
+            )}
           </div>
 
           <button
             type="submit"
-            disabled={status === "enviando"}
+            disabled={isSubmitting}
             className="bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white
                        font-semibold rounded-lg px-4 py-2 text-sm transition-colors"
           >
-            {status === "enviando" ? "Enviando..." : "Enviar mensagem"}
+            {isSubmitting ? "Enviando..." : "Enviar mensagem"}
           </button>
 
           {status === "enviado" && (
@@ -111,4 +133,4 @@ export function Contato() {
       </div>
     </main>
   );
-}
+};

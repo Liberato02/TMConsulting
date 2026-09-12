@@ -6,11 +6,11 @@ A proposta do projeto é utilizar elementos de gamificação para incentivar o
 engajamento dos usuários através de desafios, recompensas e participação
 ativa dentro da plataforma.
 
-> 📌 **Nota de versão**: este README documenta a versão migrada para
+> **Nota de versão**: este README documenta a versão migrada para
 > **React + TypeScript** (Sprints 3 e 4). A versão original em HTML/CSS/JS
 > puro (Sprint 2) está preservada no histórico do Git.
 
-## 📑 Navegação
+## Navegação
 
 - [Objetivo do Projeto](#objetivo-do-projeto)
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
@@ -50,22 +50,20 @@ em valor monetário, sobre ações reais de impacto social e ambiental.
 | Versionamento | GitHub |
 | Editor | Visual Studio Code |
 
-## 📂 Estrutura de Pastas
-
 ## Estrutura de Pastas
 
 ```
 soulgame-academico
 │
 ├── src
-│   ├── assets              → imagens (fotos da equipe, ícones)
+│   ├── assets              → imagens (fotos da equipe, favicon, ícones)
 │   ├── components          → componentes reutilizáveis (Navbar, Footer)
 │   ├── context             → contextos globais (autenticação, notificações)
 │   ├── data                → dados tipados (atividades, integrantes, conversão)
 │   │   └── __tests__       → testes de conversão de pontos e integridade de dados
-│   ├── hooks               → hooks customizados (useAuth, useToast)
+│   ├── hooks               → hooks customizados (useAuth, useToast, useTituloDocumento)
 │   ├── layouts             → layout compartilhado (Navbar + Footer + Outlet)
-│   ├── routes              → uma pasta por rota (index.tsx dentro de cada)
+│   ├── pages               → uma pasta por página (index.tsx dentro de cada)
 │   │   ├── home
 │   │   ├── sobre
 │   │   ├── faq
@@ -74,6 +72,7 @@ soulgame-academico
 │   │   ├── login
 │   │   ├── cadastro
 │   │   ├── desafios
+│   │   ├── detalhe-atividades   → rota dinâmica (/desafios/:atividadeId)
 │   │   ├── admin-cadastros
 │   │   ├── error
 │   │   └── RotaProtegida.tsx
@@ -84,6 +83,9 @@ soulgame-academico
 │   ├── App.tsx             → roteamento principal
 │   ├── main.tsx            → ponto de entrada da aplicação
 │   └── index.css           → estilos globais (Tailwind)
+│
+├── public
+│   └── favicon.png         → ícone da aba do navegador
 │
 ├── docs
 │   └── EXPLICACAO_DO_PROJETO.md   → explicação detalhada da arquitetura
@@ -166,7 +168,7 @@ Pré-requisitos: [Node.js](https://nodejs.org/) 18+ e npm.
 
 ```bash
 # Clonar o repositório
-git clone <URL_DO_REPOSITORIO>
+git clone https://github.com/Liberato02/TMConsulting.git
 cd soulgame-academico
 
 # Instalar as dependências
@@ -313,9 +315,9 @@ FIAP em parceria com a SoulUp.
 
 ## Repositório do Projeto
 
-[Acessar Repositório](https://github.com/Liberato02/TMConsulting)
+[Acessar Repositório](https://github.com/Liberato02/TMConsulting.git)
 
 ## Status do Projeto
 
-🟡 **Em desenvolvimento** — versão acadêmica funcional (front-end completo,
-com testes automatizados; integração com back-end Java em andamento).
+**Em desenvolvimento** — versão acadêmica funcional (front-end completo,
+com testes automatizados; integração com back-end Java em andamento). 
