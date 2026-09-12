@@ -16,7 +16,7 @@ export function Integrantes() {
 
   return (
     <main aria-label="Nossa equipe" className="flex-1 px-4 py-16 bg-slate-950">
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold text-white mb-1 text-center">
           Ecossistema SoulGame
         </h1>
@@ -163,7 +163,7 @@ export function Integrantes() {
           })}
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-4 mt-16">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-16">
           {INTEGRANTES.map((integrante) => (
             <div
               key={integrante.rm}

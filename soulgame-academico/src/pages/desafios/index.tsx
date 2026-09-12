@@ -86,7 +86,7 @@ export function Desafios() {
           Desafios disponíveis
         </h2>
 
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {ATIVIDADES.map((atividade) => {
             const concluida = usuario.atividadesConcluidas.includes(atividade.id);
 
