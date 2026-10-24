@@ -25,6 +25,35 @@
 /* Avatar "flutuando" suavemente na trilha */
 @keyframes bounce-avatar {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
+    50% { transform: translateY(-6px); }
 }
 
+/* Pulso de destaque no próximo desafio disponível */
+@keyframes pulse-no {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
+/* Linha da trilha "correndo" — dá sensação de rota ativa */
+@keyframes dash-flow {
+  to { stroke-dashoffset: -26; }
+}
+
+/* Brilho no nó recém-concluído */
+@keyframes brilho {
+  0%, 100% { filter: drop-shadow(0 0 0px rgba(16,185,129,0)); }
+  50% { filter: drop-shadow(0 0 6px rgba(16,185,129,0.8)); }
+}
+
+/* Território de ODS desbloqueado "pulsando" no mapa — reforço visual
+      de que aquele ODS está ativo, sem ser irritante (bem lento, sutil). */
+@keyframes ping-slow {
+  0% { transform: scale(1); opacity: 0.35; }
+  75%, 100% { transform: scale(1.4); opacity: 0; }
+}
+
+/* Modal de detalhe do ODS entrando de baixo pra cima (mobile-friendly) */
+@keyframes slide-up {
+  from { transform: translateY(16px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
