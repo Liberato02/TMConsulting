@@ -108,3 +108,53 @@ Diferente de `pages/`, aqui ficam pedaços que aparecem **dentro** de várias p�
 
 Isso é a parte mais conceitual do projeto. Funciona em duas peças:
 
+1. **O Contexto** (`context/`) — guarda o dado (ex: "quem está logado") e o disponibiliza pra árvore inteira de componentes.
+2. **O Hook** (`hooks/`) — a função que qualquer componente chama pra *ler* esse dado (`useAuth()`, `useToast()`).
+
+```
+context/authContextInstance.ts   → só o "objeto contêiner" do contexto (sem lógica)
+context/AuthContext.tsx          → o Provider: tem toda a lógica (login, cadastro, logout...)
+hooks/useAuth.ts                 → a função que os componentes chamam pra usar tudo isso
+```
+
+**Por que separar em 3 arquivos assim, em vez de 1 só?** Ferramenta de qualidade de código (`oxlint`) aponta isso como boa prática: quando um arquivo mistura *componente* com *hook* ou *objeto de contexto*, o "hot reload" do Vite (atualização automática ao salvar) para de funcionar direito pra aquele arquivo. O mesmo padrão se repete pro **Toast** (sistema de notificações que aparecem e somem sozinhas).
+
+---
+
+## `src/data/` — a ponte entre a API e as páginas
+
+Esta pasta **não guarda mais dados fixos como um banco simulado** — essa
+era a versão com `localStorage`. Agora ela "adapta" o formato cru que
+vem da API Java para o formato que as páginas esperam:
+
+- **`usuariosStorage.ts`** — chama as funções de `api/clienteApi.ts`,
+  monta o objeto `Usuario` completo (juntando usuário + histórico +
+  desafios agendados em paralelo) e guarda só o **e-mail da sessão**
+  em `localStorage` (pra sobreviver a um F5 — não é dado de negócio).
+- **`tiposConta.ts`** — catálogo dos 8 tipos de conta (soulgamer,
+  soulfluencer, admin...) e o que cada um pode fazer.
+- **`atividades.ts`**, **`conversao.ts`**, **`integrantes.ts`** — dados
+  estáticos/config que não dependem do back-end.
+
+---
+
+## `src/schemas/` — as regras de validação
+
+Define, usando a biblioteca **Zod**, o formato esperado de cada formulário: e-mail precisa ser válido, senha mínimo 6 caracteres, idade mínima de 16 anos, etc. O **React Hook Form** usa esse "contrato" pra saber quando mostrar erro em cada campo, sem você escrever `if` manual pra cada validação.
+
+---
+
+## `src/types/` — os "contratos" de dados do TypeScript
+
+Declara a forma exata de cada coisa que circula no sistema: o que é um `Usuario`, uma `Atividade`, um `Campeonato`. Isso é o que faz o TypeScript te avisar de erro **antes** de rodar o código.
+
+---
+
+## `src/layouts/` — os "moldes" compartilhados
+
+- **`MainLayout.tsx`** — garante Navbar em cima e Footer embaixo nas páginas públicas.
+- **`PainelLayout.tsx`** — o layout da área logada, com o menu lateral (Desafios, Trilha, Ranking, Validador...).
+
+Ambos usam o `<Outlet />` do React Router — um "buraco" onde a página da rota atual é encaixada.
+
+---
