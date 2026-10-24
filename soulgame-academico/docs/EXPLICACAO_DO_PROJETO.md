@@ -158,3 +158,19 @@ Declara a forma exata de cada coisa que circula no sistema: o que é um `Usuario
 Ambos usam o `<Outlet />` do React Router — um "buraco" onde a página da rota atual é encaixada.
 
 ---
+
+## `src/theme/` e `src/assets/`
+
+`theme/paleta.ts` documenta qual tom de azul/verde usar em cada contexto. `assets/` guarda as imagens (fotos da equipe, hero, logo) — o Vite otimiza e renomeia os arquivos automaticamente no build de produção.
+
+---
+
+## Resumo do fluxo, de ponta a ponta
+
+1. `main.tsx` monta o `App.tsx` na página.
+2. `App.tsx` decide, pela URL, qual componente de `pages/` carregar (incluindo parâmetros dinâmicos, como `/perfil/:usuarioId`).
+3. Páginas públicas nascem dentro do `MainLayout`; páginas logadas, dentro do `PainelLayout`, atrás de `RotaProtegida`.
+4. `RotaProtegida` consulta o `useAuth()` (vindo do `AuthContext`) pra saber se deixa passar — e, se um tipo específico de conta for exigido, confere isso também.
+5. Qualquer formulário usa `schemas/` pra validar e `api/clienteApi.ts` (via `data/`) pra ler/gravar na API Java de verdade.
+6. Toda chamada à API trata 3 estados: carregando, erro e vazio — nunca assume que os dados "simplesmente chegaram".
+7. Qualquer ação de sucesso/erro dispara um `useToast()` que aparece no canto da tela.
