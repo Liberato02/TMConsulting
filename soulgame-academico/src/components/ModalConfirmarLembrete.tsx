@@ -36,3 +36,30 @@ export function ModalConfirmarLembrete({
           <strong>{dataFormatada}</strong>. Quer enviar um lembrete para o
           calendário do seu celular?
         </p>
+
+        <div className="flex flex-col gap-2">
+          <button
+            onClick={handleBaixarICS}
+            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold
+                       rounded-lg px-4 py-2 text-sm transition-colors"
+          >
+            📲 Baixar lembrete (celular/Outlook/Apple)
+          </button>
+          <button
+            onClick={handleGoogleCalendar}
+            className="bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold
+                       rounded-lg px-4 py-2 text-sm transition-colors"
+          >
+            Adicionar ao Google Calendar
+          </button>
+          <button
+            onClick={onFechar}
+            className="text-slate-500 text-sm py-2 hover:text-slate-700"
+          >
+            Não, obrigado
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
