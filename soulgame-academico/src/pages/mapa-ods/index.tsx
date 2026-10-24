@@ -155,3 +155,9 @@ export function MapaOds() {
             >
               Fechar
             </button>
+          </div>
+        </div>
+      )}
+    </main>
+  );
+}
