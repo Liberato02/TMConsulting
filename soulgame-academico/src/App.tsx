@@ -7,7 +7,7 @@ import { MainLayout } from "./layouts/MainLayout";
 // Cada página mora em sua própria pasta (src/pages/nome/index.tsx),
 // seguindo a estrutura oficial do Challenge: componentes de página
 // organizados dentro de /src/pages.
-import { Home } from "./pages/home";
+import { Home } from "./pages/home/home";
 import { Sobre } from "./pages/sobre";
 import { Contato } from "./pages/contato";
 import { Faq } from "./pages/faq";
