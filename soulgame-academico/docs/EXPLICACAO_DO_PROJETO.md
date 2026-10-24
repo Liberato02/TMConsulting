@@ -55,3 +55,56 @@ Cada página mora na própria pasta, com um `index.tsx` dentro (estrutura oficia
 | `admin-cadastros/` | `/admin/cadastros` | Cadastro de atividades, só `admin` |
 | `error/` | qualquer URL inválida | Página 404 |
 | `RotaProtegida.tsx` | (não é uma página) | O "segurança": decide se deixa entrar numa rota ou manda pro login |
+
+### Rota dinâmica, na prática
+
+`/perfil/:usuarioId` é o exemplo de rota com **parâmetro na própria URL**
+do projeto. No React Router, `:usuarioId` é um "espaço reservado" — a
+URL real pode ser `/perfil/abc123`, `/perfil/xyz789` etc., e dentro do
+componente o React Router te entrega esse pedaço via `useParams()`:
+
+```tsx
+const { usuarioId } = useParams<{ usuarioId: string }>();
+```
+
+A página usa esse valor pra buscar o usuário certo na API, e se o id não
+corresponder a ninguém, faz um **redirecionamento** (`useNavigate()`) de
+volta pro `/ranking` depois de avisar — isso é diferente de uma rota
+estática como `/perfil`, que sempre mostra o mesmo usuário (o logado).
+
+---
+
+## `src/api/` — a ponte com o back-end Java
+
+`clienteApi.ts` concentra **toda** a comunicação HTTP do projeto:
+
+- uma função `requisicao<T>()` genérica, que usa `fetch()` nativo (nunca
+  Axios) e já trata erro de rede e resposta não-OK;
+- uma `interface` TypeScript pra cada formato de resposta da API
+  (`UsuarioApi`, `AtividadeApi`, `CampeonatoApi`...) — isso é o que o
+  enunciado da disciplina pede quando fala em "tipar rigorosamente as
+  respostas de API";
+- uma função exportada por operação (`loginApi`, `listarRankingApi`,
+  `registrarAcaoApi`...), cada uma já tipada de entrada e saída.
+
+Nenhuma outra parte do projeto chama `fetch()` diretamente — tudo passa
+por aqui, o que facilita trocar a URL base ou adicionar autenticação no
+futuro sem caçar chamadas espalhadas pelo código.
+
+---
+
+## `src/components/` — pedaços reutilizáveis, não páginas inteiras
+
+Diferente de `pages/`, aqui ficam pedaços que aparecem **dentro** de várias páginas ao mesmo tempo:
+
+- **`Navbar.tsx`** — o menu do topo. Reage a quem está logado e tem o menu hambúrguer no celular.
+- **`Footer.tsx`** — o rodapé, com links de navegação de verdade (`<Link>`).
+- **`ErrorBoundary.tsx`** — captura erros inesperados de renderização pra não "quebrar a tela branca".
+- **`SeletorAvatar.tsx`** — escolha de avatar (personagem ou foto) no perfil.
+
+---
+
+## `src/context/` + `src/hooks/` — o "cérebro" compartilhado
+
+Isso é a parte mais conceitual do projeto. Funciona em duas peças:
+
