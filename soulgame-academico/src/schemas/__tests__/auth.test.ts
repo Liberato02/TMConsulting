@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { schemaCadastro } from "../auth";
+import { schemaCadastro, schemaLogin } from "../auth";
 
 const DADOS_VALIDOS_BASE = {
   nome: "Ana Soulgamer",
@@ -56,6 +56,59 @@ describe("schemaCadastro — validação de idade mínima", () => {
     const resultado = schemaCadastro.safeParse({
       ...DADOS_VALIDOS_BASE,
       dataNascimento: nascimento.toISOString().slice(0, 10),
+    });
+
+    expect(resultado.success).toBe(false);
+  });
+});
+
+describe("schemaCadastro — outras validações", () => {
+  it("rejeita quando senha e confirmação não coincidem", () => {
+    const resultado = schemaCadastro.safeParse({
+      ...DADOS_VALIDOS_BASE,
+      dataNascimento: dataNascimentoComIdade(20),
+      confirmarSenha: "outrasenha",
+    });
+
+    expect(resultado.success).toBe(false);
+  });
+
+  it("rejeita e-mail inválido", () => {
+    const resultado = schemaCadastro.safeParse({
+      ...DADOS_VALIDOS_BASE,
+      dataNascimento: dataNascimentoComIdade(20),
+      email: "nao-e-um-email",
+    });
+
+    expect(resultado.success).toBe(false);
+  });
+
+  it("rejeita senha com menos de 6 caracteres", () => {
+    const resultado = schemaCadastro.safeParse({
+      ...DADOS_VALIDOS_BASE,
+      dataNascimento: dataNascimentoComIdade(20),
+      senha: "123",
+      confirmarSenha: "123",
+    });
+
+    expect(resultado.success).toBe(false);
+  });
+});
+
+describe("schemaLogin", () => {
+  it("aceita e-mail e senha válidos", () => {
+    const resultado = schemaLogin.safeParse({
+      email: "teste@teste.com",
+      senha: "123456",
+    });
+
+    expect(resultado.success).toBe(true);
+  });
+
+  it("rejeita e-mail mal formatado", () => {
+    const resultado = schemaLogin.safeParse({
+      email: "invalido",
+      senha: "123456",
     });
 
     expect(resultado.success).toBe(false);
