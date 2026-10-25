@@ -4,11 +4,12 @@ import { ATIVIDADES } from "../atividades";
 const CATEGORIAS_VALIDAS = ["saude", "meio-ambiente", "social"];
 
 describe("ATIVIDADES — integridade dos dados oficiais", () => {
-  it("cadastra as 6 atividades oficiais das diretrizes do projeto", () => {
-    expect(ATIVIDADES).toHaveLength(6);
+  it("cadastra as 7 atividades oficiais do ecossistema SoulUp (6 das diretrizes + esporte em grupo)", () => {
+    expect(ATIVIDADES).toHaveLength(7);
   });
 
   it("todo id é único (evita duas atividades colidindo na mesma chave)", () => {
+
     const ids = ATIVIDADES.map((a) => a.id);
     const idsUnicos = new Set(ids);
     expect(idsUnicos.size).toBe(ids.length);
