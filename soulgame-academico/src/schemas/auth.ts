@@ -24,3 +24,13 @@ function calcularIdade(dataNascimentoISO: string): number {
 
   return idade;
 }
+const TIPOS_VALIDOS = [
+  "soulgamer",
+  "soulfluencer",
+  "soulhealth",
+  "soulsport",
+  "soulbrain",
+  "educasoul",
+  "ecosoul",
+  "admin",
+] as const;
