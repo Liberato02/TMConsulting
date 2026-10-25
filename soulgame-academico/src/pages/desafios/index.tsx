@@ -1,45 +1,80 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
-import { useToast } from "../../hooks/useToast";
-import { ATIVIDADES } from "../../data/atividades";
 import { converterPontosParaReais, formatarReais } from "../../data/conversao";
+import { ehMultiplicador, ehValidador } from "../../data/tiposConta";
 import { useTituloDocumento } from "../../hooks/useTituloDocumento";
 
 const PONTOS_POR_NIVEL = 500;
 
-const CORES_CATEGORIA: Record<string, string> = {
-  saude: "bg-rose-100 text-rose-700",
-  "meio-ambiente": "bg-emerald-100 text-emerald-700",
-  social: "bg-amber-100 text-amber-700",
-};
-
 export function Desafios() {
-  const { usuario, concluirAtividade } = useAuth();
-  const { mostrarToast } = useToast();
   useTituloDocumento("Meus Desafios | SoulGame");
-
+  const { usuario } = useAuth();
   if (!usuario) return null; // RotaProtegida já garante login, isso é só segurança extra
-
-  function handleConcluir(idAtividade: string, nome: string, pontos: number) {
-    concluirAtividade(idAtividade, pontos);
-    const valorReais = formatarReais(converterPontosParaReais(pontos));
-    mostrarToast(`+${pontos} pts (${valorReais}) — ${nome} concluído! 🎉`, "sucesso");
-  }
 
   const pontosNoNivelAtual = usuario.pontos % PONTOS_POR_NIVEL;
   const progressoNivel = (pontosNoNivelAtual / PONTOS_POR_NIVEL) * 100;
+  const tipoParaCapacidade = usuario.tipo === "admin" ? "soulgamer" : usuario.tipo;
+  const souMultiplicador = ehMultiplicador(tipoParaCapacidade);
+  const souValidador = ehValidador(tipoParaCapacidade);
 
   return (
-    <main aria-label="Painel de desafios e gamificação" className="flex-1 bg-slate-50 px-4 py-10">
-      <div className="max-w-4xl mx-auto">
+    <main aria-label="Painel do usuário" className="flex-1 bg-slate-50 px-4 py-10">
+      <div className="max-w-3xl mx-auto">
         <h1 className="text-3xl font-bold text-blue-800 mb-1">
           Olá, {usuario.nome}! 👋
         </h1>
-        <p className="text-slate-500 mb-8">
-          Continue seus desafios e suba de nível ajudando sua comunidade.
+        <p className="text-slate-500 mb-6">
+          Acompanhe seu progresso e siga para a Trilha Soul para escolher seus desafios.
         </p>
 
-        {/* Painel de status estilo Duolingo: nível, streak, pontos, saldo em R$ */}
+        <div className="flex gap-3 mb-6">
+          <Link
+            to="/perfil"
+            className="text-xs font-semibold text-blue-700 hover:underline"
+          >
+            👤 Editar perfil e avatar
+          </Link>
+        </div>
+
+        <Link
+          to="/trilha"
+          className="block bg-blue-600 hover:bg-blue-700 text-white text-center font-bold
+                     text-lg rounded-2xl px-6 py-5 mb-6 transition-colors shadow-sm"
+        >
+          🗺️ Abrir Trilha Soul
+        </Link>
+
+        {souMultiplicador && usuario.codigoIndicacao && (
+          <div className="bg-teal-50 border border-teal-200 rounded-2xl p-4 mb-6 flex items-center justify-between flex-wrap gap-2">
+            <div>
+              <p className="text-sm font-semibold text-teal-800">Seu código de indicação</p>
+              <p className="text-xs text-teal-600">
+                Compartilhe — você ganha o dobro dos pontos de quem se cadastrar com ele.
+              </p>
+            </div>
+            <code className="bg-white border border-teal-300 rounded-lg px-3 py-1 font-mono text-sm text-teal-800">
+              {usuario.codigoIndicacao}
+            </code>
+          </div>
+        )}
+
+        {souValidador && (
+          <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 mb-6 flex items-center justify-between flex-wrap gap-2">
+            <div>
+              <p className="text-sm font-semibold text-amber-800">Você é uma conta validadora</p>
+              <p className="text-xs text-amber-600">
+                Gere chaves únicas para confirmar atividades realizadas na sua instituição.
+              </p>
+            </div>
+            <Link
+              to="/validador"
+              className="text-sm font-semibold bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-lg transition-colors"
+            >
+              Abrir painel do validador
+            </Link>
+          </div>
+        )}
+
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
           <div className="bg-white rounded-2xl shadow-sm p-4 text-center">
             <p className="text-3xl font-bold text-blue-700">{usuario.nivel}</p>
@@ -61,8 +96,7 @@ export function Desafios() {
           </div>
         </div>
 
-        {/* Barra de progresso até o próximo nível */}
-        <div className="bg-white rounded-2xl shadow-sm p-4 mb-8">
+        <div className="bg-white rounded-2xl shadow-sm p-4">
           <div className="flex justify-between text-xs text-slate-500 mb-2">
             <span>Progresso para o nível {usuario.nivel + 1}</span>
             <span>{pontosNoNivelAtual} / {PONTOS_POR_NIVEL} pts</span>
@@ -81,60 +115,7 @@ export function Desafios() {
             />
           </div>
         </div>
-
-        <h2 className="text-lg font-semibold text-slate-700 mb-4">
-          Desafios disponíveis
-        </h2>
-
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {ATIVIDADES.map((atividade) => {
-            const concluida = usuario.atividadesConcluidas.includes(atividade.id);
-
-            return (
-              <div
-                key={atividade.id}
-                className={`rounded-2xl shadow-sm p-5 border-2 transition-colors ${
-                  concluida
-                    ? "bg-emerald-50 border-emerald-300"
-                    : "bg-white border-transparent"
-                }`}
-              >
-                <span
-                  className={`inline-block text-xs font-semibold px-2 py-1 rounded-full mb-2 ${CORES_CATEGORIA[atividade.categoria]}`}
-                >
-                  {atividade.categoria}
-                </span>
-                <Link to={`/desafios/${atividade.id}`} className="font-bold text-slate-800 hover:underline block">
-                  {atividade.nome}
-                </Link>
-                <p className="text-sm text-slate-500 mt-1">{atividade.descricao}</p>
-
-                <div className="flex items-center justify-between mt-4">
-                  <span className="text-sm font-semibold text-blue-700">
-                    +{atividade.pontos} pts
-                    <span className="text-emerald-600 font-normal">
-                      {" "}
-                      ({formatarReais(converterPontosParaReais(atividade.pontos))})
-                    </span>
-                  </span>
-                  <button
-                    onClick={() => handleConcluir(atividade.id, atividade.nome, atividade.pontos)}
-                    disabled={concluida}
-                    className={`text-sm font-semibold px-4 py-2 rounded-lg transition-colors ${
-                      concluida
-                        ? "bg-emerald-200 text-emerald-800 cursor-default"
-                        : "bg-blue-600 hover:bg-blue-700 text-white"
-                    }`}
-                  >
-                    {concluida ? "Concluído ✓" : "Concluir"}
-                  </button>
-                </div>
-              </div>
-            );
-          })}
-        </div>
       </div>
     </main>
   );
-
 }
