@@ -47,8 +47,9 @@ em valor monetário, sobre ações reais de impacto social e ambiental.
 | Estilização | Tailwind CSS 4 |
 | Formulários | React Hook Form |
 | Validação | Zod |
-| Persistência | localStorage (Web Storage API) |
-| Requisições HTTP | Fetch API nativa |
+| Persistência | API REST Java via `fetch()` (dados) + localStorage só para manter a sessão após F5 |
+| Requisições HTTP | Fetch API nativa (sem Axios) |
+| Testes | Vitest |
 | Qualidade de código | oxlint |
 | Versionamento | GitHub |
 | Editor | Visual Studio Code |
@@ -59,29 +60,28 @@ em valor monetário, sobre ações reais de impacto social e ambiental.
 soulgame-academico
 │
 ├── src
-│   ├── assets              → imagens (fotos da equipe, ícones)
-│   ├── components          → componentes reutilizáveis (Navbar, Footer)
+│   ├── api                 → clienteApi.ts: fetch() nativo + interfaces TypeScript de toda resposta da API
+│   ├── assets              → imagens (fotos da equipe)
+│   ├── components          → componentes reutilizáveis (Navbar, Footer, Card, Botao, modais, chatbot...)
 │   ├── context             → contextos globais (autenticação, notificações)
-│   ├── data                → dados tipados (atividades, integrantes, conversão)
+│   ├── data                → dados tipados (atividades, integrantes, conversão, tipos de conta...)
 │   │   └── __tests__       → testes de conversão de pontos e integridade de dados
-│   ├── hooks               → hooks customizados (useAuth, useToast)
-│   ├── layouts             → layout compartilhado (Navbar + Footer + Outlet)
-│   ├── routes              → uma pasta por rota (index.tsx dentro de cada)
-│   │   ├── home
-│   │   ├── sobre
-│   │   ├── faq
-│   │   ├── integrantes
-│   │   ├── contato
-│   │   ├── login
-│   │   ├── cadastro
-│   │   ├── desafios
-│   │   ├── admin-cadastros
-│   │   ├── error
-│   │   └── RotaProtegida.tsx
+│   ├── hooks               → hooks customizados (useAuth, useToast, useTituloDocumento)
+│   ├── layouts             → MainLayout (público) e PainelLayout (área logada, menu lateral)
+│   ├── pages               → uma pasta por página (index.tsx dentro de cada)
+│   │   ├── home, sobre, faq, integrantes, contato
+│   │   ├── login, cadastro
+│   │   ├── desafios, detalhe-atividade, trilha, mapa-ods
+│   │   ├── painel-conquistas, perfil, perfil-publico, historico, ranking
+│   │   ├── comunidade-soulsport, validador, admin-cadastros
+│   │   ├── error               → página 404
+│   │   └── RotaProtegida.tsx   → guarda de rota (exige login e, opcionalmente, um tipo de conta)
 │   ├── schemas             → validação de formulários (Zod)
 │   │   └── __tests__       → testes de validação de idade mínima e login
 │   ├── theme               → referência da paleta de cores
 │   ├── types               → contratos de dados (TypeScript)
+│   ├── utils               → utilitários (calendário, compressão de imagem)
+│   │   └── __tests__       → testes do validador de imagem
 │   ├── App.tsx             → roteamento principal
 │   ├── main.tsx            → ponto de entrada da aplicação
 │   └── index.css           → estilos globais (Tailwind)
@@ -89,9 +89,11 @@ soulgame-academico
 ├── docs
 │   └── EXPLICACAO_DO_PROJETO.md   → explicação detalhada da arquitetura
 │
+├── .env.example            → modelo da variável VITE_API_URL
 ├── .gitignore
 ├── index.html
 ├── package.json
+├── vercel.json             → rewrite da SPA (F5 em qualquer rota funciona na Vercel)
 └── README.md
 ```
 
@@ -132,16 +134,32 @@ Página contendo:
 Formulário de autenticação, com sessão persistente entre recarregamentos.
 
 ### Cadastro — `/cadastro`
-Formulário completo de criação de conta:
+Formulário completo de criação de conta (React Hook Form + Zod):
 - nome, e-mail, senha, telefone, data de nascimento, cidade, estado;
 - validação de idade mínima de 16 anos;
-- seleção de tipo de conta (usuário / time interno).
+- seleção do tipo de conta do ecossistema (soulgamer, soulfluencer, soulhealth, soulsport, soulbrain, educasoul, ecosoul ou time interno) e código de indicação opcional.
 
 ### Desafios — `/desafios` (rota protegida)
 Painel de gamificação, exige login:
 - nível, sequência de dias (streak) e pontos totais;
 - conversão de pontos em reais (R$ 0,009 por ponto);
-- lista das 6 atividades oficiais de impacto social/ambiental.
+- lista das 7 atividades oficiais de impacto social/ambiental;
+- cada atividade abre um modal onde é obrigatório anexar uma foto de evidência (veja "Registro de atividades com evidência" abaixo).
+
+### Detalhe da atividade — `/desafios/:atividadeId` (rota dinâmica)
+O id vem da URL via `useParams`; se a atividade não existir, mostra mensagem amigável com link de volta.
+
+### Trilha Soul — `/trilha`, Mapa de ODS — `/mapa-ods`, Conquistas — `/conquistas`
+Evolução do usuário: trilha de desafios com prazos agendados, mapa dos 17 ODS e conquistas desbloqueadas.
+
+### Perfil — `/perfil` e `/perfil/:usuarioId` (rota dinâmica)
+Edição do próprio perfil/avatar e perfil público de outro usuário (acessado a partir do Ranking). Id inexistente redireciona de volta ao `/ranking`.
+
+### Histórico — `/historico` e Ranking — `/ranking`
+Histórico de ações concluídas e ranking geral por pontos. Ambos tratam os estados de carregando, erro e lista vazia.
+
+### Comunidade — `/comunidade` e Validador — `/validador`
+Painel da comunidade Soulsport e painel de revisão de evidências (contas validadoras).
 
 ### Admin/Cadastros — `/admin/cadastros` (rota protegida)
 Painel do time interno, exige login como admin:
@@ -188,16 +206,32 @@ npm run test
 
 A aplicação sobe em `http://localhost:5173` por padrão.
 
+### Back-end (opcional para avaliar o front)
+
+O front consome a API Java (`01_java_backend_database`). Sem ela, as páginas
+públicas e a validação dos formulários funcionam normalmente; as telas que
+dependem de dados mostram o estado de erro. A URL da API vem de
+`VITE_API_URL` (veja `.env.example`; padrão `http://localhost:8080/api`).
+Na Vercel, defina `VITE_API_URL` com a URL pública do back-end e refaça o deploy.
+
+## Registro de atividades com evidência
+
+- O botão de concluir um desafio só habilita depois de anexar uma foto (JPG, PNG ou WEBP); PDF e SVG são recusados.
+- A foto é redimensionada e comprimida no navegador (`src/utils/imagem.ts`) antes do envio.
+- O servidor responde com `VALIDADO` (pontos creditados), `PENDENTE` (IA indisponível ou em dúvida: revisão humana, sem pontos) ou `REJEITADO` (a foto não comprova a atividade). A interface só soma pontos e marca a atividade como concluída em `VALIDADO`.
+
+
 ## Testes Automatizados
 
 O projeto usa **Vitest** para testes automatizados de lógica de negócio.
-A suíte atual cobre 19 casos, distribuídos em três frentes:
+A suíte atual cobre 22 casos, distribuídos em quatro frentes:
 
 | Arquivo | O que cobre |
 |---|---|
 | `src/schemas/__tests__/auth.test.ts` | Validação de idade mínima (16 anos), incluindo casos-limite; confirmação de senha; formato de e-mail; schema de login |
 | `src/data/__tests__/conversao.test.ts` | Fórmula de conversão de pontos em reais (R$ 0,009/ponto) |
-| `src/data/__tests__/atividades.test.ts` | Integridade das 6 atividades oficiais: ids únicos, pontuação positiva, categoria válida |
+| `src/utils/__tests__/imagem.test.ts` | Validador de imagem da evidência: aceita JPG/PNG/WEBP; recusa PDF, SVG e arquivo sem tipo |
+| `src/data/__tests__/atividades.test.ts` | Integridade das 7 atividades oficiais: ids únicos, pontuação positiva, categoria válida |
 
 Comandos:
 
@@ -219,9 +253,10 @@ npm run test:watch
 
 ## Próximos Passos
 
+
 - [ ] Deploy do front-end (Vercel) e do back-end (Railway/plataforma equivalente)
 - [ ] Gravação do vídeo de apresentação e link no README
-- [ ] Integração com a API Java (substituir `localStorage` por `fetch()`)
+- [x] Integração com a API Java (`fetch()` nativo, com loading/erro/vazio)
 - [ ] Testes automatizados no backend Java
 - [ ] Restrições `CHECK` no schema SQL
 
@@ -323,4 +358,4 @@ FIAP em parceria com a SoulUp.
 ## Status do Projeto
 
 **Em desenvolvimento** — versão acadêmica funcional (front-end completo,
-com testes automatizados; integração com back-end Java em andamento).
+com testes automatizados; integração com a API Java concluída; faltam apenas o deploy e o vídeo).
