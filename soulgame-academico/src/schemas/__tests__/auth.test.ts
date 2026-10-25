@@ -1,0 +1,63 @@
+import { describe, it, expect } from "vitest";
+import { schemaCadastro } from "../auth";
+
+const DADOS_VALIDOS_BASE = {
+  nome: "Ana Soulgamer",
+  email: "ana@teste.com",
+  senha: "senha123",
+  confirmarSenha: "senha123",
+  telefone: "(11) 90000-0000",
+  cidade: "São Paulo",
+  estado: "SP",
+  tipo: "soulgamer" as const,
+};
+
+function dataNascimentoComIdade(idade: number): string {
+  const hoje = new Date();
+  const nascimento = new Date(
+    hoje.getFullYear() - idade,
+    hoje.getMonth(),
+    hoje.getDate()
+  );
+
+  return nascimento.toISOString().slice(0, 10);
+}
+
+describe("schemaCadastro — validação de idade mínima", () => {
+  it("aceita cadastro de quem já fez 16 anos", () => {
+    const resultado = schemaCadastro.safeParse({
+      ...DADOS_VALIDOS_BASE,
+      dataNascimento: dataNascimentoComIdade(16),
+    });
+
+    expect(resultado.success).toBe(true);
+  });
+
+  it("rejeita cadastro de quem tem 15 anos", () => {
+    const resultado = schemaCadastro.safeParse({
+      ...DADOS_VALIDOS_BASE,
+      dataNascimento: dataNascimentoComIdade(15),
+    });
+
+    expect(resultado.success).toBe(false);
+  });
+
+  it("rejeita quem faz 16 anos só amanhã (idade calculada corretamente, não só por ano)", () => {
+    const hoje = new Date();
+    const amanha = new Date(hoje);
+    amanha.setDate(hoje.getDate() + 1);
+
+    const nascimento = new Date(
+      hoje.getFullYear() - 16,
+      amanha.getMonth(),
+      amanha.getDate()
+    );
+
+    const resultado = schemaCadastro.safeParse({
+      ...DADOS_VALIDOS_BASE,
+      dataNascimento: nascimento.toISOString().slice(0, 10),
+    });
+
+    expect(resultado.success).toBe(false);
+  });
+});
