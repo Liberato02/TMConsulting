@@ -1,22 +1,23 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import { ToastProvider } from "./context/ToastContext";
-import { RotaProtegida } from "./routes/RotaProtegida";
+import { RotaProtegida } from "./pages/RotaProtegida";
 import { MainLayout } from "./layouts/MainLayout";
 
-// Cada rota mora em sua própria pasta (src/routes/nome/index.tsx),
-// seguindo o padrão ensinado em aula: pasta = nome da rota, index.tsx
-// dentro = o componente daquela rota.
-import { Home } from "./routes/home";
-import { Sobre } from "./routes/sobre";
-import { Contato } from "./routes/contato";
-import { Faq } from "./routes/faq";
-import { Integrantes } from "./routes/integrantes";
-import { Login } from "./routes/login";
-import { Cadastro } from "./routes/cadastro";
-import { Desafios } from "./routes/desafios";
-import { Cadastros as AdminCadastros } from "./routes/admin-cadastros";
-import { NaoEncontrada } from "./routes/error";
+// Cada página mora em sua própria pasta (src/pages/nome/index.tsx),
+// seguindo a estrutura oficial do Challenge: componentes de página
+// organizados dentro de /src/pages.
+import { Home } from "./pages/home";
+import { Sobre } from "./pages/sobre";
+import { Contato } from "./pages/contato";
+import { Faq } from "./pages/faq";
+import { Integrantes } from "./pages/integrantes";
+import { Login } from "./pages/login";
+import { Cadastro } from "./pages/cadastro";
+import { Desafios } from "./pages/desafios";
+import { DetalheAtividade } from "./pages/detalhe-atividade";
+import { Cadastros as AdminCadastros } from "./pages/admin-cadastros";
+import { NaoEncontrada } from "./pages/error";
 
 function App() {
   return (
@@ -41,6 +42,18 @@ function App() {
                 element={
                   <RotaProtegida>
                     <Desafios />
+                  </RotaProtegida>
+                }
+              />
+
+              {/* Rota dinâmica: :atividadeId é lido via useParams dentro
+                  de DetalheAtividade, para exibir os dados daquela
+                  atividade específica */}
+              <Route
+                path="/desafios/:atividadeId"
+                element={
+                  <RotaProtegida>
+                    <DetalheAtividade />
                   </RotaProtegida>
                 }
               />

@@ -13,6 +13,7 @@ function calcularIdade(dataNascimentoISO: string): number {
   const hoje = new Date();
   const [ano, mes, dia] = dataNascimentoISO.split("-").map(Number);
   const nascimento = new Date(ano, mes - 1, dia);
+
   let idade = hoje.getFullYear() - nascimento.getFullYear();
 
   const aindaNaoFezAniversarioEsseAno =
@@ -20,10 +21,13 @@ function calcularIdade(dataNascimentoISO: string): number {
     (hoje.getMonth() === nascimento.getMonth() &&
       hoje.getDate() < nascimento.getDate());
 
-  if (aindaNaoFezAniversarioEsseAno) idade -= 1;
+  if (aindaNaoFezAniversarioEsseAno) {
+    idade -= 1;
+  }
 
   return idade;
 }
+
 const TIPOS_VALIDOS = [
   "soulgamer",
   "soulfluencer",
@@ -34,25 +38,26 @@ const TIPOS_VALIDOS = [
   "ecosoul",
   "admin",
 ] as const;
-export const schemaCadastro = z.object({
-  nome: z.string().min(3, "Digite seu nome completo."),
-  email: z.string().email("Digite um e-mail válido."),
-  senha: z.string().min(6, "A senha precisa ter no mínimo 6 caracteres."),
-  confirmarSenha: z.string(),
-  telefone: z
-    .string()
-    .min(10, "Digite um telefone válido com DDD.")
-    .regex(
-      /^[\d\s()-]+$/,
-      "Use apenas números, espaços, parênteses e hífen."
-    ),
-  dataNascimento: z.string().min(1, "Informe sua data de nascimento."),
-  cidade: z.string().min(2, "Informe sua cidade."),
-  estado: z.string().length(2, "Use a sigla do estado (ex: SP)."),
-  tipo: z.enum(TIPOS_VALIDOS),
-  codigoIndicacao: z.string().optional(),
-});
-export const schemaCadastroValidado = schemaCadastro
+
+export const schemaCadastro = z
+  .object({
+    nome: z.string().min(3, "Digite seu nome completo."),
+    email: z.string().email("Digite um e-mail válido."),
+    senha: z.string().min(6, "A senha precisa ter no mínimo 6 caracteres."),
+    confirmarSenha: z.string(),
+    telefone: z
+      .string()
+      .min(10, "Digite um telefone válido com DDD.")
+      .regex(
+        /^[\d\s()-]+$/,
+        "Use apenas números, espaços, parênteses e hífen."
+      ),
+    dataNascimento: z.string().min(1, "Informe sua data de nascimento."),
+    cidade: z.string().min(2, "Informe sua cidade."),
+    estado: z.string().length(2, "Use a sigla do estado (ex: SP)."),
+    tipo: z.enum(TIPOS_VALIDOS),
+    codigoIndicacao: z.string().optional(),
+  })
   .refine((dados) => dados.senha === dados.confirmarSenha, {
     message: "As senhas não coincidem.",
     path: ["confirmarSenha"],
@@ -62,4 +67,4 @@ export const schemaCadastroValidado = schemaCadastro
     path: ["dataNascimento"],
   });
 
-export type FormCadastro = z.infer<typeof schemaCadastroValidado>;
+export type FormCadastro = z.infer<typeof schemaCadastro>;

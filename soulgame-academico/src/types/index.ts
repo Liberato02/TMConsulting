@@ -58,3 +58,4 @@ export interface AuthContextType {
   concluirAtividade: (idAtividade: string, pontos: number) => void;
   carregando: boolean;
 }
+
