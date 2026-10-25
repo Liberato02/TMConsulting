@@ -52,3 +52,14 @@ export const schemaCadastro = z.object({
   tipo: z.enum(TIPOS_VALIDOS),
   codigoIndicacao: z.string().optional(),
 });
+export const schemaCadastroValidado = schemaCadastro
+  .refine((dados) => dados.senha === dados.confirmarSenha, {
+    message: "As senhas não coincidem.",
+    path: ["confirmarSenha"],
+  })
+  .refine((dados) => calcularIdade(dados.dataNascimento) >= IDADE_MINIMA, {
+    message: `A SoulGame é destinada a pessoas a partir de ${IDADE_MINIMA} anos.`,
+    path: ["dataNascimento"],
+  });
+
+export type FormCadastro = z.infer<typeof schemaCadastroValidado>;
