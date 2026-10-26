@@ -11,12 +11,13 @@ import { useTituloDocumento } from "../../hooks/useTituloDocumento";
 export function Trilha() {
   useTituloDocumento("Trilha Soul | SoulGame");
   const { usuario } = useAuth();
+
   const [idSelecionado, setIdSelecionado] = useState<string | null>(null);
   const [estoqueSangue, setEstoqueSangue] = useState<RespostaEstoqueSangue | null>(null);
   const [modalLembrete, setModalLembrete] = useState<{ atividadeId: string; dataISO: string } | null>(
     null
   );
-  
+
   useEffect(() => {
     buscarEstoqueSangue()
       .then(setEstoqueSangue)
@@ -91,4 +92,3 @@ export function Trilha() {
     </main>
   );
 }
-

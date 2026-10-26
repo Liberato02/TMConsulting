@@ -220,7 +220,6 @@ Na Vercel, defina `VITE_API_URL` com a URL pública do back-end e refaça o depl
 - A foto é redimensionada e comprimida no navegador (`src/utils/imagem.ts`) antes do envio.
 - O servidor responde com `VALIDADO` (pontos creditados), `PENDENTE` (IA indisponível ou em dúvida: revisão humana, sem pontos) ou `REJEITADO` (a foto não comprova a atividade). A interface só soma pontos e marca a atividade como concluída em `VALIDADO`.
 
-
 ## Testes Automatizados
 
 O projeto usa **Vitest** para testes automatizados de lógica de negócio.
@@ -252,7 +251,6 @@ npm run test:watch
 5. Apresentação final
 
 ## Próximos Passos
-
 
 - [ ] Deploy do front-end (Vercel) e do back-end (Railway/plataforma equivalente)
 - [ ] Gravação do vídeo de apresentação e link no README
