@@ -76,3 +76,41 @@ export interface AtividadeApi {
   idOds: number | null;
 }
 
+export interface HistoricoItemApi {
+  registroId: number;
+  acaoSlug: string | null;
+  nomeAcao: string;
+  pontosObtidos: number;
+  dataHora: string;
+}
+
+export interface DesafioAgendadoApi {
+  id: number;
+  usuarioId: string;
+  acaoSlug: string;
+  prazo: string;
+  vencido: boolean;
+}
+
+export interface VereditoIA {
+  valido: boolean;
+  confianca: number;
+  motivo: string;
+  /** true quando a IA falhou/está fora do ar (não é culpa do usuário). */
+  indisponivel?: boolean;
+}
+
+export interface RespostaRegistro {
+  registro: {
+    id: number;
+    acaoSlug: string;
+    statusValidacao: string;
+    pontosObtidos: number;
+  };
+  usuario: UsuarioApi;
+  veredito_ia?: VereditoIA;
+  conquistas_desbloqueadas?: ConquistaApi[];
+}
+
+// ===================== Funções da API =====================
+
