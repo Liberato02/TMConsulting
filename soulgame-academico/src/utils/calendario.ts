@@ -32,3 +32,28 @@ export function gerarConteudoICS(atividade: Atividade, dataISO: string): string 
     "END:VCALENDAR",
   ].join("\r\n");
 }
+
+export function baixarLembreteICS(atividade: Atividade, dataISO: string): void {
+  const conteudo = gerarConteudoICS(atividade, dataISO);
+  const blob = new Blob([conteudo], { type: "text/calendar;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `soulgame-${atividade.id}.ics`;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
+
+export function linkGoogleCalendar(atividade: Atividade, dataISO: string): string {
+  const data = formatarDataICS(dataISO);
+  const parametros = new URLSearchParams({
+    action: "TEMPLATE",
+    text: `${atividade.nome} — SoulGame`,
+    dates: `${data}/${data}`,
+    details: `${atividade.descricao} Vale +${atividade.pontos} pontos na Trilha Soul.`,
+  });
+  return `https://calendar.google.com/calendar/render?${parametros.toString()}`;
+}
