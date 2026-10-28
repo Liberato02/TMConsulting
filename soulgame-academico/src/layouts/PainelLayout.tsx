@@ -99,3 +99,47 @@ export function PainelLayout() {
     </>
   );
 
+  return (
+    <div className="flex-1 flex flex-col sm:flex-row bg-slate-50">
+      {/* Botão hambúrguer — só aparece abaixo do breakpoint sm */}
+      <div className="sm:hidden bg-white border-b border-slate-200 px-3 py-2 flex items-center justify-between">
+        <span className="text-sm font-semibold text-slate-700">Menu</span>
+        <button
+          type="button"
+          onClick={() => setMenuAberto((atual) => !atual)}
+          aria-expanded={menuAberto}
+          aria-controls="menu-painel-mobile"
+          aria-label={menuAberto ? "Fechar menu" : "Abrir menu"}
+          className="p-2 rounded-lg hover:bg-slate-100 transition-colors"
+        >
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            aria-hidden="true"
+          >
+            {menuAberto ? <path d="M18 6 6 18M6 6l12 12" /> : <path d="M3 6h18M3 12h18M3 18h18" />}
+          </svg>
+        </button>
+      </div>
+
+      {/* Menu lateral: sempre visível em telas sm+, colapsável (hambúrguer) no celular */}
+      <nav
+        id="menu-painel-mobile"
+        aria-label="Menu da área logada"
+        className={`sm:w-56 sm:shrink-0 sm:!flex bg-white border-b sm:border-b-0 sm:border-r
+                    border-slate-200 px-3 py-3 flex-col gap-1 ${menuAberto ? "flex" : "hidden"}`}
+      >
+        {itens}
+      </nav>
+
+      <div className="flex-1 flex flex-col">
+        <Outlet />
+      </div>
+    </div>
+  );
+}
