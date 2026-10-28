@@ -47,3 +47,58 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/cadastro" element={<Cadastro />} />
 
+                {/* Área logada: tudo aqui dentro compartilha o menu lateral
+                    (Painel / Trilha Soul / Validador / Cadastros) */}
+                <Route
+                  element={
+                    <RotaProtegida>
+                      <PainelLayout />
+                    </RotaProtegida>
+                  }
+                >
+                  <Route path="/desafios" element={<Desafios />} />
+                  {/* Rota dinâmica: :atividadeId é lido via useParams dentro
+                      de DetalheAtividade */}
+                  <Route path="/desafios/:atividadeId" element={<DetalheAtividade />} />
+                  <Route path="/trilha" element={<Trilha />} />
+                  <Route path="/mapa-ods" element={<MapaOds />} />
+                  <Route path="/conquistas" element={<PainelConquistas />} />
+                  <Route path="/perfil" element={<Perfil />} />
+                  {/* rota dinâmica: :usuarioId vem da URL via useParams,
+                      usada pelos links de cada linha do Ranking */}
+                  <Route path="/perfil/:usuarioId" element={<PerfilPublico />} />
+                  <Route path="/historico" element={<Historico />} />
+                  <Route path="/ranking" element={<Ranking />} />
+
+                  {/* checagem de tipo "soulsport" acontece dentro da própria página */}
+                  <Route path="/comunidade" element={<ComunidadeSoulsport />} />
+
+                  {/* checagem de capacidade "validador" acontece dentro
+                      da própria página, já que vale pra vários tipos */}
+                  <Route path="/validador" element={<PainelValidador />} />
+
+                  {/* só admin acessa — a página também confere o tipo,
+                      dupla camada de proteção */}
+                  <Route
+                    path="/admin/cadastros"
+                    element={
+                      <RotaProtegida tipoPermitido="admin">
+                        <AdminCadastros />
+                      </RotaProtegida>
+                    }
+                  />
+                </Route>
+
+                {/* Coringa: qualquer URL não mapeada cai aqui, mantendo
+                    Navbar/Footer/Chatbot consistentes */}
+                <Route path="*" element={<NaoEncontrada />} />
+              </Route>
+            </Routes>
+          </BrowserRouter>
+        </AuthProvider>
+      </ToastProvider>
+    </ErrorBoundary>
+  );
+}
+
+export default App;
