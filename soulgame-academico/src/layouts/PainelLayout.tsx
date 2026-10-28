@@ -17,3 +17,85 @@ export function PainelLayout() {
   const souValidador = ehValidador(usuario.tipo === "admin" ? "soulgamer" : usuario.tipo);
   const souSoulsport = usuario.tipo === "soulsport";
 
+  const itens = (
+    <>
+      <NavLink
+        to="/desafios"
+        end
+        onClick={() => setMenuAberto(false)}
+        className={({ isActive }) => `${itemBase} whitespace-nowrap ${isActive ? itemAtivo : itemInativo}`}
+      >
+        📊 Painel
+      </NavLink>
+      <NavLink
+        to="/trilha"
+        onClick={() => setMenuAberto(false)}
+        className={({ isActive }) => `${itemBase} whitespace-nowrap ${isActive ? itemAtivo : itemInativo}`}
+      >
+        🗺️ Trilha Soul
+      </NavLink>
+      <NavLink
+        to="/mapa-ods"
+        onClick={() => setMenuAberto(false)}
+        className={({ isActive }) => `${itemBase} whitespace-nowrap ${isActive ? itemAtivo : itemInativo}`}
+      >
+        🌍 Mapa ODS
+      </NavLink>
+      <NavLink
+        to="/conquistas"
+        onClick={() => setMenuAberto(false)}
+        className={({ isActive }) => `${itemBase} whitespace-nowrap ${isActive ? itemAtivo : itemInativo}`}
+      >
+        🏆 Conquistas
+      </NavLink>
+      <NavLink
+        to="/historico"
+        onClick={() => setMenuAberto(false)}
+        className={({ isActive }) => `${itemBase} whitespace-nowrap ${isActive ? itemAtivo : itemInativo}`}
+      >
+        📜 Histórico
+      </NavLink>
+      <NavLink
+        to="/ranking"
+        onClick={() => setMenuAberto(false)}
+        className={({ isActive }) => `${itemBase} whitespace-nowrap ${isActive ? itemAtivo : itemInativo}`}
+      >
+        🏆 Ranking
+      </NavLink>
+      <NavLink
+        to="/perfil"
+        onClick={() => setMenuAberto(false)}
+        className={({ isActive }) => `${itemBase} whitespace-nowrap ${isActive ? itemAtivo : itemInativo}`}
+      >
+        👤 Perfil
+      </NavLink>
+      {souSoulsport && (
+        <NavLink
+          to="/comunidade"
+          onClick={() => setMenuAberto(false)}
+          className={({ isActive }) => `${itemBase} whitespace-nowrap ${isActive ? itemAtivo : itemInativo}`}
+        >
+          🏃 Comunidade
+        </NavLink>
+      )}
+      {souValidador && (
+        <NavLink
+          to="/validador"
+          onClick={() => setMenuAberto(false)}
+          className={({ isActive }) => `${itemBase} whitespace-nowrap ${isActive ? itemAtivo : itemInativo}`}
+        >
+          🔑 Validador
+        </NavLink>
+      )}
+      {usuario.tipo === "admin" && (
+        <NavLink
+          to="/admin/cadastros"
+          onClick={() => setMenuAberto(false)}
+          className={({ isActive }) => `${itemBase} whitespace-nowrap ${isActive ? itemAtivo : itemInativo}`}
+        >
+          🗂️ Cadastros
+        </NavLink>
+      )}
+    </>
+  );
+
