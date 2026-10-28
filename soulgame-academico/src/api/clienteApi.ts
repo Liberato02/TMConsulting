@@ -233,3 +233,40 @@ export interface CampeonatoApi {
   emAndamento: boolean;
 }
 
+export function listarOdsApi(): Promise<{ ods: OdsApi[] }> {
+  return requisicao("/ods");
+}
+
+export function listarConquistasApi(usuarioId?: string): Promise<{ conquistas: ConquistaApi[] }> {
+  const query = usuarioId ? `?usuarioId=${encodeURIComponent(usuarioId)}` : "";
+  return requisicao(`/conquistas${query}`);
+}
+
+export function listarCampeonatosApi(): Promise<{ campeonatos: CampeonatoApi[] }> {
+  return requisicao("/campeonatos");
+}
+
+// Só funciona se usuarioAdminId apontar pra uma conta tipo "admin" —
+// o back-end recusa com 403 caso contrário, mesmo que a tela deixe passar.
+export function criarCampeonatoApi(dados: {
+  usuarioAdminId: string;
+  nome: string;
+  escopo: "REGIONAL" | "ESTADUAL" | "NACIONAL";
+  estado?: string;
+  odsRelacionadoId?: number;
+  dataInicio: string;
+  dataFim: string;
+  premiacao?: string;
+}): Promise<CampeonatoApi> {
+  return requisicao<CampeonatoApi>("/campeonatos", {
+    method: "POST",
+    body: JSON.stringify(dados),
+  });
+}
+
+export function inscreverCampeonatoApi(campeonatoId: number, usuarioId: string): Promise<{ inscrito: boolean }> {
+  return requisicao("/campeonatos/inscrever", {
+    method: "POST",
+    body: JSON.stringify({ campeonatoId, usuarioId }),
+  });
+}
