@@ -156,3 +156,16 @@ export function listarDesafiosAgendadosApi(
   return requisicao(`/desafios-agendados?usuarioId=${encodeURIComponent(usuarioId)}`);
 }
 
+export function agendarDesafioApi(usuarioId: string, acaoSlug: string, prazo: string): Promise<DesafioAgendadoApi> {
+  return requisicao("/desafios-agendados", {
+    method: "POST",
+    body: JSON.stringify({ usuarioId, acaoSlug, prazo }),
+  });
+}
+
+export function cancelarAgendamentoApi(usuarioId: string, acaoSlug: string): Promise<{ cancelado: boolean }> {
+  return requisicao(
+    `/desafios-agendados?usuarioId=${encodeURIComponent(usuarioId)}&acaoSlug=${encodeURIComponent(acaoSlug)}`,
+    { method: "DELETE" }
+  );
+}
