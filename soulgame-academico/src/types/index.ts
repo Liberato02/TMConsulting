@@ -1,5 +1,17 @@
-// Tipo de usuário: define o que cada papel pode acessar (RBAC simples)
-export type TipoUsuario = "usuario" | "admin";
+// Os 7 tipos de conta públicos do ecossistema SoulUp.
+export type TipoConta =
+  | "soulgamer"
+  | "soulfluencer"
+  | "soulhealth"
+  | "soulsport"
+  | "soulbrain"
+  | "educasoul"
+  | "ecosoul";
+
+// TipoUsuario amplia TipoConta com "admin" — o time interno que mantém
+// a base de atividades/campanhas. "admin" não é um tipo de conta pública
+// (não faz parte do ecossistema de usuários finais), por isso fica à parte.
+export type TipoUsuario = TipoConta | "admin";
 
 export interface Usuario {
   id: string;
@@ -14,6 +26,21 @@ export interface Usuario {
   nivel: number;
   streakDias: number;
   atividadesConcluidas: string[]; // ids das Atividade já concluídas
+  historicoConclusoes: Record<string, string>; // id da atividade -> data/hora ISO de conclusão
+
+  // Programa de indicação (papel "multiplicador"):
+  codigoIndicacao?: string; // código próprio, só existe se tipo é multiplicador
+  indicadoPorCodigo?: string; // código que essa pessoa usou ao se cadastrar
+
+  // Avatar na trilha: OU um personagem pronto, OU a própria foto.
+  avatarTipo: "personagem" | "foto";
+  avatarPersonagemId?: string; // id de um PERSONAGENS_AVATAR
+  avatarFotoDataUrl?: string; // imagem enviada pelo usuário (base64, redimensionada)
+
+  // Prazos escolhidos pelo usuário para cada desafio "iniciado" na
+  // trilha (exceto doação de sangue, que não tem prazo por não poder
+  // ser repetida). Chave = id da atividade, valor = prazo em ISO date.
+  prazosDesafios: Record<string, string>;
 }
 
 // Registro salvo no "banco" (localStorage) — inclui a senha, que NUNCA
