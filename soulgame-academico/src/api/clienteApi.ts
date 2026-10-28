@@ -114,3 +114,26 @@ export interface RespostaRegistro {
 
 // ===================== Funções da API =====================
 
+export function cadastrarUsuarioApi(dados: {
+  nome: string;
+  email: string;
+  senha: string;
+  telefone: string;
+  dataNascimento: string;
+  cidade: string;
+  estado: string;
+  tipo: string;
+  indicadoPorCodigo?: string;
+}): Promise<UsuarioApi> {
+  return requisicao<UsuarioApi>("/usuarios", {
+    method: "POST",
+    body: JSON.stringify(dados),
+  });
+}
+
+export function loginApi(email: string, senha: string): Promise<UsuarioApi> {
+  return requisicao<UsuarioApi>("/login", {
+    method: "POST",
+    body: JSON.stringify({ email, senha }),
+  });
+}
