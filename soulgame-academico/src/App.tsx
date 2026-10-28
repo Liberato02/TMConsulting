@@ -29,3 +29,21 @@ import { PainelValidador } from "./pages/validador";
 import { Cadastros as AdminCadastros } from "./pages/admin-cadastros";
 import { NaoEncontrada } from "./pages/error";
 
+function App() {
+  return (
+    <ErrorBoundary>
+      <ToastProvider>
+        <AuthProvider>
+          <BrowserRouter>
+            <Routes>
+              {/* Todas as rotas abaixo compartilham Navbar + Footer via MainLayout */}
+              <Route element={<MainLayout />}>
+                {/* Rotas públicas */}
+                <Route path="/" element={<Home />} />
+                <Route path="/sobre" element={<Sobre />} />
+                <Route path="/contato" element={<Contato />} />
+                <Route path="/faq" element={<Faq />} />
+                <Route path="/integrantes" element={<Integrantes />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/cadastro" element={<Cadastro />} />
+
