@@ -59,11 +59,28 @@ export interface Atividade {
   descricao: string;
   pontos: number;
   categoria: "saude" | "meio-ambiente" | "social";
+  exigeValidacao: boolean; // true = precisa de chave gerada por um validador
+}
+
+// Chave única e não-transferível emitida por uma conta validadora
+// (Soulhealth, Soulsport, Educasoul, Ecosoul) para confirmar que um
+// Soulgamer cumpriu uma atividade específica.
+export interface ChaveValidacao {
+  codigo: string;
+  atividadeId: string;
+  instituicaoId: string; // id do usuário validador que emitiu
+  instituicaoNome: string;
+  limiteUsos: number; // 1 = padrão (não-transferível); >1 = chave de comunidade/evento
+  usadoPorIds: string[]; // quem já resgatou — cada pessoa só resgata uma vez
+  criadaEm: string; // ISO date
 }
 
 export interface ResultadoAuth {
   sucesso: boolean;
   mensagem?: string;
+  /** Evidência recebida, mas aguardando revisão (sem pontos ainda). */
+  pendente?: boolean;
+  conquistasDesbloqueadas?: { nome: string; descricao: string; icone: string }[];
 }
 
 export interface DadosCadastro {
