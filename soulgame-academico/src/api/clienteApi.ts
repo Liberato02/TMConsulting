@@ -41,3 +41,38 @@ async function requisicao<T>(caminho: string, opcoes?: RequestInit): Promise<T> 
   return corpo as T;
 }
 
+// ===================== Tipos de resposta da API =====================
+
+export interface UsuarioApi {
+  id: string;
+  nome: string;
+  email: string;
+  telefone: string;
+  dataNascimento: string | null;
+  cidade: string;
+  estado: string;
+  tipo: string;
+  totalPontos: number;
+  nivel: number;
+  streakDias: number;
+  codigoIndicacao?: string;
+  indicadoPorCodigo?: string;
+  avatarTipo: string;
+  avatarPersonagemId?: string;
+  avatarFotoBase64?: string;
+  ehValidador: boolean;
+  ehMultiplicador: boolean;
+}
+
+export interface AtividadeApi {
+  id: string; // slug, ex: "doacao-sangue"
+  idInterno: number;
+  nome: string;
+  objetivoSustentavel: string;
+  pontuacaoBase: number;
+  nivelDificuldade: string;
+  descricao: string;
+  pontuacaoCalculada: number;
+  idOds: number | null;
+}
+
