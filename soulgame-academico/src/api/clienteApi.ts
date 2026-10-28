@@ -204,3 +204,32 @@ export function atualizarPerfilApi(
 
 // ===================== Ecossistema ODS: mapa, conquistas, campeonatos =====================
 
+export interface OdsApi {
+  id: number;
+  nome: string;
+  cor: string;
+  icone: string;
+}
+
+export interface ConquistaApi {
+  id: number;
+  nome: string;
+  descricao: string;
+  tipoCriterio?: string;
+  valorCriterio?: number;
+  icone: string;
+}
+
+export interface CampeonatoApi {
+  id: number;
+  nome: string;
+  escopo: "REGIONAL" | "ESTADUAL" | "NACIONAL";
+  estado: string | null;
+  odsRelacionadoId: number | null;
+  dataInicio: string;
+  dataFim: string;
+  premiacao: string | null;
+  status: "AGENDADO" | "EM_ANDAMENTO" | "ENCERRADO";
+  emAndamento: boolean;
+}
+
