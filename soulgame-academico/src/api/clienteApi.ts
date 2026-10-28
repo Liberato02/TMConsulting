@@ -169,3 +169,38 @@ export function cancelarAgendamentoApi(usuarioId: string, acaoSlug: string): Pro
     { method: "DELETE" }
   );
 }
+
+// A imagem de evidência é obrigatória: o servidor responde 400 sem ela.
+// A IA analisa e o status volta como VALIDADO, PENDENTE ou REJEITADO.
+export function registrarAcaoApi(
+  usuarioId: string,
+  acaoSlug: string,
+  imagemBase64: string,
+  tipoEvidencia: string
+): Promise<RespostaRegistro> {
+  return requisicao<RespostaRegistro>("/registros", {
+    method: "POST",
+    body: JSON.stringify({ usuarioId, acaoSlug, imagemBase64, tipoEvidencia }),
+  });
+}
+
+export function atualizarPerfilApi(
+  usuarioId: string,
+  dados: Partial<{
+    nome: string;
+    telefone: string;
+    cidade: string;
+    estado: string;
+    avatarTipo: string;
+    avatarPersonagemId: string;
+    avatarFotoBase64: string;
+  }>
+): Promise<UsuarioApi> {
+  return requisicao<UsuarioApi>(`/perfil/${usuarioId}`, {
+    method: "PUT",
+    body: JSON.stringify(dados),
+  });
+}
+
+// ===================== Ecossistema ODS: mapa, conquistas, campeonatos =====================
+
