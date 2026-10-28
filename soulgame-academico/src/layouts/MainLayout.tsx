@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
+import { ChatbotSoulUp } from "../components/ChatbotSoulUp";
 
 // Layout compartilhado: Navbar e Footer aparecem em TODAS as páginas,
 // e <Outlet /> é onde o React Router injeta a página da rota atual.
@@ -25,6 +26,7 @@ export function MainLayout() {
         <Outlet />
       </div>
       <Footer />
+      <ChatbotSoulUp />
     </div>
   );
 }
