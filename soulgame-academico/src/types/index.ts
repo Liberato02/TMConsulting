@@ -92,6 +92,7 @@ export interface DadosCadastro {
   cidade: string;
   estado: string;
   tipo: TipoUsuario;
+  codigoIndicacao?: string; // código de quem indicou, opcional
 }
 
 export interface AuthContextType {
@@ -99,7 +100,14 @@ export interface AuthContextType {
   login: (email: string, senha: string) => Promise<ResultadoAuth>;
   cadastrar: (dados: DadosCadastro) => Promise<ResultadoAuth>;
   logout: () => void;
-  concluirAtividade: (idAtividade: string, pontos: number) => void;
+  concluirAtividade: (
+    idAtividade: string,
+    imagemBase64Evidencia: string,
+    tipoEvidencia: string
+  ) => Promise<ResultadoAuth>;
+  definirAvatarPersonagem: (personagemId: string) => void;
+  definirAvatarFoto: (dataUrl: string) => void;
+  definirPrazoDesafio: (idAtividade: string, prazoISO: string) => void;
+  atualizarPerfil: (dados: { nome: string; telefone: string; cidade: string; estado: string }) => void;
   carregando: boolean;
 }
-
