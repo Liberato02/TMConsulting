@@ -1,7 +1,5 @@
 import { useCallback, useState, type ReactNode } from "react";
-import { ToastContext } from "./toastContextInstance";
-
-type TipoToast = "sucesso" | "erro" | "info";
+import { ToastContext, type TipoToast } from "./toastContextInstance";
 
 interface Toast {
     id: string;
@@ -32,7 +30,10 @@ export function ToastProvider({ children }: { children: ReactNode }) {
         <ToastContext.Provider value={{ mostrarToast }}>
             {children}
 
+            {/* role="region" é necessário: aria-label sozinho numa div comum,
+                sem role, é ignorado por leitores de tela. */}
             <div
+                role="region"
                 aria-label="Notificações"
                 className="fixed bottom-4 right-4 z-50 flex flex-col gap-2"
             >
