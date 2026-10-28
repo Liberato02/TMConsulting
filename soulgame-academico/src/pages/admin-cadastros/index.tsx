@@ -2,11 +2,13 @@ import { useState, type FormEvent } from "react";
 import { ATIVIDADES } from "../../data/atividades";
 import type { Atividade } from "../../types";
 import { useAuth } from "../../hooks/useAuth";
+import { useTituloDocumento } from "../../hooks/useTituloDocumento";
 
 // Painel do time de cadastro (admin). Nesta versão acadêmica, a lista
 // vive em estado local (useState) — simula o CRUD sem persistência real.
 // Na versão SoulGame/MVP, isso conversa com a API Java via Fetch.
 export function Cadastros() {
+  useTituloDocumento("Cadastro de Atividades | SoulGame");
   const { usuario } = useAuth();
   const [lista, setLista] = useState<Atividade[]>(ATIVIDADES);
 
@@ -14,9 +16,11 @@ export function Cadastros() {
   const [descricao, setDescricao] = useState("");
   const [pontos, setPontos] = useState(50);
   const [categoria, setCategoria] = useState<Atividade["categoria"]>("social");
+  const [exigeValidacao, setExigeValidacao] = useState(true);
 
   function handleSubmit(evento: FormEvent) {
     evento.preventDefault();
+
 
     const nova: Atividade = {
       id: crypto.randomUUID(),
@@ -24,9 +28,11 @@ export function Cadastros() {
       descricao,
       pontos,
       categoria,
+      exigeValidacao,
     };
 
     setLista((atual) => [...atual, nova]);
+
     setNome("");
     setDescricao("");
     setPontos(50);
@@ -102,13 +108,26 @@ export function Cadastros() {
               <option value="saude">Saúde</option>
               <option value="meio-ambiente">Meio ambiente</option>
               <option value="social">Social</option>
-            </select>
+                       </select>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <input
+              id="exige-validacao"
+              type="checkbox"
+              checked={exigeValidacao}
+              onChange={(e) => setExigeValidacao(e.target.checked)}
+              className="w-4 h-4"
+            />
+            <label htmlFor="exige-validacao" className="text-sm text-slate-700">
+              Exige chave de validação de uma instituição
+            </label>
           </div>
 
           <button
             type="submit"
             className="justify-self-start bg-blue-600 hover:bg-blue-700 text-white
-                       font-semibold rounded-lg px-5 py-2 text-sm transition-colors"
+
           >
             Cadastrar atividade
           </button>
@@ -133,5 +152,5 @@ export function Cadastros() {
       </div>
     </main>
   );
-
 }
+
