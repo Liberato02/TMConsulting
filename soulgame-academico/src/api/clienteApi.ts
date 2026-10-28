@@ -137,3 +137,22 @@ export function loginApi(email: string, senha: string): Promise<UsuarioApi> {
     body: JSON.stringify({ email, senha }),
   });
 }
+
+export function listarAtividadesApi(): Promise<{ atividades: AtividadeApi[] }> {
+  return requisicao("/atividades");
+}
+
+export function listarRankingApi(): Promise<{ ranking: UsuarioApi[] }> {
+  return requisicao("/usuarios/ranking");
+}
+
+export function listarHistoricoApi(usuarioId: string): Promise<{ historico: HistoricoItemApi[] }> {
+  return requisicao(`/historico?usuarioId=${encodeURIComponent(usuarioId)}`);
+}
+
+export function listarDesafiosAgendadosApi(
+  usuarioId: string
+): Promise<{ desafiosAgendados: DesafioAgendadoApi[] }> {
+  return requisicao(`/desafios-agendados?usuarioId=${encodeURIComponent(usuarioId)}`);
+}
+
