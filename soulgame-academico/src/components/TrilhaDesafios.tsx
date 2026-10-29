@@ -71,3 +71,79 @@ const CORES_CASA: Record<string, { base: string; topo: string; texto: string }> 
   agendado: { base: "#1d4ed8", topo: "#3b82f6", texto: "#ffffff" },
   disponivel: { base: "#cbd5e1", topo: "#ffffff", texto: "#1e40af" },
 };
+
+export function TrilhaDesafios({
+  atividades,
+  usuario,
+  atividadeSelecionada,
+  onSelecionar,
+}: {
+  atividades: Atividade[];
+  usuario: Usuario;
+  atividadeSelecionada?: string | null;
+  onSelecionar: (idAtividade: string) => void;
+}) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const pontosNos = gerarPontosNos(atividades.length);
+  const pontoInicio: Ponto = { x: 24, y: Y_CENTRO };
+  const pontoMeta: Ponto = {
+    x: MARGEM_LATERAL + (atividades.length - 1) * ESPACAMENTO_NO + 90,
+    y: Y_CENTRO,
+  };
+  const pontosCompletos = [pontoInicio, ...pontosNos, pontoMeta];
+  const larguraTotal = pontoMeta.x + 50;
+
+  const fracaoProgresso = usuario.atividadesConcluidas.length / atividades.length;
+  const posicaoAvatar = calcularPosicaoAvatar(pontosCompletos, fracaoProgresso);
+  const caminhoD = gerarCaminhoSuave(pontosCompletos);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const alvo = Math.max(0, posicaoAvatar.x - containerRef.current.clientWidth / 2);
+    containerRef.current.scrollTo({ left: alvo, behavior: "smooth" });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return (
+    <div
+      ref={containerRef}
+      className="relative bg-gradient-to-b from-sky-200 via-sky-100 to-emerald-50
+                 rounded-2xl shadow-inner overflow-x-auto overflow-y-hidden"
+    >
+      {/* Fundo decorativo: sol, nuvens e folhas — tema sustentabilidade */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-2 right-6 w-14 h-14 rounded-full bg-amber-200/70 blur-[2px]" />
+        <div className="absolute top-4 left-16 w-16 h-6 bg-white/80 rounded-full blur-[1px]" />
+        <div className="absolute top-10 left-64 w-10 h-4 bg-white/80 rounded-full blur-[1px]" />
+        <div className="absolute bottom-3 left-40 w-20 h-6 bg-white/70 rounded-full blur-[1px]" />
+        <div className="absolute top-6 left-[480px] w-14 h-5 bg-white/80 rounded-full blur-[1px]" />
+        <div className="absolute bottom-6 left-[620px] w-16 h-6 bg-white/70 rounded-full blur-[1px]" />
+      </div>
+
+      <svg
+        width={larguraTotal}
+        height={ALTURA_SVG}
+        viewBox={`0 0 ${larguraTotal} ${ALTURA_SVG}`}
+        role="img"
+        aria-label="Mapa horizontal da trilha de desafios, estilo tabuleiro"
+        className="block relative"
+      >
+        {/* Sombra da estrada (dá profundidade) */}
+        <path
+          d={caminhoD}
+          fill="none"
+          stroke="#0f172a"
+          strokeOpacity="0.12"
+          strokeWidth="34"
+          strokeLinecap="round"
+          transform="translate(0, 4)"
+        />
+        {/* Estrada/faixa principal — grossa, como uma rota de tabuleiro */}
+        <path
+          d={caminhoD}
+          fill="none"
+          stroke="#7dd3fc"
+          strokeWidth="30"
+          strokeLinecap="round"
+        />
