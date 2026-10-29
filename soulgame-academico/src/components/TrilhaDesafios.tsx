@@ -218,3 +218,83 @@ export function TrilhaDesafios({
                 />
               )}
 
+              <g
+                transform={`translate(${ponto.x}, ${ponto.y}) rotate(${selecionado ? 0 : rotacao})`}
+                className={status === "concluido" ? "animate-brilho" : ""}
+              >
+                {/* Sombra "de baixo" da casa (efeito 3D/bloco) */}
+                <rect
+                  x={-meia}
+                  y={-meia + 5}
+                  width={TAMANHO_CASA}
+                  height={TAMANHO_CASA}
+                  rx="12"
+                  fill="#0f172a"
+                  opacity="0.18"
+                />
+                {/* Base da casa */}
+                <rect
+                  x={-meia}
+                  y={-meia}
+                  width={TAMANHO_CASA}
+                  height={TAMANHO_CASA}
+                  rx="12"
+                  fill={cores.base}
+                />
+                {/* "Tampo" da casa, levemente menor — efeito de bloco elevado */}
+                <rect
+                  x={-meia + 3}
+                  y={-meia + 3}
+                  width={TAMANHO_CASA - 6}
+                  height={TAMANHO_CASA - 8}
+                  rx="10"
+                  fill={cores.topo}
+                  stroke={selecionado ? "#1d4ed8" : "transparent"}
+                  strokeWidth={selecionado ? 3 : 0}
+                />
+                {/* Número da casa, cantinho superior esquerdo */}
+                <text
+                  x={-meia + 8}
+                  y={-meia + 15}
+                  className="text-[9px] font-extrabold"
+                  fill={cores.texto}
+                  opacity="0.7"
+                >
+                  {indice + 1}
+                </text>
+                {/* Ícone/status central */}
+                <text x="0" y="8" textAnchor="middle" className="text-lg select-none">
+                  {status === "concluido" ? "✓" : ICONE_CATEGORIA[atividade.categoria]}
+                </text>
+              </g>
+
+              {/* Nome da atividade — sempre na horizontal, acima ou abaixo
+                  conforme a posição da onda, para não invadir a estrada */}
+              <text
+                x={ponto.x}
+                y={ponto.y < Y_CENTRO ? ponto.y - meia - 10 : ponto.y + meia + 20}
+                textAnchor="middle"
+                className="fill-slate-600 text-[8px] font-semibold"
+              >
+                {atividade.nome.length > 16
+                  ? `${atividade.nome.slice(0, 14)}…`
+                  : atividade.nome}
+              </text>
+            </g>
+          );
+        })}
+
+        {/* Avatar flutuando sobre a posição atual */}
+        <foreignObject
+          x={posicaoAvatar.x - 22}
+          y={posicaoAvatar.y - 50}
+          width="44"
+          height="56"
+          className="animate-bounce-avatar"
+        >
+          <AvatarMarcador usuario={usuario} tamanho="sm" />
+        </foreignObject>
+      </svg>
+    </div>
+  );
+}
