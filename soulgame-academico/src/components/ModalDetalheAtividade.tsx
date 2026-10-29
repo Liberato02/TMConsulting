@@ -145,3 +145,82 @@ export function ModalDetalheAtividade({
             <p className="text-[11px] text-slate-500 mb-1">
               Estoque em {estoqueSangue.hemocentro}:
             </p>
+            <div className="flex flex-wrap gap-1">
+              {estoqueSangue.estoque.map((item) => (
+                <span
+                  key={item.tipo}
+                  className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${CORES_NIVEL_ESTOQUE[item.nivel]}`}
+                >
+                  {item.tipo}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {!concluida && (
+          <div className="mt-4 flex gap-2 items-end">
+            <div className="flex-1">
+              <label htmlFor="data-realizacao-modal" className="block text-xs font-medium text-slate-600 mb-1">
+                Data em que pretende realizar
+              </label>
+              <input
+                id="data-realizacao-modal"
+                type="date"
+                min={hojeISO()}
+                value={dataEscolhida}
+                onChange={(e) => setDataEscolhida(e.target.value)}
+                className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm"
+              />
+            </div>
+            <button
+              onClick={handleSalvarData}
+              className="text-sm font-semibold bg-slate-700 hover:bg-slate-800 text-white px-4 py-2 rounded-lg"
+            >
+              Salvar
+            </button>
+          </div>
+        )}
+
+        {!concluida && (
+          <div className="mt-3">
+            <label htmlFor="foto-evidencia-modal" className="block text-xs font-medium text-slate-600 mb-1">
+              Foto da atividade <span className="text-red-600">(obrigatória)</span> — a IA analisa antes de validar
+            </label>
+            <input
+              id="foto-evidencia-modal"
+              type="file"
+              accept="image/jpeg,image/png,image/webp"
+              onChange={(e) => handleEscolherArquivo(e.target.files?.[0] ?? null)}
+              className="w-full text-xs text-slate-600 file:mr-2 file:rounded-lg file:border-0
+                         file:bg-blue-50 file:px-3 file:py-2 file:text-xs file:font-semibold file:text-blue-700"
+            />
+            {previaUrl ? (
+              <img
+                src={previaUrl}
+                alt="Pré-visualização da evidência escolhida"
+                className="mt-2 max-h-40 w-full rounded-lg object-cover border border-slate-200"
+              />
+            ) : (
+              <p className="text-[11px] text-slate-500 mt-1">
+                Sem foto não é possível concluir nem ganhar pontos.
+              </p>
+            )}
+          </div>
+        )}
+
+        <button
+          onClick={handleConcluir}
+          disabled={concluida || enviando || !arquivoEvidencia}
+          className={`mt-4 w-full text-sm font-semibold px-4 py-2 rounded-lg transition-colors ${
+            concluida
+              ? "bg-emerald-200 text-emerald-800 cursor-default"
+              : "bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-60"
+          }`}
+        >
+          {concluida ? "Concluído ✓" : enviando ? "Analisando evidência..." : "Enviar evidência e concluir"}
+        </button>
+      </div>
+    </div>
+  );
+}
