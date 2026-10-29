@@ -71,3 +71,77 @@ export function ModalDetalheAtividade({
     // A evidência é obrigatória: sem foto não existe registro nem pontos.
     if (!arquivoEvidencia) {
       mostrarToast("Anexe uma foto que comprove a atividade para concluir.", "erro");
+      return;
+    }
+    setEnviando(true);
+    try {
+      let imagemBase64: string;
+      try {
+        imagemBase64 = await comprimirImagemParaBase64(arquivoEvidencia);
+      } catch (erro) {
+        mostrarToast(erro instanceof Error ? erro.message : "Falha ao preparar a imagem.", "erro");
+        return;
+      }
+
+      const tipoEvidencia = "FOTO";
+      const resultado = await concluirAtividade(atividade.id, imagemBase64, tipoEvidencia);
+
+      if (!resultado.sucesso) {
+        mostrarToast(resultado.mensagem ?? "Não foi possível concluir.", "erro");
+        return;
+      }
+
+      const valorReais = formatarReais(converterPontosParaReais(atividade.pontos));
+      if (resultado.pendente) {
+        mostrarToast(resultado.mensagem ?? "Evidência enviada e em análise.", "info");
+        onFechar();
+        return;
+      }
+      mostrarToast(
+        resultado.mensagem ?? `+${atividade.pontos} pts (${valorReais}) — ${atividade.nome} concluído! 🎉`,
+        "sucesso"
+      );
+
+      // Celebração das conquistas novas, em sequência — cada uma some
+      // antes da próxima aparecer, pra não empilhar tudo de uma vez.
+      resultado.conquistasDesbloqueadas?.forEach((conquista, indice) => {
+        setTimeout(() => {
+          mostrarToast(`🏆 Conquista desbloqueada: ${conquista.nome}!`, "sucesso");
+        }, 1400 * (indice + 1));
+      });
+
+      onFechar();
+    } finally {
+      setEnviando(false);
+    }
+  }
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={`Detalhes de ${atividade.nome}`}
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 sm:px-4"
+      onClick={(e) => e.target === e.currentTarget && onFechar()}
+    >
+      <div className="bg-white rounded-t-2xl sm:rounded-2xl shadow-xl p-6 max-w-sm w-full max-h-[85vh] overflow-y-auto">
+        <div className="flex justify-between items-start gap-2 mb-1">
+          <h2 className="font-bold text-slate-800 text-lg">{atividade.nome}</h2>
+          <button
+            onClick={onFechar}
+            aria-label="Fechar"
+            className="text-slate-400 hover:text-slate-600 text-xl leading-none shrink-0"
+          >
+            ×
+          </button>
+        </div>
+        <p className="text-sm text-slate-500">{atividade.descricao}</p>
+        <p className="text-sm font-semibold text-blue-700 mt-2">
+          +{atividade.pontos} pts ({formatarReais(converterPontosParaReais(atividade.pontos))})
+        </p>
+
+        {atividade.id === "doacao-sangue" && estoqueSangue && (
+          <div className="mt-3 bg-slate-50 rounded-lg p-2">
+            <p className="text-[11px] text-slate-500 mb-1">
+              Estoque em {estoqueSangue.hemocentro}:
+            </p>
