@@ -98,3 +98,57 @@ export function ChatbotSoulUp() {
             {RESPOSTAS_CHATBOT.slice(0, 3).map((r) => (
               <button
                 key={r.id}
+                onClick={() => enviarPergunta(r.pergunta)}
+                className="text-[11px] bg-white border border-blue-200 text-blue-700
+                           rounded-full px-2.5 py-1 hover:bg-blue-50 transition-colors"
+              >
+                {r.pergunta}
+              </button>
+            ))}
+          </div>
+
+          {/* Campo de texto livre */}
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              enviarPergunta(textoDigitado);
+            }}
+            className="p-3 bg-slate-50 flex gap-2"
+          >
+            <label htmlFor="chatbot-input" className="sr-only">
+              Digite sua pergunta
+            </label>
+            <input
+              id="chatbot-input"
+              value={textoDigitado}
+              onChange={(e) => setTextoDigitado(e.target.value)}
+              placeholder="Digite sua dúvida..."
+              className="flex-1 rounded-full border border-slate-300 px-3 py-2 text-sm
+                         focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <button
+              type="submit"
+              aria-label="Enviar pergunta"
+              className="bg-blue-600 hover:bg-blue-700 text-white rounded-full w-9 h-9
+                         flex items-center justify-center shrink-0"
+            >
+              ➤
+            </button>
+          </form>
+        </div>
+      )}
+
+      {/* Botão flutuante com o avatar SoulUp */}
+      <button
+        onClick={() => setAberto((atual) => !atual)}
+        aria-expanded={aberto}
+        aria-label={aberto ? "Fechar assistente SoulUp" : "Abrir assistente SoulUp"}
+        className="w-14 h-14 rounded-full bg-gradient-to-br from-blue-600 to-teal-400
+                   shadow-lg flex items-center justify-center text-2xl
+                   hover:scale-105 transition-transform"
+      >
+        {aberto ? "×" : "🌱"}
+      </button>
+    </div>
+  );
+}
