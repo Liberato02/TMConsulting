@@ -147,3 +147,74 @@ export function TrilhaDesafios({
           strokeWidth="30"
           strokeLinecap="round"
         />
+        <path
+          d={caminhoD}
+          fill="none"
+          stroke="#bae6fd"
+          strokeWidth="22"
+          strokeLinecap="round"
+        />
+        {/* Linha central tracejada animada — "correndo" pela estrada */}
+        <path
+          d={caminhoD}
+          fill="none"
+          stroke="#ffffff"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeDasharray="10 14"
+          className="animate-dash-flow"
+        />
+
+        {/* Bandeira de meta */}
+        <g transform={`translate(${pontoMeta.x}, ${pontoMeta.y})`}>
+          <line x1="0" y1="-34" x2="0" y2="22" stroke="#1d4ed8" strokeWidth="4" strokeLinecap="round" />
+          <path d="M 0 -34 L 26 -25 L 0 -16 Z" className="fill-amber-400" />
+          <circle cx="0" cy="22" r="4" className="fill-blue-700" />
+          <text x="0" y="42" textAnchor="middle" className="fill-blue-800 text-[10px] font-extrabold">
+            META
+          </text>
+        </g>
+
+        {/* Início */}
+        <g transform={`translate(${pontoInicio.x}, ${pontoInicio.y})`}>
+          <circle r="10" className="fill-blue-700" />
+          <text y="4" textAnchor="middle" className="fill-white text-[10px] font-bold">
+            ▶
+          </text>
+          <text y="28" textAnchor="middle" className="fill-blue-800 text-[9px] font-bold">
+            INÍCIO
+          </text>
+        </g>
+
+        {/* Casas numeradas — estilo tabuleiro, com leve rotação orgânica */}
+        {atividades.map((atividade, indice) => {
+          const ponto = pontosNos[indice];
+          const status = statusNo(atividade, usuario);
+          const cores = CORES_CASA[status];
+          const selecionado = atividadeSelecionada === atividade.id;
+          const rotacao = ROTACOES[indice % ROTACOES.length];
+          const meia = TAMANHO_CASA / 2;
+
+          return (
+            <g
+              key={atividade.id}
+              onClick={() => onSelecionar(atividade.id)}
+              className="cursor-pointer"
+              role="button"
+              tabIndex={0}
+              aria-label={`Abrir detalhes de ${atividade.nome}, casa ${indice + 1}`}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") onSelecionar(atividade.id);
+              }}
+            >
+              {/* Anel pulsante em desafios ainda disponíveis */}
+              {status === "disponivel" && (
+                <circle
+                  cx={ponto.x}
+                  cy={ponto.y}
+                  r={meia + 10}
+                  className="fill-none stroke-blue-300 animate-pulse-no"
+                  strokeWidth="2.5"
+                />
+              )}
+
