@@ -25,6 +25,8 @@ ativa dentro da plataforma.
 - [Próximos Passos](#próximos-passos)
 - [Maiores Dificuldades e Resoluções](#maiores-dificuldades-do-projeto-e-resoluções)
 - [Contato](#contato)
+- [Projeto Publicado (Deploy)](#projeto-publicado-deploy)
+- [Uso de Inteligência Artificial](#uso-de-inteligência-artificial)
 - [Repositório do Projeto](#repositório-do-projeto)
 - [Vídeo de Apresentação](#vídeo-de-apresentação)
 - [Status do Projeto](#status-do-projeto)
@@ -47,7 +49,7 @@ em valor monetário, sobre ações reais de impacto social e ambiental.
 | Estilização | Tailwind CSS 4 |
 | Formulários | React Hook Form |
 | Validação | Zod |
-| Persistência | API REST Java via `fetch()` (dados) + localStorage só para manter a sessão após F5 |
+| Persistência | API REST Java + Oracle via `fetch()` (usuários, atividades, registros, ranking, histórico, conquistas) + `localStorage` para a sessão após F5 e para as telas Validador e Comunidade |
 | Requisições HTTP | Fetch API nativa (sem Axios) |
 | Testes | Vitest |
 | Qualidade de código | oxlint |
@@ -212,14 +214,17 @@ O front consome a API Java (`01_java_backend_database`). Sem ela, as páginas
 públicas e a validação dos formulários funcionam normalmente; as telas que
 dependem de dados mostram o estado de erro. A URL da API vem de
 `VITE_API_URL` (veja `.env.example`; padrão `http://localhost:8080/api`).
-Na Vercel, defina `VITE_API_URL` com a URL pública do back-end e refaça o deploy.
+Na Vercel, defina `VITE_API_URL` com a URL pública do back-end (terminando em `/api`) e refaça o deploy.
+
+A validação das fotos de evidência usa IA (Groq) no back-end, configurada pela
+variável de ambiente `GROQ_API_KEY` do servidor. Sem a chave, o registro fica
+`PENDENTE` (revisão humana) e não soma pontos.
 
 ## Registro de atividades com evidência
 
 - O botão de concluir um desafio só habilita depois de anexar uma foto (JPG, PNG ou WEBP); PDF e SVG são recusados.
 - A foto é redimensionada e comprimida no navegador (`src/utils/imagem.ts`) antes do envio.
 - O servidor responde com `VALIDADO` (pontos creditados), `PENDENTE` (IA indisponível ou em dúvida: revisão humana, sem pontos) ou `REJEITADO` (a foto não comprova a atividade). A interface só soma pontos e marca a atividade como concluída em `VALIDADO`.
-
 
 ## Testes Automatizados
 
@@ -253,8 +258,7 @@ npm run test:watch
 
 ## Próximos Passos
 
-
-- [ ] Deploy do front-end (Vercel) e do back-end (Railway/plataforma equivalente)
+- [x] Deploy do front-end (Vercel) e do back-end (Render)
 - [ ] Gravação do vídeo de apresentação e link no README
 - [x] Integração com a API Java (`fetch()` nativo, com loading/erro/vazio)
 - [ ] Testes automatizados no backend Java
@@ -347,6 +351,41 @@ em contato com nossa equipe.
 Agradecemos o interesse em nosso projeto desenvolvido para o Challenge
 FIAP em parceria com a SoulUp.
 
+## Projeto Publicado (Deploy)
+
+| Item | Endereço |
+|---|---|
+| Front-end (Vercel) | https://soulgame-fiap.vercel.app |
+| API Java (Render) | https://soulgame-backend.onrender.com/api |
+| Verificação da API | https://soulgame-backend.onrender.com/api/health |
+| Repositório do front-end | https://github.com/Liberato02/TMConsulting |
+| Repositório do back-end | https://github.com/tecnando-rpa/soulgame-backend (privado; acesso sob solicitação; o código também está no ZIP da entrega, pasta `01_java_backend_database`) |
+
+**Como avaliar em poucos minutos**
+
+1. Abra a verificação da API (`/api/health`) e aguarde a resposta. A hospedagem gratuita do back-end "dorme" após um período sem uso, e a primeira resposta pode levar cerca de 1 minuto.
+2. Abra o site, vá em **Cadastro** e crie uma conta. Os dados são gravados no banco Oracle pela API Java.
+3. Entre em **Desafios** ou **Trilha Soul** e escolha uma atividade.
+4. Tente concluir sem foto: o sistema não permite. Anexe uma foto que comprove a atividade para a IA validar.
+5. Confira os pontos em **Histórico**, **Conquistas** e **Ranking**.
+
+As páginas públicas (Home, Sobre, FAQ, Integrantes e Contato) e a validação dos formulários funcionam sem o back-end. As telas Validador e Comunidade usam `localStorage` no navegador; as demais telas usam a API.
+
+## Uso de Inteligência Artificial
+
+Há dois usos distintos de IA no projeto:
+
+1. **IA como apoio ao desenvolvimento:** Claude (Anthropic), usado em sessões conduzidas pela equipe.
+2. **IA como funcionalidade do produto:** validação automática da foto de evidência de cada atividade, feita pelo back-end com a API da Groq (modelo de visão), com resposta `VALIDADO`, `PENDENTE` ou `REJEITADO`.
+
+| Ferramenta | Etapa | Objetivo | Principais prompts (resumo) | Correções e adaptações da equipe | Aprendizado |
+|---|---|---|---|---|---|
+| Claude | Arquitetura do front-end | Definir a estrutura de pastas React/Vite/TypeScript sem inflar a complexidade | "Analise este escopo e sugira a estrutura de pastas ideal para o projeto gamificado" | Estrutura adotada e mantida ao longo das sprints | Separar camadas (páginas, componentes, dados, API) desde o início |
+| Claude | Integração com a API e evidências | Consumir a API Java com `fetch()` e exigir foto de evidência no registro de atividades | "Faça o registro de atividade exigir imagem e validar pela IA" | Equipe testou o fluxo no site publicado e ajustou os estados de loading, erro e vazio | Tratar o resultado `PENDENTE` quando a IA está indisponível |
+| Claude | Banco de dados (back-end) | Diagnosticar erro do driver JDBC Oracle ao gerar chaves em colunas identity | Descrição do erro ORA-17132 e do trecho de código | Equipe validou a correção no banco da FIAP | Entender como o driver devolve chaves geradas |
+| Claude | Organização e Git | Montar o roteiro de commits por integrante e o fluxo de branches e PRs | "Distribua os commits entre os integrantes, sem retrabalho" | Equipe ajustou a lista à estrutura real do repositório e corrigiu arquivos incompletos após os merges | Conferir `lint`, testes e `build` depois de cada merge |
+| Groq (no produto) | Validação de evidências | Decidir automaticamente se a foto comprova a atividade | Instruções fixas do sistema, com a descrição da atividade e a imagem enviada | Equipe definiu o limiar de confiança e o fluxo `PENDENTE` para revisão humana | Uma IA de visão precisa de regras claras e de plano alternativo quando indisponível |
+
 ## Repositório do Projeto
 
 [Acessar Repositório](https://github.com/Liberato02/TMConsulting)
@@ -357,5 +396,5 @@ FIAP em parceria com a SoulUp.
 
 ## Status do Projeto
 
-**Em desenvolvimento** — versão acadêmica funcional (front-end completo,
-com testes automatizados; integração com a API Java concluída; faltam apenas o deploy e o vídeo).
+**Versão acadêmica funcional e publicada** — front-end completo na Vercel, com testes
+automatizados, integrado à API Java e ao banco Oracle (hospedados no Render).
