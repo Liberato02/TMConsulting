@@ -12,7 +12,7 @@ export function ModalConfirmarLembrete({
 }) {
   const dataFormatada = new Date(dataISO + "T00:00:00").toLocaleDateString("pt-BR");
 
-    function handleBaixarICS() {
+  function handleBaixarICS() {
     baixarLembreteICS(atividade, dataISO);
     onFechar();
   }

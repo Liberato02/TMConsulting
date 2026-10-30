@@ -75,12 +75,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
 
     try {
-      const resposta = await registrarAcaoApi(
-        usuario.id,
-        idAtividade,
-        imagemBase64Evidencia,
-        tipoEvidencia
-      );
+      const resposta = await registrarAcaoApi(usuario.id, idAtividade, imagemBase64Evidencia, tipoEvidencia);
       const status = resposta.registro.statusValidacao;
 
       if (status === "REJEITADO") {
@@ -94,7 +89,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         const motivo = resposta.veredito_ia?.indisponivel
           ? "A IA está indisponível no momento"
           : "A IA ficou em dúvida";
-
         return {
           sucesso: true,
           pendente: true,
@@ -102,39 +96,27 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         };
       }
 
-      const { [idAtividade]: _removido, ...prazosRestantes } =
-        usuario.prazosDesafios;
-
+      const { [idAtividade]: _removido, ...prazosRestantes } = usuario.prazosDesafios;
       setUsuario({
         ...usuario,
         pontos: resposta.usuario.totalPontos,
         nivel: resposta.usuario.nivel,
-        atividadesConcluidas: [
-          ...usuario.atividadesConcluidas,
-          idAtividade,
-        ],
-        historicoConclusoes: {
-          ...usuario.historicoConclusoes,
-          [idAtividade]: new Date().toISOString(),
-        },
+        atividadesConcluidas: [...usuario.atividadesConcluidas, idAtividade],
+        historicoConclusoes: { ...usuario.historicoConclusoes, [idAtividade]: new Date().toISOString() },
         prazosDesafios: prazosRestantes,
       });
 
-      const conquistasDesbloqueadas =
-        resposta.conquistas_desbloqueadas?.map((c) => ({
-          nome: c.nome,
-          descricao: c.descricao,
-          icone: c.icone,
-        }));
+      const conquistasDesbloqueadas = resposta.conquistas_desbloqueadas?.map((c) => ({
+        nome: c.nome,
+        descricao: c.descricao,
+        icone: c.icone,
+      }));
 
       return { sucesso: true, conquistasDesbloqueadas };
     } catch (erro) {
       return {
         sucesso: false,
-        mensagem:
-          erro instanceof ErroApi
-            ? erro.message
-            : "Não foi possível registrar a atividade.",
+        mensagem: erro instanceof ErroApi ? erro.message : "Não foi possível registrar a atividade.",
       };
     }
   }
@@ -142,18 +124,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   function definirAvatarPersonagem(personagemId: string) {
     setUsuario((atual) => {
       if (!atual) return atual;
-
-      const atualizado: Usuario = {
-        ...atual,
-        avatarTipo: "personagem",
-        avatarPersonagemId: personagemId,
-      };
-
-      sincronizarPerfil(atual.id, {
-        avatarTipo: "personagem",
-        avatarPersonagemId: personagemId,
-      });
-
+      const atualizado: Usuario = { ...atual, avatarTipo: "personagem", avatarPersonagemId: personagemId };
+      sincronizarPerfil(atual.id, { avatarTipo: "personagem", avatarPersonagemId: personagemId });
       return atualizado;
     });
   }
@@ -161,18 +133,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   function definirAvatarFoto(dataUrl: string) {
     setUsuario((atual) => {
       if (!atual) return atual;
-
-      const atualizado: Usuario = {
-        ...atual,
-        avatarTipo: "foto",
-        avatarFotoDataUrl: dataUrl,
-      };
-
-      sincronizarPerfil(atual.id, {
-        avatarTipo: "foto",
-        avatarFotoBase64: dataUrl,
-      });
-
+      const atualizado: Usuario = { ...atual, avatarTipo: "foto", avatarFotoDataUrl: dataUrl };
+      sincronizarPerfil(atual.id, { avatarTipo: "foto", avatarFotoBase64: dataUrl });
       return atualizado;
     });
   }
@@ -182,39 +144,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // completa aqui pode ser feita numa próxima iteração sem afetar
   // o restante do fluxo (o campo prazosDesafios já é lido via API
   // em montarUsuarioCompleto, então já reflete o servidor no login).
-  function definirPrazoDesafio(
-    idAtividade: string,
-    prazoISO: string
-  ) {
+  function definirPrazoDesafio(idAtividade: string, prazoISO: string) {
     setUsuario((atual) => {
       if (!atual) return atual;
-
       return {
         ...atual,
-        prazosDesafios: {
-          ...atual.prazosDesafios,
-          [idAtividade]: prazoISO,
-        },
+        prazosDesafios: { ...atual.prazosDesafios, [idAtividade]: prazoISO },
       };
     });
   }
 
-  function atualizarPerfil(dados: {
-    nome: string;
-    telefone: string;
-    cidade: string;
-    estado: string;
-  }) {
+  function atualizarPerfil(dados: { nome: string; telefone: string; cidade: string; estado: string }) {
     setUsuario((atual) => {
       if (!atual) return atual;
-
-      const atualizado: Usuario = {
-        ...atual,
-        ...dados,
-      };
-
+      const atualizado: Usuario = { ...atual, ...dados };
       sincronizarPerfil(atual.id, dados);
-
       return atualizado;
     });
   }
@@ -238,16 +182,3 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     </AuthContext.Provider>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
