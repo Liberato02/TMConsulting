@@ -14,7 +14,6 @@ export const ATIVIDADES: Atividade[] = [
   },
   {
     id: "reciclagem",
-
     nome: "Doação para Cooperativas de Reciclagem",
     descricao: "Destine materiais recicláveis a cooperativas parceiras.",
     pontos: 100,
@@ -24,7 +23,7 @@ export const ATIVIDADES: Atividade[] = [
   {
     id: "cesta-basica",
     nome: "Kit Cestas Básicas",
-        descricao: "Contribua com kits de cestas básicas para famílias.",
+    descricao: "Contribua com kits de cestas básicas para famílias.",
     pontos: 150,
     categoria: "social",
     exigeValidacao: true, // validado por uma conta Soulhealth
@@ -32,7 +31,7 @@ export const ATIVIDADES: Atividade[] = [
   {
     id: "brecho-beneficente",
     nome: "Doação para Brechós Beneficentes",
-        descricao: "Doe roupas e itens para brechós beneficentes.",
+    descricao: "Doe roupas e itens para brechós beneficentes.",
     pontos: 80,
     categoria: "social",
     exigeValidacao: true, // validado por uma conta Soulhealth
@@ -69,7 +68,7 @@ export function buscarAtividadePorId(id: string): Atividade | undefined {
 
 export function calcularPontosTotais(idsRealizados: string[]): number {
   return idsRealizados.reduce((total, id) => {
-        const atividade = buscarAtividadePorId(id);
+    const atividade = buscarAtividadePorId(id);
     return total + (atividade?.pontos ?? 0);
   }, 0);
 }

@@ -18,6 +18,7 @@ export function ComunidadeSoulsport() {
   useTituloDocumento("Comunidade Soulsport | SoulGame");
   const { usuario } = useAuth();
   const { mostrarToast } = useToast();
+
   const [nome, setNome] = useState("");
   const [data, setData] = useState(hojeISO());
   const [local, setLocal] = useState("");
@@ -118,6 +119,7 @@ export function ComunidadeSoulsport() {
               />
             </div>
           </div>
+
           <div>
             <label htmlFor="evento-local" className="block text-sm font-medium text-slate-700 mb-1">
               Local

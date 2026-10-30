@@ -64,6 +64,7 @@ export function Perfil() {
                 </code>
               </div>
             )}
+
             {definicaoTipo.validador && (
               <Link
                 to="/validador"
@@ -157,4 +158,3 @@ export function Perfil() {
     </main>
   );
 }
-

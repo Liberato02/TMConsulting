@@ -5,7 +5,7 @@ import {
   listarAtividadesApi,
   type OdsApi,
   type AtividadeApi,
-} from "../../api/clienteApi"; 
+} from "../../api/clienteApi";
 import { useTituloDocumento } from "../../hooks/useTituloDocumento";
 
 export function MapaOds() {
