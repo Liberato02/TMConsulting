@@ -9,7 +9,6 @@ describe("ATIVIDADES — integridade dos dados oficiais", () => {
   });
 
   it("todo id é único (evita duas atividades colidindo na mesma chave)", () => {
-
     const ids = ATIVIDADES.map((a) => a.id);
     const idsUnicos = new Set(ids);
     expect(idsUnicos.size).toBe(ids.length);

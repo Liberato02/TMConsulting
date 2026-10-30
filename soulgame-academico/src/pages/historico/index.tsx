@@ -18,6 +18,7 @@ function formatarDataHora(iso: string): string {
     minute: "2-digit",
   });
 }
+
 export function Historico() {
   useTituloDocumento("Histórico | SoulGame");
   const { usuario } = useAuth();

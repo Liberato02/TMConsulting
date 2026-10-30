@@ -14,12 +14,7 @@ const DADOS_VALIDOS_BASE = {
 
 function dataNascimentoComIdade(idade: number): string {
   const hoje = new Date();
-  const nascimento = new Date(
-    hoje.getFullYear() - idade,
-    hoje.getMonth(),
-    hoje.getDate()
-  );
-
+  const nascimento = new Date(hoje.getFullYear() - idade, hoje.getMonth(), hoje.getDate());
   return nascimento.toISOString().slice(0, 10);
 }
 
@@ -29,7 +24,6 @@ describe("schemaCadastro — validação de idade mínima", () => {
       ...DADOS_VALIDOS_BASE,
       dataNascimento: dataNascimentoComIdade(16),
     });
-
     expect(resultado.success).toBe(true);
   });
 
@@ -38,7 +32,6 @@ describe("schemaCadastro — validação de idade mínima", () => {
       ...DADOS_VALIDOS_BASE,
       dataNascimento: dataNascimentoComIdade(15),
     });
-
     expect(resultado.success).toBe(false);
   });
 
@@ -46,18 +39,12 @@ describe("schemaCadastro — validação de idade mínima", () => {
     const hoje = new Date();
     const amanha = new Date(hoje);
     amanha.setDate(hoje.getDate() + 1);
-
-    const nascimento = new Date(
-      hoje.getFullYear() - 16,
-      amanha.getMonth(),
-      amanha.getDate()
-    );
-
+    // nasceu exatamente 16 anos atrás, mas 1 dia no futuro em relação a hoje
+    const nascimento = new Date(hoje.getFullYear() - 16, amanha.getMonth(), amanha.getDate());
     const resultado = schemaCadastro.safeParse({
       ...DADOS_VALIDOS_BASE,
       dataNascimento: nascimento.toISOString().slice(0, 10),
     });
-
     expect(resultado.success).toBe(false);
   });
 });
@@ -69,7 +56,6 @@ describe("schemaCadastro — outras validações", () => {
       dataNascimento: dataNascimentoComIdade(20),
       confirmarSenha: "outrasenha",
     });
-
     expect(resultado.success).toBe(false);
   });
 
@@ -79,7 +65,6 @@ describe("schemaCadastro — outras validações", () => {
       dataNascimento: dataNascimentoComIdade(20),
       email: "nao-e-um-email",
     });
-
     expect(resultado.success).toBe(false);
   });
 
@@ -90,27 +75,18 @@ describe("schemaCadastro — outras validações", () => {
       senha: "123",
       confirmarSenha: "123",
     });
-
     expect(resultado.success).toBe(false);
   });
 });
 
 describe("schemaLogin", () => {
   it("aceita e-mail e senha válidos", () => {
-    const resultado = schemaLogin.safeParse({
-      email: "teste@teste.com",
-      senha: "123456",
-    });
-
+    const resultado = schemaLogin.safeParse({ email: "teste@teste.com", senha: "123456" });
     expect(resultado.success).toBe(true);
   });
 
   it("rejeita e-mail mal formatado", () => {
-    const resultado = schemaLogin.safeParse({
-      email: "invalido",
-      senha: "123456",
-    });
-
+    const resultado = schemaLogin.safeParse({ email: "invalido", senha: "123456" });
     expect(resultado.success).toBe(false);
   });
 });

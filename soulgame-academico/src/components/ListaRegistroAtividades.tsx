@@ -35,7 +35,6 @@ export function ListaRegistroAtividades({
     <div className="bg-white rounded-2xl shadow-sm divide-y divide-slate-100">
       {atividades.map((atividade) => {
         const info = status(atividade, usuario);
-
         return (
           <button
             key={atividade.id}
