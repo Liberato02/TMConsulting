@@ -97,6 +97,11 @@ export function SeletorAvatar() {
                           ${selecionado ? "ring-4 ring-blue-400 scale-110" : "opacity-80 hover:opacity-100"}`}
             >
               {personagem.emoji}
+            </button>
+          );
+        })}
+      </div>
+
       <div className="flex items-center gap-3">
         <button
           type="button"

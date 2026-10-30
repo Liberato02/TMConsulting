@@ -21,7 +21,6 @@ export function Cadastros() {
   function handleSubmit(evento: FormEvent) {
     evento.preventDefault();
 
-
     const nova: Atividade = {
       id: crypto.randomUUID(),
       nome,
@@ -32,7 +31,6 @@ export function Cadastros() {
     };
 
     setLista((atual) => [...atual, nova]);
-
     setNome("");
     setDescricao("");
     setPontos(50);
@@ -108,7 +106,7 @@ export function Cadastros() {
               <option value="saude">Saúde</option>
               <option value="meio-ambiente">Meio ambiente</option>
               <option value="social">Social</option>
-                       </select>
+            </select>
           </div>
 
           <div className="flex items-center gap-2">
@@ -127,7 +125,7 @@ export function Cadastros() {
           <button
             type="submit"
             className="justify-self-start bg-blue-600 hover:bg-blue-700 text-white
-
+                       font-semibold rounded-lg px-5 py-2 text-sm transition-colors"
           >
             Cadastrar atividade
           </button>
@@ -153,4 +151,3 @@ export function Cadastros() {
     </main>
   );
 }
-
