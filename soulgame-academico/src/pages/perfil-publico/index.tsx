@@ -118,7 +118,7 @@ export function PerfilPublico() {
           <h1 className="text-xl font-bold text-blue-800">
             {perfil.nome} {souEu && <span className="text-blue-600 text-sm">(você)</span>}
           </h1>
-          <p className="text-sm text-slate-500 mt-1">
+          <p className="text-sm text-slate-600 mt-1">
             {definicao?.rotulo ?? perfil.tipo} · Nível {perfil.nivel}
           </p>
           <p className="text-3xl font-extrabold text-blue-700 mt-4">{perfil.pontos} pts</p>

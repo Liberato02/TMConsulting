@@ -44,7 +44,7 @@ export function Contato() {
     <main aria-label="Formulário de contato" className="flex-1 px-4 py-16 bg-blue-50">
       <Card className="max-w-lg mx-auto shadow-lg">
         <h1 className="text-2xl font-bold text-blue-800 mb-1">Fale conosco</h1>
-        <p className="text-sm text-slate-500 mb-6">
+        <p className="text-sm text-slate-600 mb-6">
           Dúvidas, sugestões ou parcerias — envie sua mensagem.
         </p>
 

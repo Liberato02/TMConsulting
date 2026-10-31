@@ -41,7 +41,7 @@ export function Ranking() {
     <main aria-label="Ranking de usuários" className="flex-1 px-4 py-8 bg-slate-50">
       <div className="max-w-lg mx-auto">
         <h1 className="text-2xl font-bold text-blue-800 mb-1">🏆 Ranking</h1>
-        <p className="text-sm text-slate-500 mb-6">
+        <p className="text-sm text-slate-600 mb-6">
           Os {LIMITE_RANKING} usuários com mais pontos na SoulGame.
         </p>
 
@@ -77,7 +77,7 @@ export function Ranking() {
                             ? "bg-slate-300 text-white"
                             : indice === 2
                               ? "bg-orange-400 text-white"
-                              : "bg-slate-100 text-slate-500"
+                              : "bg-slate-100 text-slate-600"
                       }`}
                     >
                       {indice + 1}

@@ -44,7 +44,7 @@ export function Home() {
         <h2 className="text-2xl font-bold text-blue-800 mb-2">
           Entenda a solução em 30 segundos
         </h2>
-        <p className="text-slate-500 mb-6">
+        <p className="text-slate-600 mb-6">
           Assista à apresentação em vídeo do projeto SoulGame.
         </p>
         <div className="aspect-video rounded-2xl overflow-hidden shadow-lg">

@@ -55,7 +55,7 @@ export function MapaOds() {
     <main aria-label="Mapa dos Objetivos de Desenvolvimento Sustentável" className="flex-1 px-4 py-6">
       <div className="max-w-3xl mx-auto">
         <h1 className="text-2xl font-bold text-blue-800 mb-1">🌍 Mapa das Trilhas ODS</h1>
-        <p className="text-sm text-slate-500 mb-5">
+        <p className="text-sm text-slate-600 mb-5">
           Cada território acende quando você conclui a primeira ação daquele Objetivo de
           Desenvolvimento Sustentável — {odsDesbloqueados.size} de {listaOds.length || 17} já
           desbloqueados.
@@ -124,7 +124,7 @@ export function MapaOds() {
               <h2 className="text-lg font-bold text-slate-800">{odsInfoSelecionado.nome}</h2>
             </div>
 
-            <p className="text-xs font-semibold text-slate-500 mb-2">Atividades deste ODS na plataforma</p>
+            <p className="text-xs font-semibold text-slate-600 mb-2">Atividades deste ODS na plataforma</p>
 
             {atividadesDoOdsSelecionado.length === 0 ? (
               <p className="text-sm text-slate-600">Nenhuma atividade cadastrada aqui ainda.</p>

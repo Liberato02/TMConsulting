@@ -135,14 +135,14 @@ export function ModalDetalheAtividade({
             ×
           </button>
         </div>
-        <p className="text-sm text-slate-500">{atividade.descricao}</p>
+        <p className="text-sm text-slate-600">{atividade.descricao}</p>
         <p className="text-sm font-semibold text-blue-700 mt-2">
           +{atividade.pontos} pts ({formatarReais(converterPontosParaReais(atividade.pontos))})
         </p>
 
         {atividade.id === "doacao-sangue" && estoqueSangue && (
           <div className="mt-3 bg-slate-50 rounded-lg p-2">
-            <p className="text-[11px] text-slate-500 mb-1">
+            <p className="text-[11px] text-slate-600 mb-1">
               Estoque em {estoqueSangue.hemocentro}:
             </p>
             <div className="flex flex-wrap gap-1">
@@ -202,7 +202,7 @@ export function ModalDetalheAtividade({
                 className="mt-2 max-h-40 w-full rounded-lg object-cover border border-slate-200"
               />
             ) : (
-              <p className="text-[11px] text-slate-500 mt-1">
+              <p className="text-[11px] text-slate-600 mt-1">
                 Sem foto não é possível concluir nem ganhar pontos.
               </p>
             )}

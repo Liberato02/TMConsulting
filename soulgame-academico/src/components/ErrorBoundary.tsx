@@ -34,7 +34,7 @@ export class ErrorBoundary extends Component<Props, State> {
           <div className="max-w-sm w-full bg-white rounded-2xl shadow-lg p-6 text-center">
             <p className="text-3xl mb-2">😕</p>
             <h1 className="font-bold text-slate-800 mb-1">Algo deu errado</h1>
-            <p className="text-sm text-slate-500 mb-4">
+            <p className="text-sm text-slate-600 mb-4">
               Encontramos um erro inesperado. Isso pode acontecer com dados de
               teste antigos. Tente voltar ao Painel.
             </p>

@@ -38,7 +38,7 @@ export function Historico() {
     <main aria-label="Histórico de atividades" className="flex-1 px-4 py-8 bg-slate-50">
       <div className="max-w-lg mx-auto">
         <h1 className="text-2xl font-bold text-blue-800 mb-1">Histórico de atividades</h1>
-        <p className="text-sm text-slate-500 mb-6">
+        <p className="text-sm text-slate-600 mb-6">
           Tudo que você já concluiu na Trilha Soul, {usuario.nome.split(" ")[0]}.
         </p>
 
@@ -65,7 +65,7 @@ export function Historico() {
                     Concluído em {concluidaEm ? formatarDataHora(concluidaEm) : "—"}
                   </p>
                 </div>
-                <span className="text-xs font-semibold text-emerald-600 shrink-0">
+                <span className="text-xs font-semibold text-emerald-700 shrink-0">
                   +{atividade.pontos} pts
                   <br />
                   <span className="text-slate-600 font-normal">

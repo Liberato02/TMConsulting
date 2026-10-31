@@ -44,7 +44,7 @@ export function PainelValidador() {
         <h1 className="text-2xl font-bold text-blue-800 mb-1">
           Painel do validador
         </h1>
-        <p className="text-sm text-slate-500 mb-8">
+        <p className="text-sm text-slate-600 mb-8">
           Logado como <strong>{usuario.nome}</strong>. Gere chaves únicas e
           não-transferíveis para confirmar que um Soulgamer realmente cumpriu
           uma atividade na sua instituição/evento.
@@ -99,12 +99,12 @@ export function PainelValidador() {
                   <code className="font-mono font-semibold text-blue-800">
                     {chave.codigo}
                   </code>
-                  <p className="text-xs text-slate-500">{atividade?.nome}</p>
+                  <p className="text-xs text-slate-600">{atividade?.nome}</p>
                 </div>
                 <span
                   className={`text-xs font-semibold px-2 py-1 rounded-full ${
                     chave.usadoPorIds.length >= chave.limiteUsos
-                      ? "bg-slate-100 text-slate-500"
+                      ? "bg-slate-100 text-slate-600"
                       : "bg-emerald-100 text-emerald-700"
                   }`}
                 >

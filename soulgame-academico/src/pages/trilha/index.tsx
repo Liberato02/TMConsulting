@@ -52,7 +52,7 @@ export function Trilha() {
     <main aria-label="Trilha Soul — mapa de desafios" className="flex-1 px-4 py-6">
       <div className="max-w-2xl mx-auto">
         <h1 className="text-2xl font-bold text-blue-800 mb-1">🗺️ Trilha Soul</h1>
-        <p className="text-sm text-slate-500 mb-4">
+        <p className="text-sm text-slate-600 mb-4">
           Toque num desafio no mapa ou na lista para escolher a data e acompanhar seu progresso.
         </p>
 

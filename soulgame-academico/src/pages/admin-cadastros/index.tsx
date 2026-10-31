@@ -44,7 +44,7 @@ export function Cadastros() {
         <h1 className="text-2xl font-bold text-blue-800 mb-1">
           Painel do time de cadastro
         </h1>
-        <p className="text-sm text-slate-500 mb-8">
+        <p className="text-sm text-slate-600 mb-8">
           Logado como <strong>{usuario.email}</strong> (admin). Cadastre novas
           atividades, campanhas e campeonatos disponíveis para os usuários.
         </p>
