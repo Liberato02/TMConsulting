@@ -41,7 +41,7 @@ export function Cadastro() {
     <main aria-label="Formulário de cadastro" className="flex-1 flex items-center justify-center px-4 py-12 bg-blue-50">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
         <h1 className="text-2xl font-bold text-blue-800 mb-1">Cadastre-se</h1>
-        <p className="text-sm text-slate-500 mb-6">
+        <p className="text-sm text-slate-600 mb-6">
           Escolha o tipo de conta e comece a fazer parte do SoulUp.
         </p>
 
@@ -76,17 +76,17 @@ export function Cadastro() {
                     >
                       {def.rotulo}
                       {def.multiplicador && (
-                        <span className="ml-2 text-xs font-normal text-teal-600">
+                        <span className="ml-2 text-xs font-normal text-teal-700">
                           multiplicador
                         </span>
                       )}
                       {def.validador && (
-                        <span className="ml-2 text-xs font-normal text-amber-600">
+                        <span className="ml-2 text-xs font-normal text-amber-700">
                           validador
                         </span>
                       )}
                     </p>
-                    <p className="text-xs text-slate-500">{def.descricao}</p>
+                    <p className="text-xs text-slate-600">{def.descricao}</p>
                   </div>
                 </label>
               ))}
@@ -108,7 +108,7 @@ export function Cadastro() {
                   >
                     Time interno
                   </p>
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-slate-600">
                     Conta da equipe SoulUp para manter a base de dados.
                   </p>
                 </div>

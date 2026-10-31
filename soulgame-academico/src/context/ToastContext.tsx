@@ -8,7 +8,7 @@ interface Toast {
 }
 
 const ESTILO_POR_TIPO: Record<TipoToast, string> = {
-    sucesso: "bg-emerald-600",
+    sucesso: "bg-emerald-700",
     erro: "bg-red-600",
     info: "bg-blue-600",
 };

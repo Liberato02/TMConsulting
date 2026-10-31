@@ -21,7 +21,7 @@ export function DetalheAtividade() {
     return (
       <main aria-label="Atividade não encontrada" className="flex-1 px-4 py-16 text-center">
         <h1 className="text-2xl font-bold text-slate-700 mb-2">Atividade não encontrada</h1>
-        <p className="text-slate-500 mb-6">
+        <p className="text-slate-600 mb-6">
           O desafio que você tentou acessar não existe ou foi removido.
         </p>
         <Link to="/desafios" className="text-blue-600 font-semibold hover:underline">
@@ -48,10 +48,10 @@ export function DetalheAtividade() {
         <p className="text-slate-600 mb-6">{atividade.descricao}</p>
 
         <div className="bg-blue-50 rounded-xl p-4 flex items-center justify-between">
-          <span className="text-sm text-slate-500">Recompensa por conclusão</span>
+          <span className="text-sm text-slate-600">Recompensa por conclusão</span>
           <span className="text-lg font-bold text-blue-700">
             +{atividade.pontos} pts
-            <span className="text-emerald-600 font-normal text-sm ml-1">
+            <span className="text-emerald-700 font-normal text-sm ml-1">
               ({formatarReais(converterPontosParaReais(atividade.pontos))})
             </span>
           </span>
