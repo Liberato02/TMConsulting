@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { VideoYoutube } from "../../components/VideoYoutube";
 import { useTituloDocumento } from "../../hooks/useTituloDocumento";
 
 const ETAPAS_ROADMAP = [
@@ -48,13 +49,7 @@ export function Home() {
           Assista à apresentação em vídeo do projeto SoulGame.
         </p>
         <div className="aspect-video rounded-2xl overflow-hidden shadow-lg">
-          <iframe
-            className="w-full h-full"
-            src="https://www.youtube.com/embed/wiN9it-i21E"
-            title="Apresentação SoulGame"
-            loading="lazy"
-            allowFullScreen
-          />
+          <VideoYoutube idVideo="wiN9it-i21E" titulo="Apresentação SoulGame" />
         </div>
       </section>
 
