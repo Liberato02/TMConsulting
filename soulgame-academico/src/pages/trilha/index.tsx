@@ -1,7 +1,6 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { ATIVIDADES } from "../../data/atividades";
-import { buscarEstoqueSangue, type RespostaEstoqueSangue } from "../../data/estoqueSangue";
 import { TrilhaDesafios } from "../../components/TrilhaDesafios";
 import { ListaRegistroAtividades } from "../../components/ListaRegistroAtividades";
 import { ModalDetalheAtividade } from "../../components/ModalDetalheAtividade";
@@ -13,16 +12,10 @@ export function Trilha() {
   const { usuario } = useAuth();
 
   const [idSelecionado, setIdSelecionado] = useState<string | null>(null);
-  const [estoqueSangue, setEstoqueSangue] = useState<RespostaEstoqueSangue | null>(null);
+  const [estoqueSangue, setEstoqueSangue] = useState<number | null>(null);
   const [modalLembrete, setModalLembrete] = useState<{ atividadeId: string; dataISO: string } | null>(
     null
   );
-
-  useEffect(() => {
-    buscarEstoqueSangue()
-      .then(setEstoqueSangue)
-      .catch(() => setEstoqueSangue(null));
-  }, []);
 
   // A trilha é montada na ORDEM CRONOLÓGICA das datas escolhidas.
   // Atividades ainda sem data ficam depois, na ordem original.
@@ -76,7 +69,6 @@ export function Trilha() {
       {atividadeSelecionada && (
         <ModalDetalheAtividade
           atividade={atividadeSelecionada}
-          estoqueSangue={estoqueSangue}
           onFechar={() => setIdSelecionado(null)}
           onDataSalva={handleDataSalva}
         />

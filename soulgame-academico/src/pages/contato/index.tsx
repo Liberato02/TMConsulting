@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { schemaContato, type FormContato } from "../../schemas/contato";
 import { useTituloDocumento } from "../../hooks/useTituloDocumento";
+import { enviarContatoApi } from "../../api/contatoApi";
 import { Card } from "../../components/Card";
 import { Botao } from "../../components/Botao";
 
@@ -19,20 +20,11 @@ export function Contato() {
     resolver: zodResolver(schemaContato),
   });
 
-  // Usa Fetch API nativa (exigência do projeto). Aponta para um endpoint
-  // mock (httpbin) só para demonstrar o ciclo de requisição real;
-  // trocar pela URL da API do time quando disponível.
+    // A página não conhece HTTP: quem faz o fetch é a camada src/api.
   async function onSubmit(dados: FormContato) {
     setStatus("idle");
     try {
-      const resposta = await fetch("https://httpbin.org/post", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(dados),
-      });
-
-      if (!resposta.ok) throw new Error("Falha no envio");
-
+      await enviarContatoApi(dados);
       setStatus("enviado");
       reset();
     } catch {

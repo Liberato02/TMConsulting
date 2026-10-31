@@ -4,13 +4,6 @@ import type { Atividade } from "../types";
 import { useAuth } from "../hooks/useAuth";
 import { useToast } from "../hooks/useToast";
 import { converterPontosParaReais, formatarReais } from "../data/conversao";
-import type { RespostaEstoqueSangue } from "../data/estoqueSangue";
-
-const CORES_NIVEL_ESTOQUE: Record<string, string> = {
-  critico: "bg-red-100 text-red-700",
-  baixo: "bg-amber-100 text-amber-700",
-  adequado: "bg-emerald-100 text-emerald-700",
-};
 
 function hojeISO(): string {
   return new Date().toISOString().slice(0, 10);
@@ -18,12 +11,10 @@ function hojeISO(): string {
 
 export function ModalDetalheAtividade({
   atividade,
-  estoqueSangue,
   onFechar,
   onDataSalva,
 }: {
   atividade: Atividade;
-  estoqueSangue: RespostaEstoqueSangue | null;
   onFechar: () => void;
   onDataSalva: (atividadeId: string, dataISO: string) => void;
 }) {
@@ -139,24 +130,6 @@ export function ModalDetalheAtividade({
         <p className="text-sm font-semibold text-blue-700 mt-2">
           +{atividade.pontos} pts ({formatarReais(converterPontosParaReais(atividade.pontos))})
         </p>
-
-        {atividade.id === "doacao-sangue" && estoqueSangue && (
-          <div className="mt-3 bg-slate-50 rounded-lg p-2">
-            <p className="text-[11px] text-slate-600 mb-1">
-              Estoque em {estoqueSangue.hemocentro}:
-            </p>
-            <div className="flex flex-wrap gap-1">
-              {estoqueSangue.estoque.map((item) => (
-                <span
-                  key={item.tipo}
-                  className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${CORES_NIVEL_ESTOQUE[item.nivel]}`}
-                >
-                  {item.tipo}
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
 
         {!concluida && (
           <div className="mt-4 flex gap-2 items-end">
