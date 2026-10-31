@@ -38,7 +38,7 @@ export function PainelConquistas() {
         </p>
 
         {carregando ? (
-          <p className="text-sm text-slate-400 text-center py-10">Carregando conquistas…</p>
+          <p className="text-sm text-slate-600 text-center py-10">Carregando conquistas…</p>
         ) : (
           <ul className="space-y-3">
             {todasConquistas.map((conquista) => {

@@ -78,7 +78,7 @@ export function PainelValidador() {
               Gerar chave
             </button>
           </div>
-          <p className="text-xs text-slate-400 mt-2">
+          <p className="text-xs text-slate-600 mt-2">
             Em produção, essa chave viraria um QR Code para o Soulgamer
             escanear no local do evento/instituição.
           </p>
@@ -114,7 +114,7 @@ export function PainelValidador() {
             );
           })}
           {chaves.length === 0 && (
-            <p className="text-sm text-slate-400">Nenhuma chave gerada ainda.</p>
+            <p className="text-sm text-slate-600">Nenhuma chave gerada ainda.</p>
           )}
         </ul>
       </div>

@@ -40,7 +40,7 @@ export function Perfil() {
         {/* Cartão do tipo de conta — mostra o papel e as capacidades dessa conta */}
         {definicaoTipo && (
           <div className="bg-white rounded-2xl shadow-sm p-4 mb-6">
-            <p className="text-xs text-slate-400 mb-1">Tipo de conta</p>
+            <p className="text-xs text-slate-600 mb-1">Tipo de conta</p>
             <p className="font-bold text-blue-800">{definicaoTipo.rotulo}</p>
             <p className="text-sm text-slate-500 mt-1">{definicaoTipo.descricao}</p>
             <div className="flex gap-2 mt-3">
@@ -145,7 +145,7 @@ export function Perfil() {
             </div>
           </div>
 
-          <p className="text-xs text-slate-400">E-mail: {usuario.email} (não editável)</p>
+          <p className="text-xs text-slate-600">E-mail: {usuario.email} (não editável)</p>
 
           <button
             type="submit"

@@ -62,7 +62,7 @@ export function MapaOds() {
         </p>
 
         {carregando ? (
-          <p className="text-sm text-slate-400 text-center py-10">Carregando o mapa…</p>
+          <p className="text-sm text-slate-600 text-center py-10">Carregando o mapa…</p>
         ) : (
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3">
             {listaOds.map((ods) => {
@@ -127,7 +127,7 @@ export function MapaOds() {
             <p className="text-xs font-semibold text-slate-500 mb-2">Atividades deste ODS na plataforma</p>
 
             {atividadesDoOdsSelecionado.length === 0 ? (
-              <p className="text-sm text-slate-400">Nenhuma atividade cadastrada aqui ainda.</p>
+              <p className="text-sm text-slate-600">Nenhuma atividade cadastrada aqui ainda.</p>
             ) : (
               <ul className="space-y-2">
                 {atividadesDoOdsSelecionado.map((atividade) => {
@@ -137,7 +137,7 @@ export function MapaOds() {
                       key={atividade.id}
                       className="flex items-center justify-between bg-slate-50 rounded-lg px-3 py-2 text-sm"
                     >
-                      <span className={concluida ? "text-slate-400 line-through" : "text-slate-700"}>
+                      <span className={concluida ? "text-slate-600 line-through" : "text-slate-700"}>
                         {atividade.nome}
                       </span>
                       <span className="text-xs font-semibold text-blue-600">

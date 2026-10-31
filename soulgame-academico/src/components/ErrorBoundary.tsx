@@ -38,7 +38,7 @@ export class ErrorBoundary extends Component<Props, State> {
               Encontramos um erro inesperado. Isso pode acontecer com dados de
               teste antigos. Tente voltar ao Painel.
             </p>
-            <p className="text-xs text-slate-400 bg-slate-50 rounded-lg p-2 mb-4 font-mono break-words">
+            <p className="text-xs text-slate-600 bg-slate-50 rounded-lg p-2 mb-4 font-mono break-words">
               {this.state.erro.message}
             </p>
             <button

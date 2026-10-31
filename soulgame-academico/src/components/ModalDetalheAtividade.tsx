@@ -130,7 +130,7 @@ export function ModalDetalheAtividade({
           <button
             onClick={onFechar}
             aria-label="Fechar"
-            className="text-slate-400 hover:text-slate-600 text-xl leading-none shrink-0"
+            className="text-slate-600 hover:text-slate-600 text-xl leading-none shrink-0"
           >
             ×
           </button>

@@ -63,7 +63,7 @@ export function PerfilPublico() {
   if (estado === "carregando") {
     return (
       <main aria-label="Perfil público" className="flex-1 px-4 py-8 bg-slate-50">
-        <div className="max-w-lg mx-auto bg-white rounded-2xl shadow-sm p-6 text-center text-sm text-slate-400">
+        <div className="max-w-lg mx-auto bg-white rounded-2xl shadow-sm p-6 text-center text-sm text-slate-600">
           Carregando perfil...
         </div>
       </main>
@@ -77,7 +77,7 @@ export function PerfilPublico() {
           <p className="text-sm text-red-600 font-semibold mb-2">
             Não foi possível carregar este perfil.
           </p>
-          <p className="text-xs text-slate-400 mb-4">
+          <p className="text-xs text-slate-600 mb-4">
             Confira se o back-end Java está rodando e tente novamente.
           </p>
           <Link to="/ranking" className="text-sm font-semibold text-blue-700 hover:underline">
@@ -95,7 +95,7 @@ export function PerfilPublico() {
           <p className="text-sm text-slate-600 font-semibold mb-1">
             Esse usuário não existe (ou não aparece mais no ranking).
           </p>
-          <p className="text-xs text-slate-400">Redirecionando para o ranking...</p>
+          <p className="text-xs text-slate-600">Redirecionando para o ranking...</p>
         </div>
       </main>
     );

@@ -43,7 +43,7 @@ export function Historico() {
         </p>
 
         {concluidas.length === 0 ? (
-          <div className="bg-white rounded-2xl shadow-sm p-6 text-center text-sm text-slate-400">
+          <div className="bg-white rounded-2xl shadow-sm p-6 text-center text-sm text-slate-600">
             Você ainda não concluiu nenhum desafio. Vá para a{" "}
             <span className="font-semibold text-blue-700">Trilha Soul</span> e comece!
           </div>
@@ -61,14 +61,14 @@ export function Historico() {
                   <p className="font-semibold text-sm text-slate-800 truncate">
                     {atividade.nome}
                   </p>
-                  <p className="text-xs text-slate-400">
+                  <p className="text-xs text-slate-600">
                     Concluído em {concluidaEm ? formatarDataHora(concluidaEm) : "—"}
                   </p>
                 </div>
                 <span className="text-xs font-semibold text-emerald-600 shrink-0">
                   +{atividade.pontos} pts
                   <br />
-                  <span className="text-slate-400 font-normal">
+                  <span className="text-slate-600 font-normal">
                     {formatarReais(converterPontosParaReais(atividade.pontos))}
                   </span>
                 </span>

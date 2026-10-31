@@ -173,7 +173,7 @@ export function ComunidadeSoulsport() {
                   </code>
                 </div>
                 {chave && (
-                  <p className="text-xs text-slate-400 mt-2">
+                  <p className="text-xs text-slate-600 mt-2">
                     {chave.usadoPorIds.length} de {chave.limiteUsos} confirmações usadas
                   </p>
                 )}
@@ -181,7 +181,7 @@ export function ComunidadeSoulsport() {
             );
           })}
           {eventos.length === 0 && (
-            <p className="text-sm text-slate-400">Nenhum evento criado ainda.</p>
+            <p className="text-sm text-slate-600">Nenhum evento criado ainda.</p>
           )}
         </ul>
       </div>

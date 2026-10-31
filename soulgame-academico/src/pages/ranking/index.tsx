@@ -46,11 +46,11 @@ export function Ranking() {
         </p>
 
         {carregando ? (
-          <div className="bg-white rounded-2xl shadow-sm p-6 text-center text-sm text-slate-400">
+          <div className="bg-white rounded-2xl shadow-sm p-6 text-center text-sm text-slate-600">
             Carregando ranking...
           </div>
         ) : ranking.length === 0 ? (
-          <div className="bg-white rounded-2xl shadow-sm p-6 text-center text-sm text-slate-400">
+          <div className="bg-white rounded-2xl shadow-sm p-6 text-center text-sm text-slate-600">
             Ainda não há usuários suficientes para formar um ranking.
           </div>
         ) : (
@@ -86,7 +86,7 @@ export function Ranking() {
                       <p className="font-semibold text-sm text-slate-800 truncate">
                         {pessoa.nome} {souEu && <span className="text-blue-600">(você)</span>}
                       </p>
-                      <p className="text-xs text-slate-400">
+                      <p className="text-xs text-slate-600">
                         Nível {pessoa.nivel} · {definicao?.rotulo ?? pessoa.tipo}
                       </p>
                     </div>

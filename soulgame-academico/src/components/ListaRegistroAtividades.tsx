@@ -16,7 +16,7 @@ function status(atividade: Atividade, usuario: Usuario): { rotulo: string; cor: 
   }
   const data = usuario.prazosDesafios[atividade.id];
   if (data) return { rotulo: `Agendado: ${formatarData(data)}`, cor: "text-blue-600" };
-  return { rotulo: "Não agendado", cor: "text-slate-400" };
+  return { rotulo: "Não agendado", cor: "text-slate-600" };
 }
 
 // Registro em lista — forma alternativa e mais rápida de abrir os
