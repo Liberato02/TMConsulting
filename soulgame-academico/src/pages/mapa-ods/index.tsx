@@ -7,6 +7,10 @@ import {
   type AtividadeApi,
 } from "../../api/clienteApi";
 import { useTituloDocumento } from "../../hooks/useTituloDocumento";
+import { corTextoSobre } from "../../utils/cores";
+
+// Cor dos ODS ainda não desbloqueados (cinza claro, com texto escuro legível).
+const COR_ODS_BLOQUEADO = "#CBD5E1";
 
 export function MapaOds() {
   useTituloDocumento("Mapa de ODS | SoulGame");
@@ -74,9 +78,12 @@ export function MapaOds() {
                   aria-label={`ODS ${ods.id}: ${ods.nome}${desbloqueado ? ", desbloqueado" : ", bloqueado"}`}
                   className={`relative aspect-square rounded-2xl flex flex-col items-center justify-center
                     p-2 text-center transition-all duration-300 ease-out
-                    ${desbloqueado ? "shadow-lg scale-100 hover:scale-105" : "opacity-40 grayscale hover:opacity-60"}
+                    ${desbloqueado ? "shadow-lg scale-100 hover:scale-105" : "hover:brightness-95"}
                     ${odsSelecionado === ods.id ? "ring-4 ring-offset-2 ring-blue-500" : ""}`}
-                  style={{ backgroundColor: desbloqueado ? ods.cor : "#94A3B8" }}
+                  style={{
+                    backgroundColor: desbloqueado ? ods.cor : COR_ODS_BLOQUEADO,
+                    color: corTextoSobre(desbloqueado ? ods.cor : COR_ODS_BLOQUEADO),
+                  }}
                 >
                   {desbloqueado && (
                     <span
@@ -85,14 +92,14 @@ export function MapaOds() {
                       style={{ backgroundColor: ods.cor, opacity: 0.35 }}
                     />
                   )}
-                  <span className="relative text-white font-extrabold text-lg drop-shadow">
+                  <span className="relative font-extrabold text-lg">
                     {ods.id}
                   </span>
-                  <span className="relative text-white text-[10px] leading-tight font-medium mt-1 line-clamp-2">
+                  <span className="relative text-[10px] leading-tight font-medium mt-1 line-clamp-2">
                     {ods.nome}
                   </span>
                   {!desbloqueado && (
-                    <span className="relative text-white text-xs mt-1" aria-hidden="true">
+                    <span className="relative text-xs mt-1" aria-hidden="true">
                       🔒
                     </span>
                   )}
