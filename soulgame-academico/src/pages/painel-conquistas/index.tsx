@@ -33,12 +33,12 @@ export function PainelConquistas() {
     <main aria-label="Painel de conquistas" className="flex-1 px-4 py-6">
       <div className="max-w-2xl mx-auto">
         <h1 className="text-2xl font-bold text-blue-800 mb-1">🏆 Conquistas</h1>
-        <p className="text-sm text-slate-600 mb-5">
+        <p className="text-sm text-slate-500 mb-5">
           {desbloqueadas.length} de {todasConquistas.length || "—"} desbloqueadas
         </p>
 
         {carregando ? (
-          <p className="text-sm text-slate-600 text-center py-10">Carregando conquistas…</p>
+          <p className="text-sm text-slate-400 text-center py-10">Carregando conquistas…</p>
         ) : (
           <ul className="space-y-3">
             {todasConquistas.map((conquista) => {
@@ -53,16 +53,16 @@ export function PainelConquistas() {
                 >
                   <span
                     className={`text-2xl w-12 h-12 flex items-center justify-center rounded-full shrink-0
-                      ${desbloqueada ? "bg-blue-600 text-white animate-brilho" : "bg-slate-300 text-slate-600"}`}
+                      ${desbloqueada ? "bg-blue-600 text-white animate-brilho" : "bg-slate-300 text-slate-500"}`}
                     aria-hidden="true"
                   >
                     {desbloqueada ? "🏆" : "🔒"}
                   </span>
                   <div className="min-w-0">
-                    <p className={`font-semibold ${desbloqueada ? "text-blue-800" : "text-slate-600"}`}>
+                    <p className={`font-semibold ${desbloqueada ? "text-blue-800" : "text-slate-500"}`}>
                       {conquista.nome}
                     </p>
-                    <p className="text-xs text-slate-600">{conquista.descricao}</p>
+                    <p className="text-xs text-slate-500">{conquista.descricao}</p>
                   </div>
                 </li>
               );

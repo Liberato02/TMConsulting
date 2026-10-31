@@ -1,8 +1,8 @@
-import fotoVinicius from "../assets/integrantes/vinicius.webp";
-import fotoJonatan from "../assets/integrantes/jonatan.webp";
-import fotoFernando from "../assets/integrantes/fernando.webp";
-import fotoMarcelo from "../assets/integrantes/marcelo.webp";
-import fotoDavi from "../assets/integrantes/davi.webp";
+import fotoVinicius from "../assets/integrantes/vinicius.jpg";
+import fotoJonatan from "../assets/integrantes/jonatan.jpg";
+import fotoFernando from "../assets/integrantes/fernando.jpg";
+import fotoMarcelo from "../assets/integrantes/marcelo.jpg";
+import fotoDavi from "../assets/integrantes/davi.jpg";
 
 export interface Integrante {
   nome: string;

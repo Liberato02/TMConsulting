@@ -56,25 +56,3 @@
   from { transform: translateY(16px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
 }
-/* Foco visível para quem navega por teclado (WCAG 2.4.7).
-   Fica na camada "base" para que utilitários do Tailwind (ex.: focus:ring)
-   continuem tendo prioridade onde já existem. */
-@layer base {
-  :focus-visible {
-    outline: 2px solid #1d4ed8;
-    outline-offset: 2px;
-  }
-}
-
-/* Respeita quem pede menos movimento no sistema (WCAG 2.3.3):
-   desliga animações e transições decorativas. */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}

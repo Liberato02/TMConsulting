@@ -125,7 +125,7 @@ export function TrilhaDesafios({
         width={larguraTotal}
         height={ALTURA_SVG}
         viewBox={`0 0 ${larguraTotal} ${ALTURA_SVG}`}
-        role="group"
+        role="img"
         aria-label="Mapa horizontal da trilha de desafios, estilo tabuleiro"
         className="block relative"
       >

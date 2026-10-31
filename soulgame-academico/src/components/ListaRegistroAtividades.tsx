@@ -12,11 +12,11 @@ function formatarData(dataISO: string): string {
 
 function status(atividade: Atividade, usuario: Usuario): { rotulo: string; cor: string } {
   if (usuario.atividadesConcluidas.includes(atividade.id)) {
-    return { rotulo: "Concluído", cor: "text-emerald-700" };
+    return { rotulo: "Concluído", cor: "text-emerald-600" };
   }
   const data = usuario.prazosDesafios[atividade.id];
   if (data) return { rotulo: `Agendado: ${formatarData(data)}`, cor: "text-blue-600" };
-  return { rotulo: "Não agendado", cor: "text-slate-600" };
+  return { rotulo: "Não agendado", cor: "text-slate-400" };
 }
 
 // Registro em lista — forma alternativa e mais rápida de abrir os

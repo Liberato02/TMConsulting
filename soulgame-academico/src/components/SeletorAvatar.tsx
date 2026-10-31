@@ -124,7 +124,7 @@ export function SeletorAvatar() {
           aria-label="Enviar foto de perfil"
         />
         {usuario.avatarTipo === "foto" && (
-          <span className="text-xs text-emerald-700 font-medium">✓ Foto ativa</span>
+          <span className="text-xs text-emerald-600 font-medium">✓ Foto ativa</span>
         )}
       </div>
     </div>

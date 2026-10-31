@@ -1,4 +1,3 @@
-import { lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import { ToastProvider } from "./context/ToastContext";
@@ -9,45 +8,26 @@ import { MainLayout } from "./layouts/MainLayout";
 import { PainelLayout } from "./layouts/PainelLayout";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 
-// Code splitting: cada página vira um "chunk" separado, baixado só quando
-// o usuário acessa a rota. O <Suspense> fica no MainLayout.
-const Home = lazy(() => import("./pages/home").then((m) => ({ default: m.Home })));
-const Sobre = lazy(() => import("./pages/sobre").then((m) => ({ default: m.Sobre })));
-const Contato = lazy(() => import("./pages/contato").then((m) => ({ default: m.Contato })));
-const Faq = lazy(() => import("./pages/faq").then((m) => ({ default: m.Faq })));
-const Integrantes = lazy(() =>
-  import("./pages/integrantes").then((m) => ({ default: m.Integrantes }))
-);
-const Login = lazy(() => import("./pages/login").then((m) => ({ default: m.Login })));
-const Cadastro = lazy(() => import("./pages/cadastro").then((m) => ({ default: m.Cadastro })));
-const Desafios = lazy(() => import("./pages/desafios").then((m) => ({ default: m.Desafios })));
-const DetalheAtividade = lazy(() =>
-  import("./pages/detalhe-atividade").then((m) => ({ default: m.DetalheAtividade }))
-);
-const Trilha = lazy(() => import("./pages/trilha").then((m) => ({ default: m.Trilha })));
-const MapaOds = lazy(() => import("./pages/mapa-ods").then((m) => ({ default: m.MapaOds })));
-const PainelConquistas = lazy(() =>
-  import("./pages/painel-conquistas").then((m) => ({ default: m.PainelConquistas }))
-);
-const Perfil = lazy(() => import("./pages/perfil").then((m) => ({ default: m.Perfil })));
-const PerfilPublico = lazy(() =>
-  import("./pages/perfil-publico").then((m) => ({ default: m.PerfilPublico }))
-);
-const Historico = lazy(() => import("./pages/historico").then((m) => ({ default: m.Historico })));
-const Ranking = lazy(() => import("./pages/ranking").then((m) => ({ default: m.Ranking })));
-const ComunidadeSoulsport = lazy(() =>
-  import("./pages/comunidade-soulsport").then((m) => ({ default: m.ComunidadeSoulsport }))
-);
-const PainelValidador = lazy(() =>
-  import("./pages/validador").then((m) => ({ default: m.PainelValidador }))
-);
-const AdminCadastros = lazy(() =>
-  import("./pages/admin-cadastros").then((m) => ({ default: m.Cadastros }))
-);
-const NaoEncontrada = lazy(() =>
-  import("./pages/error").then((m) => ({ default: m.NaoEncontrada }))
-);
-
+import { Home } from "./pages/home";
+import { Sobre } from "./pages/sobre";
+import { Contato } from "./pages/contato";
+import { Faq } from "./pages/faq";
+import { Integrantes } from "./pages/integrantes";
+import { Login } from "./pages/login";
+import { Cadastro } from "./pages/cadastro";
+import { Desafios } from "./pages/desafios";
+import { DetalheAtividade } from "./pages/detalhe-atividade";
+import { Trilha } from "./pages/trilha";
+import { MapaOds } from "./pages/mapa-ods";
+import { PainelConquistas } from "./pages/painel-conquistas";
+import { Perfil } from "./pages/perfil";
+import { PerfilPublico } from "./pages/perfil-publico";
+import { Historico } from "./pages/historico";
+import { Ranking } from "./pages/ranking";
+import { ComunidadeSoulsport } from "./pages/comunidade-soulsport";
+import { PainelValidador } from "./pages/validador";
+import { Cadastros as AdminCadastros } from "./pages/admin-cadastros";
+import { NaoEncontrada } from "./pages/error";
 
 function App() {
   return (

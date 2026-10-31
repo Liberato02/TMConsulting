@@ -63,7 +63,7 @@ export function PerfilPublico() {
   if (estado === "carregando") {
     return (
       <main aria-label="Perfil público" className="flex-1 px-4 py-8 bg-slate-50">
-        <div className="max-w-lg mx-auto bg-white rounded-2xl shadow-sm p-6 text-center text-sm text-slate-600">
+        <div className="max-w-lg mx-auto bg-white rounded-2xl shadow-sm p-6 text-center text-sm text-slate-400">
           Carregando perfil...
         </div>
       </main>
@@ -77,7 +77,7 @@ export function PerfilPublico() {
           <p className="text-sm text-red-600 font-semibold mb-2">
             Não foi possível carregar este perfil.
           </p>
-          <p className="text-xs text-slate-600 mb-4">
+          <p className="text-xs text-slate-400 mb-4">
             Confira se o back-end Java está rodando e tente novamente.
           </p>
           <Link to="/ranking" className="text-sm font-semibold text-blue-700 hover:underline">
@@ -95,7 +95,7 @@ export function PerfilPublico() {
           <p className="text-sm text-slate-600 font-semibold mb-1">
             Esse usuário não existe (ou não aparece mais no ranking).
           </p>
-          <p className="text-xs text-slate-600">Redirecionando para o ranking...</p>
+          <p className="text-xs text-slate-400">Redirecionando para o ranking...</p>
         </div>
       </main>
     );
@@ -118,7 +118,7 @@ export function PerfilPublico() {
           <h1 className="text-xl font-bold text-blue-800">
             {perfil.nome} {souEu && <span className="text-blue-600 text-sm">(você)</span>}
           </h1>
-          <p className="text-sm text-slate-600 mt-1">
+          <p className="text-sm text-slate-500 mt-1">
             {definicao?.rotulo ?? perfil.tipo} · Nível {perfil.nivel}
           </p>
           <p className="text-3xl font-extrabold text-blue-700 mt-4">{perfil.pontos} pts</p>

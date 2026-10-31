@@ -53,7 +53,7 @@ export function Faq() {
                   </span>
                 </button>
                 {aberto && (
-                  <p className="px-5 pb-4 text-sm text-slate-600">{item.resposta}</p>
+                  <p className="px-5 pb-4 text-sm text-slate-500">{item.resposta}</p>
                 )}
               </div>
             );

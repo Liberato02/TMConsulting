@@ -54,7 +54,7 @@ export function ModalConfirmarLembrete({
           </button>
           <button
             onClick={onFechar}
-            className="text-slate-600 text-sm py-2 hover:text-slate-700"
+            className="text-slate-500 text-sm py-2 hover:text-slate-700"
           >
             Não, obrigado
           </button>
