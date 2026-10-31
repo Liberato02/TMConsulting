@@ -187,7 +187,7 @@ Qualquer URL inválida direciona para uma página 404 dedicada.
 | Item | Link |
 |---|---|
 | Repositório do GitHub | https://github.com/Liberato02/TMConsulting |
-| Vídeo no YouTube | https://www.youtube.com/watch?v=wiN9it-i21E |
+| Vídeo no YouTube | https://www.youtube.com/watch?v=Rz6uFQhYeX4 |
 | Projeto na Vercel | https://soulgame-fiap.vercel.app |
 | API publicada (Java, Render) | https://soulgame-backend.onrender.com/api |
 
