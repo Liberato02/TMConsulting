@@ -15,11 +15,11 @@ export function Home() {
   return (
     <main aria-label="Página inicial do SoulGame" className="flex-1">
       {/* Hero */}
-      <section aria-label="Apresentação principal" className="bg-gradient-to-b from-blue-700 to-blue-600 text-white px-4 py-20 text-center">
-        <h1 className="text-4xl md:text-5xl font-extrabold max-w-2xl mx-auto leading-tight">
+      <section aria-label="Apresentação principal" className="bg-gradient-to-b from-blue-700 to-blue-600 text-white px-4 py-20 lg:py-28 text-center">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold max-w-2xl lg:max-w-3xl mx-auto leading-tight">
           Transforme boas ações em conquistas.
         </h1>
-        <p className="text-blue-100 max-w-xl mx-auto mt-4 text-lg">
+        <p className="text-blue-100 max-w-xl lg:max-w-2xl mx-auto mt-4 text-lg xl:text-xl">
           SoulGame gamifica doações, reciclagem e ações sociais — desafios,
           pontos e níveis para engajar sua comunidade.
         </p>
@@ -40,11 +40,11 @@ export function Home() {
       </section>
 
       {/* Vídeo explicativo */}
-      <section aria-label="Vídeo explicativo" className="max-w-3xl mx-auto px-4 py-16 text-center">
+      <section aria-label="Vídeo explicativo" className="max-w-3xl xl:max-w-4xl mx-auto px-4 py-16 text-center">
         <h2 className="text-2xl font-bold text-blue-800 mb-2">
           Entenda a solução em 30 segundos
         </h2>
-        <p className="text-slate-500 mb-6">
+        <p className="text-slate-600 mb-6">
           Assista à apresentação em vídeo do projeto SoulGame.
         </p>
         <div className="aspect-video rounded-2xl overflow-hidden shadow-lg">
@@ -52,6 +52,7 @@ export function Home() {
             className="w-full h-full"
             src="https://www.youtube.com/embed/wiN9it-i21E"
             title="Apresentação SoulGame"
+            loading="lazy"
             allowFullScreen
           />
         </div>

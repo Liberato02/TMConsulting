@@ -69,7 +69,7 @@ export function ComunidadeSoulsport() {
     <main aria-label="Comunidade Soulsport" className="flex-1 px-4 py-8 bg-slate-50">
       <div className="max-w-2xl mx-auto">
         <h1 className="text-2xl font-bold text-blue-800 mb-1">🏃 Comunidade Soulsport</h1>
-        <p className="text-sm text-slate-500 mb-6">
+        <p className="text-sm text-slate-600 mb-6">
           Crie um evento esportivo em grupo (pedalada, yoga, corrida...) e
           divulgue o código único para todos os participantes confirmarem presença.
         </p>
@@ -164,7 +164,7 @@ export function ComunidadeSoulsport() {
                 <div className="flex justify-between items-start gap-2">
                   <div>
                     <p className="font-bold text-slate-800">{evento.nome}</p>
-                    <p className="text-xs text-slate-500">
+                    <p className="text-xs text-slate-600">
                       {new Date(evento.data + "T00:00:00").toLocaleDateString("pt-BR")} — {evento.local}
                     </p>
                   </div>
@@ -173,7 +173,7 @@ export function ComunidadeSoulsport() {
                   </code>
                 </div>
                 {chave && (
-                  <p className="text-xs text-slate-400 mt-2">
+                  <p className="text-xs text-slate-600 mt-2">
                     {chave.usadoPorIds.length} de {chave.limiteUsos} confirmações usadas
                   </p>
                 )}
@@ -181,7 +181,7 @@ export function ComunidadeSoulsport() {
             );
           })}
           {eventos.length === 0 && (
-            <p className="text-sm text-slate-400">Nenhum evento criado ainda.</p>
+            <p className="text-sm text-slate-600">Nenhum evento criado ainda.</p>
           )}
         </ul>
       </div>

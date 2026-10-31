@@ -23,7 +23,7 @@ export function Desafios() {
         <h1 className="text-3xl font-bold text-blue-800 mb-1">
           Olá, {usuario.nome}! 👋
         </h1>
-        <p className="text-slate-500 mb-6">
+        <p className="text-slate-600 mb-6">
           Acompanhe seu progresso e siga para a Trilha Soul para escolher seus desafios.
         </p>
 
@@ -48,7 +48,7 @@ export function Desafios() {
           <div className="bg-teal-50 border border-teal-200 rounded-2xl p-4 mb-6 flex items-center justify-between flex-wrap gap-2">
             <div>
               <p className="text-sm font-semibold text-teal-800">Seu código de indicação</p>
-              <p className="text-xs text-teal-600">
+              <p className="text-xs text-teal-700">
                 Compartilhe — você ganha o dobro dos pontos de quem se cadastrar com ele.
               </p>
             </div>
@@ -62,7 +62,7 @@ export function Desafios() {
           <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 mb-6 flex items-center justify-between flex-wrap gap-2">
             <div>
               <p className="text-sm font-semibold text-amber-800">Você é uma conta validadora</p>
-              <p className="text-xs text-amber-600">
+              <p className="text-xs text-amber-700">
                 Gere chaves únicas para confirmar atividades realizadas na sua instituição.
               </p>
             </div>
@@ -78,26 +78,26 @@ export function Desafios() {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
           <div className="bg-white rounded-2xl shadow-sm p-4 text-center">
             <p className="text-3xl font-bold text-blue-700">{usuario.nivel}</p>
-            <p className="text-xs text-slate-500 mt-1">Nível</p>
+            <p className="text-xs text-slate-600 mt-1">Nível</p>
           </div>
           <div className="bg-white rounded-2xl shadow-sm p-4 text-center">
-            <p className="text-3xl font-bold text-orange-500">🔥 {usuario.streakDias}</p>
-            <p className="text-xs text-slate-500 mt-1">Dias seguidos</p>
+            <p className="text-3xl font-bold text-orange-700">🔥 {usuario.streakDias}</p>
+            <p className="text-xs text-slate-600 mt-1">Dias seguidos</p>
           </div>
           <div className="bg-white rounded-2xl shadow-sm p-4 text-center">
             <p className="text-3xl font-bold text-blue-700">{usuario.pontos}</p>
-            <p className="text-xs text-slate-500 mt-1">Pontos totais</p>
+            <p className="text-xs text-slate-600 mt-1">Pontos totais</p>
           </div>
           <div className="bg-white rounded-2xl shadow-sm p-4 text-center">
-            <p className="text-3xl font-bold text-emerald-600">
+            <p className="text-3xl font-bold text-emerald-700">
               {formatarReais(converterPontosParaReais(usuario.pontos))}
             </p>
-            <p className="text-xs text-slate-500 mt-1">Saldo em R$</p>
+            <p className="text-xs text-slate-600 mt-1">Saldo em R$</p>
           </div>
         </div>
 
         <div className="bg-white rounded-2xl shadow-sm p-4">
-          <div className="flex justify-between text-xs text-slate-500 mb-2">
+          <div className="flex justify-between text-xs text-slate-600 mb-2">
             <span>Progresso para o nível {usuario.nivel + 1}</span>
             <span>{pontosNoNivelAtual} / {PONTOS_POR_NIVEL} pts</span>
           </div>

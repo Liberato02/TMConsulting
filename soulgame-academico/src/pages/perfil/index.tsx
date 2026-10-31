@@ -31,7 +31,7 @@ export function Perfil() {
     <main aria-label="Meu perfil" className="flex-1 px-4 py-8 bg-slate-50">
       <div className="max-w-lg mx-auto">
         <h1 className="text-2xl font-bold text-blue-800 mb-1">Meu perfil</h1>
-        <p className="text-sm text-slate-500 mb-6">
+        <p className="text-sm text-slate-600 mb-6">
           Gerencie seus dados, avatar e informações da sua conta.
         </p>
 
@@ -40,9 +40,9 @@ export function Perfil() {
         {/* Cartão do tipo de conta — mostra o papel e as capacidades dessa conta */}
         {definicaoTipo && (
           <div className="bg-white rounded-2xl shadow-sm p-4 mb-6">
-            <p className="text-xs text-slate-400 mb-1">Tipo de conta</p>
+            <p className="text-xs text-slate-600 mb-1">Tipo de conta</p>
             <p className="font-bold text-blue-800">{definicaoTipo.rotulo}</p>
-            <p className="text-sm text-slate-500 mt-1">{definicaoTipo.descricao}</p>
+            <p className="text-sm text-slate-600 mt-1">{definicaoTipo.descricao}</p>
             <div className="flex gap-2 mt-3">
               {definicaoTipo.multiplicador && (
                 <span className="text-xs font-semibold bg-teal-100 text-teal-700 px-2 py-1 rounded-full">
@@ -58,7 +58,7 @@ export function Perfil() {
 
             {definicaoTipo.multiplicador && usuario.codigoIndicacao && (
               <div className="mt-3 pt-3 border-t border-slate-100">
-                <p className="text-xs text-slate-500 mb-1">Seu código de indicação</p>
+                <p className="text-xs text-slate-600 mb-1">Seu código de indicação</p>
                 <code className="bg-teal-50 border border-teal-200 rounded-lg px-3 py-1 font-mono text-sm text-teal-800 inline-block">
                   {usuario.codigoIndicacao}
                 </code>
@@ -145,7 +145,7 @@ export function Perfil() {
             </div>
           </div>
 
-          <p className="text-xs text-slate-400">E-mail: {usuario.email} (não editável)</p>
+          <p className="text-xs text-slate-600">E-mail: {usuario.email} (não editável)</p>
 
           <button
             type="submit"

@@ -34,7 +34,7 @@ export function Login() {
         <main aria-label="Formulário de login" className="flex-1 flex items-center justify-center px-4 py-12 bg-blue-50">
             <Card className="w-full max-w-sm shadow-lg">
                 <h1 className="text-2xl font-bold text-blue-800 mb-1">Entrar</h1>
-                <p className="text-sm text-slate-500 mb-6">
+                <p className="text-sm text-slate-600 mb-6">
                     Acesse sua conta para continuar seus desafios.
                 </p>
 
