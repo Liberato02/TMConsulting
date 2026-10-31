@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { useToast } from "../hooks/useToast";
 
@@ -41,9 +41,17 @@ export function Navbar() {
         <ul className="hidden md:flex items-center gap-6 text-sm font-medium">
           {linksPublicos.map((link) => (
             <li key={link.rota}>
-              <Link to={link.rota} className="hover:text-blue-200 transition-colors">
+              <NavLink
+                to={link.rota}
+                end={link.rota === "/"}
+                className={({ isActive }) =>
+                  `transition-colors hover:text-blue-200 ${
+                    isActive ? "underline underline-offset-8 decoration-2" : ""
+                  }`
+                }
+              >
                 {link.label}
-              </Link>
+              </NavLink>
             </li>
           ))}
         </ul>
@@ -116,13 +124,16 @@ export function Navbar() {
           <ul className="flex flex-col gap-1 pt-2 text-sm font-medium">
             {linksPublicos.map((link) => (
               <li key={link.rota}>
-                <Link
+                <NavLink
                   to={link.rota}
+                  end={link.rota === "/"}
                   onClick={fecharMenu}
-                  className="block py-2 hover:text-blue-200 transition-colors"
+                  className={({ isActive }) =>
+                    `block py-2 transition-colors hover:text-blue-200 ${isActive ? "font-bold" : ""}`
+                  }
                 >
                   {link.label}
-                </Link>
+                </NavLink>
               </li>
             ))}
           </ul>

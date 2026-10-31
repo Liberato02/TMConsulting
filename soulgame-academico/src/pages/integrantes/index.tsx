@@ -170,7 +170,7 @@ export function Integrantes() {
           {INTEGRANTES.map((integrante) => (
             <div
               key={integrante.rm}
-              className="bg-slate-900 border border-slate-800 rounded-2xl shadow-sm p-4 flex items-center gap-3"
+              className="min-w-0 bg-slate-900 border border-slate-800 rounded-2xl shadow-sm p-4 flex items-center gap-3"
             >
               <img
                 src={integrante.foto}
