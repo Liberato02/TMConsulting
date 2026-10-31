@@ -412,7 +412,7 @@ Há dois usos distintos de IA no projeto:
 
 ## Vídeo de Apresentação
 
-[Assistir no YouTube](https://www.youtube.com/watch?v=wiN9it-i21E)
+[Assistir no YouTube](https://www.youtube.com/watch?v=Rz6uFQhYeX4)
 
 ## Status do Projeto
 
