@@ -135,7 +135,7 @@ export function Sobre() {
             {TECNOLOGIAS.map((tec) => (
               <div key={tec.titulo} className="bg-blue-50 rounded-xl p-4 text-center">
                 <p className="font-semibold text-blue-800">{tec.titulo}</p>
-                <p className="text-sm text-slate-500 mt-1">{tec.descricao}</p>
+                <p className="text-sm text-slate-600 mt-1">{tec.descricao}</p>
               </div>
             ))}
           </div>

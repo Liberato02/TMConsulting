@@ -17,7 +17,7 @@ export function RotaProtegida({ children, tipoPermitido }: RotaProtegidaProps) {
   // evita redirecionar por engano para o login.
   if (carregando) {
     return (
-      <main className="flex-1 flex items-center justify-center py-20 text-slate-400 text-sm">
+      <main className="flex-1 flex items-center justify-center py-20 text-slate-600 text-sm">
         Carregando...
       </main>
     );

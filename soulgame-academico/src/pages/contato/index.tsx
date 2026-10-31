@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { schemaContato, type FormContato } from "../../schemas/contato";
 import { useTituloDocumento } from "../../hooks/useTituloDocumento";
+import { enviarContatoApi } from "../../api/contatoApi";
 import { Card } from "../../components/Card";
 import { Botao } from "../../components/Botao";
 
@@ -19,20 +20,11 @@ export function Contato() {
     resolver: zodResolver(schemaContato),
   });
 
-  // Usa Fetch API nativa (exigência do projeto). Aponta para um endpoint
-  // mock (httpbin) só para demonstrar o ciclo de requisição real;
-  // trocar pela URL da API do time quando disponível.
+    // A página não conhece HTTP: quem faz o fetch é a camada src/api.
   async function onSubmit(dados: FormContato) {
     setStatus("idle");
     try {
-      const resposta = await fetch("https://httpbin.org/post", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(dados),
-      });
-
-      if (!resposta.ok) throw new Error("Falha no envio");
-
+      await enviarContatoApi(dados);
       setStatus("enviado");
       reset();
     } catch {
@@ -44,7 +36,7 @@ export function Contato() {
     <main aria-label="Formulário de contato" className="flex-1 px-4 py-16 bg-blue-50">
       <Card className="max-w-lg mx-auto shadow-lg">
         <h1 className="text-2xl font-bold text-blue-800 mb-1">Fale conosco</h1>
-        <p className="text-sm text-slate-500 mb-6">
+        <p className="text-sm text-slate-600 mb-6">
           Dúvidas, sugestões ou parcerias — envie sua mensagem.
         </p>
 
@@ -124,7 +116,7 @@ export function Contato() {
           )}
         </form>
 
-        <p className="text-xs text-slate-400 mt-4">
+        <p className="text-xs text-slate-600 mt-4">
           tmconsulting.challenge@gmail.com
         </p>
       </Card>

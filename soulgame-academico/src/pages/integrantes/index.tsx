@@ -129,6 +129,9 @@ export function Integrantes() {
                   <img
                     src={integrante.foto}
                     alt={`Foto de ${integrante.nome}`}
+                    width={80}
+                    height={80}
+                    decoding="async"
                     className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover
                                border-2 border-sky-300 shadow-lg"
                   />
@@ -167,11 +170,15 @@ export function Integrantes() {
           {INTEGRANTES.map((integrante) => (
             <div
               key={integrante.rm}
-              className="bg-slate-900 border border-slate-800 rounded-2xl shadow-sm p-4 flex items-center gap-3"
+              className="min-w-0 bg-slate-900 border border-slate-800 rounded-2xl shadow-sm p-4 flex items-center gap-3"
             >
               <img
                 src={integrante.foto}
-                alt={`Foto de ${integrante.nome}`}
+                                alt={`Foto de ${integrante.nome}`}
+                width={48}
+                height={48}
+                loading="lazy"
+                decoding="async"
                 className="w-12 h-12 rounded-full object-cover border-2 border-sky-400 shrink-0"
               />
               <div className="min-w-0">
