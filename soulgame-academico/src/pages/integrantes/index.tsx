@@ -129,6 +129,9 @@ export function Integrantes() {
                   <img
                     src={integrante.foto}
                     alt={`Foto de ${integrante.nome}`}
+                    width={80}
+                    height={80}
+                    decoding="async"
                     className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover
                                border-2 border-sky-300 shadow-lg"
                   />
@@ -171,7 +174,11 @@ export function Integrantes() {
             >
               <img
                 src={integrante.foto}
-                alt={`Foto de ${integrante.nome}`}
+                                alt={`Foto de ${integrante.nome}`}
+                width={48}
+                height={48}
+                loading="lazy"
+                decoding="async"
                 className="w-12 h-12 rounded-full object-cover border-2 border-sky-400 shrink-0"
               />
               <div className="min-w-0">

@@ -52,6 +52,7 @@ export function Home() {
             className="w-full h-full"
             src="https://www.youtube.com/embed/wiN9it-i21E"
             title="Apresentação SoulGame"
+            loading="lazy"
             allowFullScreen
           />
         </div>

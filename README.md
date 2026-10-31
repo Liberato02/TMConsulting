@@ -175,11 +175,11 @@ Qualquer URL inválida direciona para uma página 404 dedicada.
 
 | Foto | Integrante | RM | Turma | GitHub | LinkedIn |
 |---|---|---|---|---|---|
-| <img src="soulgame-academico/src/assets/integrantes/vinicius.jpg" width="60" /> | Vinicius Liberato dos Anjos | 571480 | 1TDSPY | [Liberato02](https://github.com/Liberato02) | [linkedin](https://br.linkedin.com/in/vinicius-liberato-b826a4312) |
-| <img src="soulgame-academico/src/assets/integrantes/jonatan.jpg" width="60" /> | Jonatan Vieira Feitosa | 570452 | 1TDSPY | [Jonatanfeitosa](https://github.com/Jonatanfeitosa) | [linkedin](https://br.linkedin.com/in/jonatanvieirafeitosa) |
-| <img src="soulgame-academico/src/assets/integrantes/fernando.jpg" width="60" /> | Fernando Oliveira Francelino Sardinha | 570196 | 1TDSPY | [tecnando-rpa](https://github.com/tecnando-rpa) | [linkedin](https://www.linkedin.com/in/fernando-oliveira-1bb875164) |
-| <img src="soulgame-academico/src/assets/integrantes/marcelo.jpg" width="60" /> | Marcelo Candido da Mata Junior | 569584 | 1TDSPY | [mdamata](https://github.com/mdamata) | [linkedin](https://br.linkedin.com/in/marcelo-da-mata) |
-| <img src="soulgame-academico/src/assets/integrantes/davi.jpg" width="60" /> | Davi Felix Cunha | 569393 | 1TDSPY | [IsDevZ](https://github.com/IsDevZ) | [linkedin](https://www.linkedin.com/in/davi-felix-99b7a63a9) |
+| <img src="soulgame-academico/src/assets/integrantes/vinicius.webp" width="60" /> | Vinicius Liberato dos Anjos | 571480 | 1TDSPY | [Liberato02](https://github.com/Liberato02) | [linkedin](https://br.linkedin.com/in/vinicius-liberato-b826a4312) |
+| <img src="soulgame-academico/src/assets/integrantes/jonatan.webp" width="60" /> | Jonatan Vieira Feitosa | 570452 | 1TDSPY | [Jonatanfeitosa](https://github.com/Jonatanfeitosa) | [linkedin](https://br.linkedin.com/in/jonatanvieirafeitosa) |
+| <img src="soulgame-academico/src/assets/integrantes/fernando.webp" width="60" /> | Fernando Oliveira Francelino Sardinha | 570196 | 1TDSPY | [tecnando-rpa](https://github.com/tecnando-rpa) | [linkedin](https://www.linkedin.com/in/fernando-oliveira-1bb875164) |
+| <img src="soulgame-academico/src/assets/integrantes/marcelo.webp" width="60" /> | Marcelo Candido da Mata Junior | 569584 | 1TDSPY | [mdamata](https://github.com/mdamata) | [linkedin](https://br.linkedin.com/in/marcelo-da-mata) |
+| <img src="soulgame-academico/src/assets/integrantes/davi.webp" width="60" /> | Davi Felix Cunha | 569393 | 1TDSPY | [IsDevZ](https://github.com/IsDevZ) | [linkedin](https://www.linkedin.com/in/davi-felix-99b7a63a9) |
 
 ## Como Rodar o Projeto
 
