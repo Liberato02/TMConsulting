@@ -4,6 +4,13 @@ import type { Atividade } from "../types";
 import { useAuth } from "../hooks/useAuth";
 import { useToast } from "../hooks/useToast";
 import { converterPontosParaReais, formatarReais } from "../data/conversao";
+import type { RespostaEstoqueSangue } from "../data/estoqueSangue";
+
+const CORES_NIVEL_ESTOQUE: Record<string, string> = {
+  critico: "bg-red-100 text-red-700",
+  baixo: "bg-amber-100 text-amber-700",
+  adequado: "bg-emerald-100 text-emerald-700",
+};
 
 function hojeISO(): string {
   return new Date().toISOString().slice(0, 10);
@@ -11,10 +18,12 @@ function hojeISO(): string {
 
 export function ModalDetalheAtividade({
   atividade,
+  estoqueSangue,
   onFechar,
   onDataSalva,
 }: {
   atividade: Atividade;
+  estoqueSangue: RespostaEstoqueSangue | null;
   onFechar: () => void;
   onDataSalva: (atividadeId: string, dataISO: string) => void;
 }) {
@@ -121,15 +130,33 @@ export function ModalDetalheAtividade({
           <button
             onClick={onFechar}
             aria-label="Fechar"
-            className="text-slate-600 hover:text-slate-600 text-xl leading-none shrink-0"
+            className="text-slate-400 hover:text-slate-600 text-xl leading-none shrink-0"
           >
             ×
           </button>
         </div>
-        <p className="text-sm text-slate-600">{atividade.descricao}</p>
+        <p className="text-sm text-slate-500">{atividade.descricao}</p>
         <p className="text-sm font-semibold text-blue-700 mt-2">
           +{atividade.pontos} pts ({formatarReais(converterPontosParaReais(atividade.pontos))})
         </p>
+
+        {atividade.id === "doacao-sangue" && estoqueSangue && (
+          <div className="mt-3 bg-slate-50 rounded-lg p-2">
+            <p className="text-[11px] text-slate-500 mb-1">
+              Estoque em {estoqueSangue.hemocentro}:
+            </p>
+            <div className="flex flex-wrap gap-1">
+              {estoqueSangue.estoque.map((item) => (
+                <span
+                  key={item.tipo}
+                  className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${CORES_NIVEL_ESTOQUE[item.nivel]}`}
+                >
+                  {item.tipo}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
 
         {!concluida && (
           <div className="mt-4 flex gap-2 items-end">
@@ -175,7 +202,7 @@ export function ModalDetalheAtividade({
                 className="mt-2 max-h-40 w-full rounded-lg object-cover border border-slate-200"
               />
             ) : (
-              <p className="text-[11px] text-slate-600 mt-1">
+              <p className="text-[11px] text-slate-500 mt-1">
                 Sem foto não é possível concluir nem ganhar pontos.
               </p>
             )}

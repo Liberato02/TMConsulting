@@ -5,22 +5,16 @@ import { listarRanking } from "../../data/usuariosStorage";
 import { buscarDefinicaoTipoConta } from "../../data/tiposConta";
 import type { Usuario } from "../../types";
 import { useTituloDocumento } from "../../hooks/useTituloDocumento";
-import { ListaSkeleton } from "../../components/ListaSkeleton";
 
 const LIMITE_RANKING = 20;
 
 type ItemRanking = Pick<Usuario, "id" | "nome" | "pontos" | "nivel" | "tipo">;
 
-// Intersection type: o item do ranking MAIS a posição calculada (1º, 2º...).
-type ItemRankingPosicionado = ItemRanking & { posicao: number };
-
-type EstadoRanking = "carregando" | "sucesso" | "erro";
-
 export function Ranking() {
   useTituloDocumento("Ranking | SoulGame");
   const { usuario } = useAuth();
-  const [ranking, setRanking] = useState<ItemRankingPosicionado[]>([]);
-  const [estado, setEstado] = useState<EstadoRanking>("carregando");
+  const [ranking, setRanking] = useState<ItemRanking[]>([]);
+  const [carregando, setCarregando] = useState(true);
 
   // Efeito legítimo: busca dados de um servidor externo (a API), algo
   // que só existe fora do ciclo de renderização do React — por isso
@@ -29,19 +23,12 @@ export function Ranking() {
   useEffect(() => {
     let cancelado = false;
 
-    listarRanking()
-      .then((lista) => {
-        if (cancelado) return;
-        setRanking(
-          lista
-            .slice(0, LIMITE_RANKING)
-            .map((pessoa, indice) => ({ ...pessoa, posicao: indice + 1 }))
-        );
-        setEstado("sucesso");
-      })
-      .catch(() => {
-        if (!cancelado) setEstado("erro");
-      });
+    listarRanking().then((lista) => {
+      if (!cancelado) {
+        setRanking(lista.slice(0, LIMITE_RANKING));
+        setCarregando(false);
+      }
+    });
 
     return () => {
       cancelado = true;
@@ -54,26 +41,21 @@ export function Ranking() {
     <main aria-label="Ranking de usuários" className="flex-1 px-4 py-8 bg-slate-50">
       <div className="max-w-lg mx-auto">
         <h1 className="text-2xl font-bold text-blue-800 mb-1">🏆 Ranking</h1>
-        <p className="text-sm text-slate-600 mb-6">
+        <p className="text-sm text-slate-500 mb-6">
           Os {LIMITE_RANKING} usuários com mais pontos na SoulGame.
         </p>
 
-        {estado === "carregando" ? (
-          <ListaSkeleton rotulo="Carregando ranking..." />
-        ) : estado === "erro" ? (
-          <div
-            role="alert"
-            className="bg-white rounded-2xl shadow-sm p-6 text-center text-sm text-red-700"
-          >
-            Não foi possível carregar o ranking agora. Tente novamente em instantes.
+        {carregando ? (
+          <div className="bg-white rounded-2xl shadow-sm p-6 text-center text-sm text-slate-400">
+            Carregando ranking...
           </div>
         ) : ranking.length === 0 ? (
-          <div className="bg-white rounded-2xl shadow-sm p-6 text-center text-sm text-slate-600">
+          <div className="bg-white rounded-2xl shadow-sm p-6 text-center text-sm text-slate-400">
             Ainda não há usuários suficientes para formar um ranking.
           </div>
         ) : (
           <ol className="space-y-2">
-            {ranking.map((pessoa) => {
+            {ranking.map((pessoa, indice) => {
               const souEu = pessoa.id === usuario.id;
               const definicao =
                 pessoa.tipo !== "admin" ? buscarDefinicaoTipoConta(pessoa.tipo) : null;
@@ -89,22 +71,22 @@ export function Ranking() {
                   >
                     <span
                       className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0 ${
-                        pessoa.posicao === 1
+                        indice === 0
                           ? "bg-amber-400 text-white"
-                          : pessoa.posicao === 2
+                          : indice === 1
                             ? "bg-slate-300 text-white"
-                            : pessoa.posicao === 3
+                            : indice === 2
                               ? "bg-orange-400 text-white"
-                              : "bg-slate-100 text-slate-600"
+                              : "bg-slate-100 text-slate-500"
                       }`}
                     >
-                      {pessoa.posicao}
+                      {indice + 1}
                     </span>
                     <div className="flex-1 min-w-0">
                       <p className="font-semibold text-sm text-slate-800 truncate">
                         {pessoa.nome} {souEu && <span className="text-blue-600">(você)</span>}
                       </p>
-                      <p className="text-xs text-slate-600">
+                      <p className="text-xs text-slate-400">
                         Nível {pessoa.nivel} · {definicao?.rotulo ?? pessoa.tipo}
                       </p>
                     </div>

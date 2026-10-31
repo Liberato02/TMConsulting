@@ -108,20 +108,21 @@ export async function autenticar(email: string, senha: string): Promise<{ usuari
   }
 }
 
-// Se a API falhar, o erro SOBE para quem chamou (Ranking e Perfil público),
-// que decide mostrar a mensagem de erro. Antes, o erro era engolido e a tela
-// dizia "ainda não há usuários", o que enganava a pessoa.
 export async function listarRanking(): Promise<Array<Pick<Usuario, "id" | "nome" | "pontos" | "nivel" | "tipo">>> {
-  const resposta = await listarRankingApi();
-  return resposta.ranking
-    .filter((u) => u.tipo !== "admin")
-    .map((u) => ({
-      id: u.id,
-      nome: u.nome,
-      pontos: u.totalPontos,
-      nivel: u.nivel,
-      tipo: u.tipo as Usuario["tipo"],
-    }));
+  try {
+    const resposta = await listarRankingApi();
+    return resposta.ranking
+      .filter((u) => u.tipo !== "admin")
+      .map((u) => ({
+        id: u.id,
+        nome: u.nome,
+        pontos: u.totalPontos,
+        nivel: u.nivel,
+        tipo: u.tipo as Usuario["tipo"],
+      }));
+  } catch {
+    return [];
+  }
 }
 
 // Persiste alterações de perfil/avatar. "Fire and forget" na prática —

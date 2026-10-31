@@ -1,9 +1,7 @@
-import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { ChatbotSoulUp } from "../components/ChatbotSoulUp";
-import { CarregandoPagina } from "../components/CarregandoPagina";
 
 // Layout compartilhado: Navbar e Footer aparecem em TODAS as páginas,
 // e <Outlet /> é onde o React Router injeta a página da rota atual.
@@ -25,10 +23,7 @@ export function MainLayout() {
 
       <Navbar />
       <div id="conteudo-principal" className="flex-1 flex flex-col">
-                <Suspense fallback={<CarregandoPagina />}>
-          <Outlet />
-        </Suspense>
-
+        <Outlet />
       </div>
       <Footer />
       <ChatbotSoulUp />

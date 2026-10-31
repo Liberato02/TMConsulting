@@ -7,10 +7,6 @@ import {
   type AtividadeApi,
 } from "../../api/clienteApi";
 import { useTituloDocumento } from "../../hooks/useTituloDocumento";
-import { corTextoSobre } from "../../utils/cores";
-
-// Cor dos ODS ainda não desbloqueados (cinza claro, com texto escuro legível).
-const COR_ODS_BLOQUEADO = "#CBD5E1";
 
 export function MapaOds() {
   useTituloDocumento("Mapa de ODS | SoulGame");
@@ -59,14 +55,14 @@ export function MapaOds() {
     <main aria-label="Mapa dos Objetivos de Desenvolvimento Sustentável" className="flex-1 px-4 py-6">
       <div className="max-w-3xl mx-auto">
         <h1 className="text-2xl font-bold text-blue-800 mb-1">🌍 Mapa das Trilhas ODS</h1>
-        <p className="text-sm text-slate-600 mb-5">
+        <p className="text-sm text-slate-500 mb-5">
           Cada território acende quando você conclui a primeira ação daquele Objetivo de
           Desenvolvimento Sustentável — {odsDesbloqueados.size} de {listaOds.length || 17} já
           desbloqueados.
         </p>
 
         {carregando ? (
-          <p className="text-sm text-slate-600 text-center py-10">Carregando o mapa…</p>
+          <p className="text-sm text-slate-400 text-center py-10">Carregando o mapa…</p>
         ) : (
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3">
             {listaOds.map((ods) => {
@@ -78,12 +74,9 @@ export function MapaOds() {
                   aria-label={`ODS ${ods.id}: ${ods.nome}${desbloqueado ? ", desbloqueado" : ", bloqueado"}`}
                   className={`relative aspect-square rounded-2xl flex flex-col items-center justify-center
                     p-2 text-center transition-all duration-300 ease-out
-                    ${desbloqueado ? "shadow-lg scale-100 hover:scale-105" : "hover:brightness-95"}
+                    ${desbloqueado ? "shadow-lg scale-100 hover:scale-105" : "opacity-40 grayscale hover:opacity-60"}
                     ${odsSelecionado === ods.id ? "ring-4 ring-offset-2 ring-blue-500" : ""}`}
-                  style={{
-                    backgroundColor: desbloqueado ? ods.cor : COR_ODS_BLOQUEADO,
-                    color: corTextoSobre(desbloqueado ? ods.cor : COR_ODS_BLOQUEADO),
-                  }}
+                  style={{ backgroundColor: desbloqueado ? ods.cor : "#94A3B8" }}
                 >
                   {desbloqueado && (
                     <span
@@ -92,14 +85,14 @@ export function MapaOds() {
                       style={{ backgroundColor: ods.cor, opacity: 0.35 }}
                     />
                   )}
-                  <span className="relative font-extrabold text-lg">
+                  <span className="relative text-white font-extrabold text-lg drop-shadow">
                     {ods.id}
                   </span>
-                  <span className="relative text-[10px] leading-tight font-medium mt-1 line-clamp-2">
+                  <span className="relative text-white text-[10px] leading-tight font-medium mt-1 line-clamp-2">
                     {ods.nome}
                   </span>
                   {!desbloqueado && (
-                    <span className="relative text-xs mt-1" aria-hidden="true">
+                    <span className="relative text-white text-xs mt-1" aria-hidden="true">
                       🔒
                     </span>
                   )}
@@ -131,10 +124,10 @@ export function MapaOds() {
               <h2 className="text-lg font-bold text-slate-800">{odsInfoSelecionado.nome}</h2>
             </div>
 
-            <p className="text-xs font-semibold text-slate-600 mb-2">Atividades deste ODS na plataforma</p>
+            <p className="text-xs font-semibold text-slate-500 mb-2">Atividades deste ODS na plataforma</p>
 
             {atividadesDoOdsSelecionado.length === 0 ? (
-              <p className="text-sm text-slate-600">Nenhuma atividade cadastrada aqui ainda.</p>
+              <p className="text-sm text-slate-400">Nenhuma atividade cadastrada aqui ainda.</p>
             ) : (
               <ul className="space-y-2">
                 {atividadesDoOdsSelecionado.map((atividade) => {
@@ -144,7 +137,7 @@ export function MapaOds() {
                       key={atividade.id}
                       className="flex items-center justify-between bg-slate-50 rounded-lg px-3 py-2 text-sm"
                     >
-                      <span className={concluida ? "text-slate-600 line-through" : "text-slate-700"}>
+                      <span className={concluida ? "text-slate-400 line-through" : "text-slate-700"}>
                         {atividade.nome}
                       </span>
                       <span className="text-xs font-semibold text-blue-600">
