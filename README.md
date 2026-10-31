@@ -172,6 +172,20 @@ Painel do time interno, exige login como admin:
 ### Página de erro — rota coringa
 Qualquer URL inválida direciona para uma página 404 dedicada.
 
+## Imagens e Ícones
+
+### Capturas de tela
+
+| Home | Trilha Soul | Ranking |
+|------|-------------|---------|
+| ![Tela inicial do SoulGame](soulgame-academico/docs/imagens/home.png) | ![Trilha Soul com atividades](soulgame-academico/docs/imagens/trilha.png) | ![Ranking de usuários](soulgame-academico/docs/imagens/ranking.png) |
+
+### Ícones e fotos
+
+- **Favicon:** `soulgame-academico/public/favicon.png`.
+- **Fotos da equipe:** `soulgame-academico/src/assets/integrantes/`, em formato WebP (192 px) para carregar mais rápido.
+- **Ícones do painel:** emojis Unicode, sem biblioteca externa de ícones.
+
 ## Integrantes
 
 | Foto | Integrante | RM | Turma | GitHub | LinkedIn |
