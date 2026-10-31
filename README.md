@@ -63,9 +63,9 @@ em valor monetário, sobre ações reais de impacto social e ambiental.
 soulgame-academico
 │
 ├── src
-│   ├── api                 → clienteApi.ts: fetch() nativo + interfaces TypeScript de toda resposta da API
-│   ├── assets              → imagens (fotos da equipe)
-│   ├── components          → componentes reutilizáveis (Navbar, Footer, Card, Botao, modais, chatbot...)
+│   ├── api                 → clienteApi.ts (fetch() nativo + interfaces TypeScript de toda resposta da API) e contatoApi.ts (envio do formulário de Contato).
+│   ├── assets              → imagens (fotos da equipe em WebP)
+│   ├── components          → componentes reutilizáveis (Navbar, Footer, Card, Botao, modais, chatbot, CarregandoPagina e ListaSkeleton (estados de carregamento)).
 │   ├── context             → contextos globais (autenticação, notificações)
 │   ├── data                → dados tipados (atividades, integrantes, conversão, tipos de conta...)
 │   │   └── __tests__       → testes de conversão de pontos e integridade de dados
@@ -83,7 +83,7 @@ soulgame-academico
 │   │   └── __tests__       → testes de validação de idade mínima e login
 │   ├── theme               → referência da paleta de cores
 │   ├── types               → contratos de dados (TypeScript)
-│   ├── utils               → utilitários (calendário, compressão de imagem)
+│   ├── utils               → utilitários (calendário, compressão de imagem, contraste de cores)
 │   │   └── __tests__       → testes do validador de imagem
 │   ├── App.tsx             → roteamento principal
 │   ├── main.tsx            → ponto de entrada da aplicação
@@ -159,7 +159,7 @@ Evolução do usuário: trilha de desafios com prazos agendados, mapa dos 17 ODS
 Edição do próprio perfil/avatar e perfil público de outro usuário (acessado a partir do Ranking). Id inexistente redireciona de volta ao `/ranking`.
 
 ### Histórico — `/historico` e Ranking — `/ranking`
-Histórico de ações concluídas e ranking geral por pontos. Ambos tratam os estados de carregando, erro e lista vazia.
+Histórico de ações concluídas e ranking geral por pontos. O Ranking trata os estados de carregando (esqueleto), erro e lista vazia; o Histórico trata a lista vazia, pois seus dados chegam junto do login.
 
 ### Comunidade — `/comunidade` e Validador — `/validador`
 Painel da comunidade Soulsport e painel de revisão de evidências (contas validadoras).
@@ -246,7 +246,7 @@ variável de ambiente `GROQ_API_KEY` do servidor. Sem a chave, o registro fica
 ## Testes Automatizados
 
 O projeto usa **Vitest** para testes automatizados de lógica de negócio.
-A suíte atual cobre 22 casos, distribuídos em quatro frentes:
+A suíte atual cobre 25 casos, distribuídos em cinco frentes:
 
 | Arquivo | O que cobre |
 |---|---|
@@ -254,6 +254,7 @@ A suíte atual cobre 22 casos, distribuídos em quatro frentes:
 | `src/data/__tests__/conversao.test.ts` | Fórmula de conversão de pontos em reais (R$ 0,009/ponto) |
 | `src/utils/__tests__/imagem.test.ts` | Validador de imagem da evidência: aceita JPG/PNG/WEBP; recusa PDF, SVG e arquivo sem tipo |
 | `src/data/__tests__/atividades.test.ts` | Integridade das 7 atividades oficiais: ids únicos, pontuação positiva, categoria válida |
+| `src/utils/__tests__/cores.test.ts` | Utilitário que escolhe texto claro ou escuro conforme o contraste com o fundo (acessibilidade) |
 
 Comandos:
 
@@ -276,7 +277,7 @@ npm run test:watch
 ## Próximos Passos
 
 - [x] Deploy do front-end (Vercel) e do back-end (Render)
-- [ ] Gravação do vídeo de apresentação e link no README
+- [x] Gravação do vídeo de apresentação e link no README
 - [x] Integração com a API Java (`fetch()` nativo, com loading/erro/vazio)
 - [ ] Testes automatizados no backend Java
 - [ ] Restrições `CHECK` no schema SQL
